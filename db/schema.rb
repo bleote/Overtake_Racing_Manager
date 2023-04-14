@@ -10,9 +10,84 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_13_145808) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_14_123709) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "cars", force: :cascade do |t|
+    t.string "constructor"
+    t.bigint "driver_id", null: false
+    t.string "engine"
+    t.integer "gearbox"
+    t.integer "suspension"
+    t.integer "wings"
+    t.string "aero_setup"
+    t.string "gear_ratio"
+    t.string "tyres"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["driver_id"], name: "index_cars_on_driver_id"
+  end
+
+  create_table "chiefs", force: :cascade do |t|
+    t.string "chief_name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "circuits", force: :cascade do |t|
+    t.string "circuit_name"
+    t.integer "slow_curves"
+    t.integer "medium_curves"
+    t.integer "fast_curves"
+    t.integer "short_straights"
+    t.integer "medium_straights"
+    t.integer "long_straights"
+    t.integer "pitstop_time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "drivers", force: :cascade do |t|
+    t.string "driver_name"
+    t.string "helmet"
+    t.integer "driving_skills"
+    t.integer "fitness_level"
+    t.integer "overtaking"
+    t.integer "defending"
+    t.integer "wet_race"
+    t.integer "driver_points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "circuit_id", null: false
+    t.string "weather"
+    t.bigint "team_id", null: false
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["circuit_id"], name: "index_races_on_circuit_id"
+    t.index ["team_id"], name: "index_races_on_team_id"
+    t.index ["user_id"], name: "index_races_on_user_id"
+  end
+
+  create_table "teams", force: :cascade do |t|
+    t.string "team_name"
+    t.string "team_logo"
+    t.string "color"
+    t.bigint "chief_id", null: false
+    t.bigint "car_id", null: false
+    t.bigint "driver_id", null: false
+    t.integer "team_points"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["car_id"], name: "index_teams_on_car_id"
+    t.index ["chief_id"], name: "index_teams_on_chief_id"
+    t.index ["driver_id"], name: "index_teams_on_driver_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -28,4 +103,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_13_145808) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "cars", "drivers"
+  add_foreign_key "races", "circuits"
+  add_foreign_key "races", "teams"
+  add_foreign_key "races", "users"
+  add_foreign_key "teams", "cars"
+  add_foreign_key "teams", "chiefs"
+  add_foreign_key "teams", "drivers"
 end

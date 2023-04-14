@@ -1,0 +1,2 @@
+class Chief < ApplicationRecord
+end
