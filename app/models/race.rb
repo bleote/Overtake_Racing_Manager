@@ -1,5 +1,5 @@
 class Race < ApplicationRecord
   belongs_to :user
   belongs_to :circuit
-  belongs_to :team
+  has_many :teams
 end

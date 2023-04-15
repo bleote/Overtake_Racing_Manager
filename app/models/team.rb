@@ -1,5 +1,6 @@
 class Team < ApplicationRecord
-  belongs_to :chief
-  belongs_to :car
-  belongs_to :driver
+  has_one :chief
+  has_many :cars
+  has_many :drivers
+  has_many :races
 end

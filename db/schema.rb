@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_14_123709) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_15_192011) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cars", force: :cascade do |t|
     t.string "constructor"
-    t.bigint "driver_id", null: false
     t.string "engine"
     t.integer "gearbox"
     t.integer "suspension"
@@ -26,13 +25,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_123709) do
     t.string "tyres"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["driver_id"], name: "index_cars_on_driver_id"
+    t.bigint "team_id", null: false
+    t.index ["team_id"], name: "index_cars_on_team_id"
   end
 
   create_table "chiefs", force: :cascade do |t|
     t.string "chief_name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "team_id", null: false
+    t.index ["team_id"], name: "index_chiefs_on_team_id"
   end
 
   create_table "circuits", force: :cascade do |t|
@@ -59,6 +61,10 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_123709) do
     t.integer "driver_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "team_id", null: false
+    t.bigint "car_id", null: false
+    t.index ["car_id"], name: "index_drivers_on_car_id"
+    t.index ["team_id"], name: "index_drivers_on_team_id"
   end
 
   create_table "races", force: :cascade do |t|
@@ -78,15 +84,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_123709) do
     t.string "team_name"
     t.string "team_logo"
     t.string "color"
-    t.bigint "chief_id", null: false
-    t.bigint "car_id", null: false
-    t.bigint "driver_id", null: false
     t.integer "team_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["car_id"], name: "index_teams_on_car_id"
-    t.index ["chief_id"], name: "index_teams_on_chief_id"
-    t.index ["driver_id"], name: "index_teams_on_driver_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -103,11 +103,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_14_123709) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "cars", "drivers"
+  add_foreign_key "cars", "teams"
+  add_foreign_key "chiefs", "teams"
+  add_foreign_key "drivers", "cars"
+  add_foreign_key "drivers", "teams"
   add_foreign_key "races", "circuits"
   add_foreign_key "races", "teams"
   add_foreign_key "races", "users"
-  add_foreign_key "teams", "cars"
-  add_foreign_key "teams", "chiefs"
-  add_foreign_key "teams", "drivers"
 end
