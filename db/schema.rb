@@ -10,30 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_211311) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_192234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cars", force: :cascade do |t|
-    t.string "constructor"
+    t.bigint "team_id", null: false
     t.string "engine"
     t.integer "gearbox"
     t.integer "suspension"
-    t.integer "wings"
+    t.integer "downforce"
     t.string "aero_setup"
     t.string "gear_ratio"
     t.string "tyres"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "team_id", null: false
     t.index ["team_id"], name: "index_cars_on_team_id"
   end
 
   create_table "chiefs", force: :cascade do |t|
     t.string "chief_name"
+    t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "team_id", null: false
     t.index ["team_id"], name: "index_chiefs_on_team_id"
   end
 
@@ -53,6 +52,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_211311) do
   create_table "drivers", force: :cascade do |t|
     t.string "driver_name"
     t.string "helmet"
+    t.bigint "team_id", null: false
+    t.bigint "car_id", null: false
     t.integer "driving_skills"
     t.integer "fitness_level"
     t.integer "overtaking"
@@ -61,8 +62,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_211311) do
     t.integer "driver_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "team_id", null: false
-    t.bigint "car_id", null: false
     t.index ["car_id"], name: "index_drivers_on_car_id"
     t.index ["team_id"], name: "index_drivers_on_team_id"
   end
@@ -72,18 +71,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_211311) do
     t.bigint "circuit_id", null: false
     t.string "weather"
     t.string "status"
+    t.bigint "team01_id", null: false
+    t.bigint "team02_id", null: false
+    t.bigint "team03_id", null: false
+    t.bigint "team04_id", null: false
+    t.bigint "team05_id", null: false
+    t.bigint "team06_id", null: false
+    t.bigint "team07_id", null: false
+    t.bigint "team08_id", null: false
+    t.bigint "team09_id", null: false
+    t.bigint "team10_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.bigint "team01_id"
-    t.bigint "team02_id"
-    t.bigint "team03_id"
-    t.bigint "team04_id"
-    t.bigint "team05_id"
-    t.bigint "team06_id"
-    t.bigint "team07_id"
-    t.bigint "team08_id"
-    t.bigint "team09_id"
-    t.bigint "team10_id"
     t.index ["circuit_id"], name: "index_races_on_circuit_id"
     t.index ["team01_id"], name: "index_races_on_team01_id"
     t.index ["team02_id"], name: "index_races_on_team02_id"
