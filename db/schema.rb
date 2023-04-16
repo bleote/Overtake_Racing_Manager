@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_15_192011) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_15_211311) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -71,12 +71,30 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_192011) do
     t.bigint "user_id", null: false
     t.bigint "circuit_id", null: false
     t.string "weather"
-    t.bigint "team_id", null: false
     t.string "status"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "team01_id"
+    t.bigint "team02_id"
+    t.bigint "team03_id"
+    t.bigint "team04_id"
+    t.bigint "team05_id"
+    t.bigint "team06_id"
+    t.bigint "team07_id"
+    t.bigint "team08_id"
+    t.bigint "team09_id"
+    t.bigint "team10_id"
     t.index ["circuit_id"], name: "index_races_on_circuit_id"
-    t.index ["team_id"], name: "index_races_on_team_id"
+    t.index ["team01_id"], name: "index_races_on_team01_id"
+    t.index ["team02_id"], name: "index_races_on_team02_id"
+    t.index ["team03_id"], name: "index_races_on_team03_id"
+    t.index ["team04_id"], name: "index_races_on_team04_id"
+    t.index ["team05_id"], name: "index_races_on_team05_id"
+    t.index ["team06_id"], name: "index_races_on_team06_id"
+    t.index ["team07_id"], name: "index_races_on_team07_id"
+    t.index ["team08_id"], name: "index_races_on_team08_id"
+    t.index ["team09_id"], name: "index_races_on_team09_id"
+    t.index ["team10_id"], name: "index_races_on_team10_id"
     t.index ["user_id"], name: "index_races_on_user_id"
   end
 
@@ -108,6 +126,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_15_192011) do
   add_foreign_key "drivers", "cars"
   add_foreign_key "drivers", "teams"
   add_foreign_key "races", "circuits"
-  add_foreign_key "races", "teams"
+  add_foreign_key "races", "teams", column: "team01_id"
+  add_foreign_key "races", "teams", column: "team02_id"
+  add_foreign_key "races", "teams", column: "team03_id"
+  add_foreign_key "races", "teams", column: "team04_id"
+  add_foreign_key "races", "teams", column: "team05_id"
+  add_foreign_key "races", "teams", column: "team06_id"
+  add_foreign_key "races", "teams", column: "team07_id"
+  add_foreign_key "races", "teams", column: "team08_id"
+  add_foreign_key "races", "teams", column: "team09_id"
+  add_foreign_key "races", "teams", column: "team10_id"
   add_foreign_key "races", "users"
 end
