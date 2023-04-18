@@ -1,11 +1,12 @@
 require "open-uri"
 
-puts 'Cleaning Database (Races, Circuits, Teams, Cars, and Drivers)'
+puts 'Cleaning Database (Races, Circuits, Drivers, Cars, Chiefs, and Teams)'
 Race.destroy_all
 Circuit.destroy_all
-Team.destroy_all
 Driver.destroy_all
 Car.destroy_all
+Chief.destroy_all
+Team.destroy_all
 
 puts 'Creating 10 teams...'
 
@@ -416,6 +417,290 @@ Car.create(
 )
 
 puts 'All cars were built and tested!'
+
+puts 'Teams are signing with drivers...'
+
+Driver.create(
+  id: 1,
+  driver_name: 'Max Verstappen',
+  helmet: '',
+  team_id: 1,
+  car_id: 1,
+  driving_skills: 10,
+  fitness_level: 10,
+  overtaking: 10,
+  defending: 9,
+  wet_race: 10,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 2,
+  driver_name: 'Sergio Pérez',
+  helmet: '',
+  team_id: 1,
+  car_id: 2,
+  driving_skills: 9,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 10,
+  wet_race: 7,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 3,
+  driver_name: 'Charles Leclerc',
+  helmet: '',
+  team_id: 2,
+  car_id: 3,
+  driving_skills: 10,
+  fitness_level: 10,
+  overtaking: 9,
+  defending: 9,
+  wet_race: 8,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 4,
+  driver_name: 'Carlos Sainz',
+  helmet: '',
+  team_id: 2,
+  car_id: 4,
+  driving_skills: 9,
+  fitness_level: 9,
+  overtaking: 9,
+  defending: 9,
+  wet_race: 10,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 5,
+  driver_name: 'Lewis Hamilton',
+  helmet: '',
+  team_id: 3,
+  car_id: 5,
+  driving_skills: 10,
+  fitness_level: 10,
+  overtaking: 9,
+  defending: 9,
+  wet_race: 10,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 6,
+  driver_name: 'George Russell',
+  helmet: '',
+  team_id: 3,
+  car_id: 6,
+  driving_skills: 10,
+  fitness_level: 10,
+  overtaking: 9,
+  defending: 10,
+  wet_race: 9,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 7,
+  driver_name: 'Lando Norris',
+  helmet: '',
+  team_id: 4,
+  car_id: 7,
+  driving_skills: 9,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 8,
+  wet_race: 9,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 8,
+  driver_name: 'Oscar Piastri',
+  helmet: '',
+  team_id: 4,
+  car_id: 8,
+  driving_skills: 8,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 7,
+  wet_race: 6,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 9,
+  driver_name: 'Fernando Alonso',
+  helmet: '',
+  team_id: 5,
+  car_id: 9,
+  driving_skills: 10,
+  fitness_level: 9,
+  overtaking: 10,
+  defending: 10,
+  wet_race: 10,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 10,
+  driver_name: 'Lance Stroll',
+  helmet: '',
+  team_id: 5,
+  car_id: 10,
+  driving_skills: 7,
+  fitness_level: 8,
+  overtaking: 7,
+  defending: 6,
+  wet_race: 8,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 11,
+  driver_name: 'Esteban Ocon',
+  helmet: '',
+  team_id: 6,
+  car_id: 11,
+  driving_skills: 8,
+  fitness_level: 8,
+  overtaking: 8,
+  defending: 10,
+  wet_race: 7,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 12,
+  driver_name: 'Pierre Gasly',
+  helmet: '',
+  team_id: 6,
+  car_id: 12,
+  driving_skills: 8,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 9,
+  wet_race: 7,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 13,
+  driver_name: 'Nico Hülkenberg',
+  helmet: '',
+  team_id: 7,
+  car_id: 13,
+  driving_skills: 9,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 8,
+  wet_race: 7,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 14,
+  driver_name: 'Kevin Magnussen',
+  helmet: '',
+  team_id: 7,
+  car_id: 14,
+  driving_skills: 8,
+  fitness_level: 8,
+  overtaking: 8,
+  defending: 9,
+  wet_race: 8,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 15,
+  driver_name: 'Valtteri Bottas',
+  helmet: '',
+  team_id: 8,
+  car_id: 15,
+  driving_skills: 8,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 8,
+  wet_race: 7,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 16,
+  driver_name: 'Zhou Guanyu',
+  helmet: '',
+  team_id: 8,
+  car_id: 16,
+  driving_skills: 7,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 8,
+  wet_race: 6,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 17,
+  driver_name: 'Yuki Tsunoda',
+  helmet: '',
+  team_id: 9,
+  car_id: 17,
+  driving_skills: 7,
+  fitness_level: 8,
+  overtaking: 8,
+  defending: 7,
+  wet_race: 5,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 18,
+  driver_name: 'Nyck de Vries',
+  helmet: '',
+  team_id: 9,
+  car_id: 18,
+  driving_skills: 8,
+  fitness_level: 9,
+  overtaking: 7,
+  defending: 7,
+  wet_race: 7,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 19,
+  driver_name: 'Alex Albon',
+  helmet: '',
+  team_id: 10,
+  car_id: 19,
+  driving_skills: 9,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 7,
+  wet_race: 8,
+  driver_points: 0
+)
+
+Driver.create(
+  id: 20,
+  driver_name: 'Logan Sargeant',
+  helmet: '',
+  team_id: 10,
+  car_id: 20,
+  driving_skills: 7,
+  fitness_level: 9,
+  overtaking: 7,
+  defending: 6,
+  wet_race: 5,
+  driver_points: 0
+)
+
+puts 'All drivers are signed!'
 
 puts 'creating 1 circuit...'
 
