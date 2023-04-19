@@ -1,0 +1,11 @@
+<div class="row justify-content-center">
+  <div class="col-6 py-2 text-center">
+    <h1>Teams</h1>
+    <div class="teamslist">
+      <% @teams.each do |team| %>
+        <p><%= team.team_name %></p>
+      <% end %>
+    </div>
+    <%= link_to "Back", root_path, class: "primary-btn" %>
+  </div>
+</div>

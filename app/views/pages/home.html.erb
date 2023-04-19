@@ -3,7 +3,8 @@
     <h1>Overtake Racing Manager</h1>
     <h2>#home</h2>
     <% if user_signed_in? %>
-      <p>Hi <%= current_user.first_name %> <%= current_user.last_name %></p>
+      <p>Hi <%= current_user.first_name %> <%= current_user.last_name %>, find all the teams listed below:</p>
+      <%= link_to "All teams", teams_path, class: "primary-btn" %>
     <% end %>
-   </div>
+  </div>
 </div>
