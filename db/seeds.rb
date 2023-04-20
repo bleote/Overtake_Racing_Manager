@@ -13,80 +13,90 @@ puts 'Creating 10 teams...'
 Team.create(
   id: 1,
   team_name: 'Red Bull',
-  team_logo: nil,
+  team_logo: 'redbull_logo.png',
   color: 'Dark Blue',
+  description: 'Red Bull finished 1st in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 2,
   team_name: 'Ferrari',
-  team_logo: nil,
+  team_logo: 'ferrari_logo.png',
   color: 'Red',
+  description: 'Ferrari finished 2nd in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 3,
   team_name: 'Mercedes',
-  team_logo: nil,
+  team_logo: 'mercedes_logo.png',
   color: 'Black',
+  description: 'Mercedes finished 3rd in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 4,
   team_name: 'McLaren',
-  team_logo: nil,
+  team_logo: 'mclaren_logo.png',
   color: 'Orange',
+  description: 'McLaren finished 5th in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 5,
   team_name: 'Aston Martin',
-  team_logo: nil,
+  team_logo: 'astonmartin_logo.png',
   color: 'Green',
+  description: 'Aston Martin finished 7th in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 6,
   team_name: 'Alpine',
-  team_logo: nil,
+  team_logo: 'alpine_logo.png',
   color: 'Light Blue',
+  description: 'Alpine finished 4th in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 7,
   team_name: 'Haas',
-  team_logo: nil,
+  team_logo: 'haas_logo.png',
   color: 'White',
+  description: 'Haas finished 8th in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 8,
   team_name: 'Alfa Romeo',
-  team_logo: nil,
+  team_logo: 'alfaromeo_logo.png',
   color: 'Red and White',
+  description: 'Alfa Romeo finished 6th in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 9,
   team_name: 'AlphaTauri',
-  team_logo: nil,
+  team_logo: 'alphatauri_logo.png',
   color: 'White and Blue',
+  description: 'AlphaTauri finished 9th in 2021',
   team_points: 0
 )
 
 Team.create(
   id: 10,
   team_name: 'Williams',
-  team_logo: nil,
+  team_logo: 'williams_logo.png',
   color: 'Blue',
+  description: 'Williams finished 10th in 2021',
   team_points: 0
 )
 
@@ -96,60 +106,70 @@ puts 'Hiring Team Principals...'
 Chief.create(
   id: 1,
   chief_name: 'Christian Horner',
+  chief_image: 'horner.png',
   team_id: 1
 )
 
 Chief.create(
   id: 2,
   chief_name: 'Frédéric Vasseur',
+  chief_image: 'vasseur.png',
   team_id: 2
 )
 
 Chief.create(
   id: 3,
   chief_name: 'Toto Wolff',
+  chief_image: 'wolff.png',
   team_id: 3
 )
 
 Chief.create(
   id: 4,
   chief_name: 'Andrea Stella',
+  chief_image: 'stella.png',
   team_id: 4
 )
 
 Chief.create(
   id: 5,
   chief_name: 'Mike Krack',
+  chief_image: 'krack.png',
   team_id: 5
 )
 
 Chief.create(
   id: 6,
   chief_name: 'Otmar Szafnauer',
+  chief_image: 'szafnauer.png',
   team_id: 6
 )
 
 Chief.create(
   id: 7,
   chief_name: 'Guenther Steiner',
+  chief_image: 'steiner.png',
   team_id: 7
 )
 
 Chief.create(
   id: 8,
   chief_name: 'Alessandro Bravi',
+  chief_image: 'bravi.png',
   team_id: 8
 )
 
 Chief.create(
   id: 9,
   chief_name: 'Franz Tost',
+  chief_image: 'tost.png',
   team_id: 9
 )
 
 Chief.create(
   id: 10,
   chief_name: 'James Vowles',
+  chief_image: 'vowles.png',
   team_id: 10
 )
 
@@ -159,6 +179,7 @@ puts 'Teams are now building their chassis...'
 Car.create(
   id: 1,
   team_id: 1,
+  car_image: 'redbull_car.png',
   constructor: 'Red Bull',
   engine: 'Red Bull Power Trains',
   gearbox: 10,
@@ -172,6 +193,7 @@ Car.create(
 Car.create(
   id: 2,
   team_id: 1,
+  car_image: 'redbull_car.png',
   constructor: 'Red Bull',
   engine: 'Red Bull Power Trains',
   gearbox: 10,
@@ -185,6 +207,7 @@ Car.create(
 Car.create(
   id: 3,
   team_id: 2,
+  car_image: 'ferrari_car.png',
   constructor: 'Ferrari',
   engine: 'Ferrari',
   gearbox: 10,
@@ -198,6 +221,7 @@ Car.create(
 Car.create(
   id: 4,
   team_id: 2,
+  car_image: 'ferrari_car.png',
   constructor: 'Ferrari',
   engine: 'Ferrari',
   gearbox: 10,
@@ -211,6 +235,7 @@ Car.create(
 Car.create(
   id: 5,
   team_id: 3,
+  car_image: 'mercedes_car.png',
   constructor: 'Mercedes',
   engine: 'Mercedes',
   gearbox: 10,
@@ -224,6 +249,7 @@ Car.create(
 Car.create(
   id: 6,
   team_id: 3,
+  car_image: 'mercedes_car.png',
   constructor: 'Mercedes',
   engine: 'Mercedes',
   gearbox: 10,
@@ -237,6 +263,7 @@ Car.create(
 Car.create(
   id: 7,
   team_id: 4,
+  car_image: 'mclaren_car.png',
   constructor: 'McLaren',
   engine: 'Mercedes',
   gearbox: 8,
@@ -250,6 +277,7 @@ Car.create(
 Car.create(
   id: 8,
   team_id: 4,
+  car_image: 'mclaren_car.png',
   constructor: 'McLaren',
   engine: 'Mercedes',
   gearbox: 8,
@@ -263,6 +291,7 @@ Car.create(
 Car.create(
   id: 9,
   team_id: 5,
+  car_image: 'astonmartin_car.png',
   constructor: 'Aston Martin',
   engine: 'Mercedes',
   gearbox: 10,
@@ -276,6 +305,7 @@ Car.create(
 Car.create(
   id: 10,
   team_id: 5,
+  car_image: 'astonmartin_car.png',
   constructor: 'Aston Martin',
   engine: 'Mercedes',
   gearbox: 10,
@@ -289,6 +319,7 @@ Car.create(
 Car.create(
   id: 11,
   team_id: 6,
+  car_image: 'alpine_car.png',
   constructor: 'Alpine',
   engine: 'Renault',
   gearbox: 8,
@@ -302,6 +333,7 @@ Car.create(
 Car.create(
   id: 12,
   team_id: 6,
+  car_image: 'alpine_car.png',
   constructor: 'Alpine',
   engine: 'Renault',
   gearbox: 8,
@@ -315,6 +347,7 @@ Car.create(
 Car.create(
   id: 13,
   team_id: 7,
+  car_image: 'haas_car.png',
   constructor: 'Haas',
   engine: 'Ferrari',
   gearbox: 7,
@@ -328,6 +361,7 @@ Car.create(
 Car.create(
   id: 14,
   team_id: 7,
+  car_image: 'haas_car.png',
   constructor: 'Haas',
   engine: 'Ferrari',
   gearbox: 7,
@@ -341,6 +375,7 @@ Car.create(
 Car.create(
   id: 15,
   team_id: 8,
+  car_image: 'alfaromeo_car.png',
   constructor: 'Alfa Romeo',
   engine: 'Ferrari',
   gearbox: 7,
@@ -354,6 +389,7 @@ Car.create(
 Car.create(
   id: 16,
   team_id: 8,
+  car_image: 'alfaromeo_car.png',
   constructor: 'Alfa Romeo',
   engine: 'Ferrari',
   gearbox: 7,
@@ -367,6 +403,7 @@ Car.create(
 Car.create(
   id: 17,
   team_id: 9,
+  car_image: 'alphatauri_car.png',
   constructor: 'AlphaTauri',
   engine: 'Red Bull Power Trains',
   gearbox: 8,
@@ -380,6 +417,7 @@ Car.create(
 Car.create(
   id: 18,
   team_id: 9,
+  car_image: 'alphatauri_car.png',
   constructor: 'AlphaTauri',
   engine: 'Red Bull Power Trains',
   gearbox: 8,
@@ -393,6 +431,7 @@ Car.create(
 Car.create(
   id: 19,
   team_id: 10,
+  car_image: 'williams_car.png',
   constructor: 'Williams',
   engine: 'Mercedes',
   gearbox: 7,
@@ -406,6 +445,7 @@ Car.create(
 Car.create(
   id: 20,
   team_id: 10,
+  car_image: 'williams_car.png',
   constructor: 'Williams',
   engine: 'Mercedes',
   gearbox: 7,

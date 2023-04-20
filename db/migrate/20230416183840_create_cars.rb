@@ -2,6 +2,8 @@ class CreateCars < ActiveRecord::Migration[7.0]
   def change
     create_table :cars do |t|
       t.references :team, null: false, foreign_key: true
+      t.string :car_image
+      t.string :constructor
       t.string :engine
       t.integer :gearbox
       t.integer :suspension

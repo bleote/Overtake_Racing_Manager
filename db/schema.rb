@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_19_161149) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_192234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "cars", force: :cascade do |t|
     t.bigint "team_id", null: false
+    t.string "car_image"
+    t.string "constructor"
     t.string "engine"
     t.integer "gearbox"
     t.integer "suspension"
@@ -25,12 +27,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_161149) do
     t.string "tyres"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "constructor"
     t.index ["team_id"], name: "index_cars_on_team_id"
   end
 
   create_table "chiefs", force: :cascade do |t|
     t.string "chief_name"
+    t.string "chief_image"
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -102,6 +104,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_161149) do
     t.string "team_name"
     t.string "team_logo"
     t.string "color"
+    t.string "description"
     t.integer "team_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -117,8 +120,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_19_161149) do
     t.datetime "updated_at", null: false
     t.string "first_name"
     t.string "last_name"
-    t.integer "experience"
-    t.integer "prestige"
+    t.integer "experience", default: 0
+    t.integer "prestige", default: 0
+    t.integer "user_races", default: 0
+    t.integer "user_poles", default: 0
+    t.integer "user_podiums", default: 0
+    t.integer "user_victories", default: 0
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

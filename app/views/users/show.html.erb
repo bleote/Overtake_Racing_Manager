@@ -1,0 +1,28 @@
+<div class="row justify-content-center">
+  <div class="col-6 py-2 text-center">
+
+    <div class="profile-user">
+      <% if @user.photo.key %>
+        <%= cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class:"profile-picture" %>
+      <% else %>
+        <%= image_tag "user_no_img.png", class:"profile-picture" %>
+      <% end %>
+      <h2><%= @user.first_name %> <%= @user.last_name %></h2>
+      <h4>Experience: <%= @user.experience %></h4>
+      <h4>Prestige among the paddock: <%= @user.prestige %></h4>
+      <% if @user.experience <= 1 %>
+      <p>After recently joining the grid, <%= @user.first_name %> <%= @user.last_name %>'s
+      presence caught some of the press's attention earlier this year.
+      Although not much can be said about the results, critics believe we'll see a good impact
+      on the team working for their new CEO.</p>
+      <% else %>
+      <p><%= @user.first_name %> <%= @user.last_name %> is the boss!</p>
+      <% end %>
+      <h4>Team Races: <%= @user.user_races %></h4>
+      <h4>Team Poles: <%= @user.user_poles %></h4>
+      <h4>Team Poles: <%= @user.user_races %></h4>
+      <h4>Team Victories: <%= @user.user_victories %></h4>
+
+    <%= link_to "Back", root_path, class: "primary-btn" %>
+  </div>
+</div>
