@@ -1,9 +1,9 @@
 <div class="row justify-content-center">
-  <div class="col-6 py-2 text-center">
+  <div class="py-4 text-center">
     <h1>Overtake Racing Manager</h1>
-    <h2>#home</h2>
     <% if user_signed_in? %>
-      <p>Hi <%= current_user.first_name %> <%= current_user.last_name %>, find all the teams listed below:</p>
+      <p>Hi <%= current_user.first_name %> <%= current_user.last_name %>!</p>
+      <p>find all the teams listed below:</p>
       <%= link_to "All teams", teams_path, class: "primary-btn" %>
     <% end %>
   </div>

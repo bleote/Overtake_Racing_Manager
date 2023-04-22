@@ -1,22 +1,24 @@
 <div class="row justify-content-center">
-  <div class="d-flex py-2 text-center">
-    <div class></div>
-    <div class="profile-user m-2">
+  <div class="text-center">
+    <div class="profile-user pt-2 m-2 rounded border border-white">
       <% if @user.photo.key %>
-        <%= cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill, class:"profile-photo" %>
+        <%= cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class:"profile-photo" %>
       <% else %>
         <%= image_tag "photo_base.png", class:"profile-photo" %>
       <% end %>
-      <h3><%= @user.first_name %> <%= @user.last_name %></h3>
+      <h3 class="my-2"><%= @user.first_name %> <%= @user.last_name %></h3>
     </div>
 
-    <div class="profile-user text-start justify-content-between m-2">
+    <div class="profile-user text-start m-2 p-2 rounded border border-white">
       <h4>Experience: <%= @user.experience %></h4>
       <h4>Prestige: <%= @user.prestige %></h4>
       <h4>Team Races: <%= @user.user_races %></h4>
       <h4>Team Poles: <%= @user.user_poles %></h4>
       <h4>Team Podiums: <%= @user.user_podiums %></h4>
       <h4>Team Victories: <%= @user.user_victories %></h4>
+    </div>
+
+    <div class="profile-user text-start m-2 p-2 rounded border border-white">
       <% if @user.experience <= 1 %>
       <p>After recently joining the grid, <%= @user.first_name %> <%= @user.last_name %>'s
       presence caught some of the press's attention earlier this year.
