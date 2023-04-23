@@ -1,6 +1,8 @@
 <div class="row justify-content-center">
-  <div class="py-4 text-center">
-    <h1>Overtake Racing Manager</h1>
+  <div class="game-title py-4 text-center">
+    <h1>OVERTAKE</h1>
+    <h2>Racing Manager</h2>
+    <%= image_tag "home_car.png", height: 200 %>
     <% if user_signed_in? %>
       <p>Hi <%= current_user.first_name %> <%= current_user.last_name %>!</p>
       <p>find all the teams listed below:</p>
