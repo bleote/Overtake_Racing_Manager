@@ -2,6 +2,7 @@
 @import "config/fonts";
 @import "config/colors";
 @import "config/bootstrap_variables";
+@import "config/form_colors";
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
@@ -26,4 +27,13 @@ h3 {
 
 h4 {
   font-size: 12px;
+}
+
+.btn-info {
+  color: $dark-blue;
+}
+
+a {
+  color: white;
+  text-decoration: underline;
 }
