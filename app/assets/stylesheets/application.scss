@@ -12,7 +12,10 @@
 @import "components/index";
 @import "pages/index";
 
-
+.row {
+  --bs-gutter-x: 0;
+  --bs-gutter-y: 0;
+}
 h1 {
   font-size: 32px;
 }

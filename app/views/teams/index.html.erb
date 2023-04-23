@@ -1,9 +1,9 @@
 <div class="row justify-content-center">
-  <div class="col-6 py-2 text-center">
+  <div class="py-4 text-center">
     <h1>Teams</h1>
-    <div class="teamslist">
+    <div class="teams-list pt-2">
       <% @teams.each do |team| %>
-        <p><%= team.team_name %></p>
+        <p><%= link_to "#{team.team_name}", team, class: "primary-btn" %></p>
       <% end %>
     </div>
     <%= link_to "Back", root_path, class: "primary-btn" %>

@@ -1,0 +1,16 @@
+<div class="row justify-content-center">
+  <div class="py-4 text-center">
+
+    <h1><%= @team.team_name %></h1>
+    <%= image_tag @team.team_logo, width: 200 %>
+    <% if @team.team_name == "Red Bull" || @team.team_name == "Ferrari" || @team.team_name == "Mercedes" %>
+    <p class="mx-4"><%= @team.team_name %> is a top tier team and they'll expect you to lead them to victories!<br><br>
+    You'll be working directly with <%= @team.chief.chief_name %> and will guide the team to make sure both drivers are bringing all possible points home.</p>
+    <% else %>
+    <p class="mx-4">This is a low tier team and they wish to find their way into the points.</p>
+    <% end %>
+    <div>
+      <%= link_to "Back", teams_path, class: "primary-btn" %>
+    </div>
+  </div>
+</div>

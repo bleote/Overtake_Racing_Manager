@@ -185,8 +185,8 @@ Car.create(
   gearbox: 10,
   suspension: 10,
   downforce: 10,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -199,8 +199,8 @@ Car.create(
   gearbox: 10,
   suspension: 10,
   downforce: 10,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -213,8 +213,8 @@ Car.create(
   gearbox: 10,
   suspension: 9,
   downforce: 10,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -227,8 +227,8 @@ Car.create(
   gearbox: 10,
   suspension: 9,
   downforce: 10,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -241,8 +241,8 @@ Car.create(
   gearbox: 10,
   suspension: 9,
   downforce: 9,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -255,8 +255,8 @@ Car.create(
   gearbox: 10,
   suspension: 9,
   downforce: 9,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -269,8 +269,8 @@ Car.create(
   gearbox: 8,
   suspension: 7,
   downforce: 7,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -283,8 +283,8 @@ Car.create(
   gearbox: 8,
   suspension: 7,
   downforce: 7,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -297,8 +297,8 @@ Car.create(
   gearbox: 10,
   suspension: 9,
   downforce: 10,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -311,8 +311,8 @@ Car.create(
   gearbox: 10,
   suspension: 9,
   downforce: 10,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -325,8 +325,8 @@ Car.create(
   gearbox: 8,
   suspension: 8,
   downforce: 8,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -339,8 +339,8 @@ Car.create(
   gearbox: 8,
   suspension: 8,
   downforce: 8,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -353,8 +353,8 @@ Car.create(
   gearbox: 7,
   suspension: 8,
   downforce: 7,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -367,8 +367,8 @@ Car.create(
   gearbox: 7,
   suspension: 8,
   downforce: 7,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -381,8 +381,8 @@ Car.create(
   gearbox: 7,
   suspension: 7,
   downforce: 7,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -395,8 +395,8 @@ Car.create(
   gearbox: 7,
   suspension: 7,
   downforce: 7,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -409,8 +409,8 @@ Car.create(
   gearbox: 8,
   suspension: 7,
   downforce: 7,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -423,8 +423,8 @@ Car.create(
   gearbox: 8,
   suspension: 7,
   downforce: 7,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -437,8 +437,8 @@ Car.create(
   gearbox: 7,
   suspension: 7,
   downforce: 6,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -451,8 +451,8 @@ Car.create(
   gearbox: 7,
   suspension: 7,
   downforce: 6,
-  aero_setup: 'Neutral',
-  gear_ratio: 'Normal',
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
   tyres: 'Soft'
 )
 
@@ -463,7 +463,8 @@ puts 'Teams are signing with drivers...'
 Driver.create(
   id: 1,
   driver_name: 'Max Verstappen',
-  helmet: '',
+  driver_picture: 'verstappen_picture.png',
+  helmet: 'verstappen_helmet.png',
   team_id: 1,
   car_id: 1,
   driving_skills: 10,
@@ -477,7 +478,8 @@ Driver.create(
 Driver.create(
   id: 2,
   driver_name: 'Sergio Pérez',
-  helmet: '',
+  driver_picture: 'perez_picture.png',
+  helmet: 'perez_helmet.png',
   team_id: 1,
   car_id: 2,
   driving_skills: 9,
@@ -491,7 +493,8 @@ Driver.create(
 Driver.create(
   id: 3,
   driver_name: 'Charles Leclerc',
-  helmet: '',
+  driver_picture: 'leclerc_picture.png',
+  helmet: 'leclerc_helmet.png',
   team_id: 2,
   car_id: 3,
   driving_skills: 10,
@@ -505,7 +508,8 @@ Driver.create(
 Driver.create(
   id: 4,
   driver_name: 'Carlos Sainz',
-  helmet: '',
+  driver_picture: 'sainz_picture.png',
+  helmet: 'sainz_helmet.png',
   team_id: 2,
   car_id: 4,
   driving_skills: 9,
@@ -519,7 +523,8 @@ Driver.create(
 Driver.create(
   id: 5,
   driver_name: 'Lewis Hamilton',
-  helmet: '',
+  driver_picture: 'hamilton_picture.png',
+  helmet: 'hamilton_helmet.png',
   team_id: 3,
   car_id: 5,
   driving_skills: 10,
@@ -533,7 +538,8 @@ Driver.create(
 Driver.create(
   id: 6,
   driver_name: 'George Russell',
-  helmet: '',
+  driver_picture: 'russell_picture.png',
+  helmet: 'russell_helmet.png',
   team_id: 3,
   car_id: 6,
   driving_skills: 10,
@@ -547,7 +553,8 @@ Driver.create(
 Driver.create(
   id: 7,
   driver_name: 'Lando Norris',
-  helmet: '',
+  driver_picture: 'norris_picture.png',
+  helmet: 'norris_helmet.png',
   team_id: 4,
   car_id: 7,
   driving_skills: 9,
@@ -561,7 +568,8 @@ Driver.create(
 Driver.create(
   id: 8,
   driver_name: 'Oscar Piastri',
-  helmet: '',
+  driver_picture: 'piastri_picture.png',
+  helmet: 'piastri_helmet.png',
   team_id: 4,
   car_id: 8,
   driving_skills: 8,
@@ -575,7 +583,8 @@ Driver.create(
 Driver.create(
   id: 9,
   driver_name: 'Fernando Alonso',
-  helmet: '',
+  driver_picture: 'alonso_picture.png',
+  helmet: 'alonso_helmet.png',
   team_id: 5,
   car_id: 9,
   driving_skills: 10,
@@ -589,7 +598,8 @@ Driver.create(
 Driver.create(
   id: 10,
   driver_name: 'Lance Stroll',
-  helmet: '',
+  driver_picture: 'stroll_picture.png',
+  helmet: 'stroll_helmet.png',
   team_id: 5,
   car_id: 10,
   driving_skills: 7,
@@ -603,7 +613,8 @@ Driver.create(
 Driver.create(
   id: 11,
   driver_name: 'Esteban Ocon',
-  helmet: '',
+  driver_picture: 'ocon_picture.png',
+  helmet: 'ocon_helmet.png',
   team_id: 6,
   car_id: 11,
   driving_skills: 8,
@@ -617,7 +628,8 @@ Driver.create(
 Driver.create(
   id: 12,
   driver_name: 'Pierre Gasly',
-  helmet: '',
+  driver_picture: 'gasly_picture.png',
+  helmet: 'gasly_helmet.png',
   team_id: 6,
   car_id: 12,
   driving_skills: 8,
@@ -631,7 +643,8 @@ Driver.create(
 Driver.create(
   id: 13,
   driver_name: 'Nico Hülkenberg',
-  helmet: '',
+  driver_picture: 'hulkenberg_picture.png',
+  helmet: 'hulkenberg_helmet.png',
   team_id: 7,
   car_id: 13,
   driving_skills: 9,
@@ -645,7 +658,8 @@ Driver.create(
 Driver.create(
   id: 14,
   driver_name: 'Kevin Magnussen',
-  helmet: '',
+  driver_picture: 'magnussen_picture.png',
+  helmet: 'magnussen_helmet.png',
   team_id: 7,
   car_id: 14,
   driving_skills: 8,
@@ -659,7 +673,8 @@ Driver.create(
 Driver.create(
   id: 15,
   driver_name: 'Valtteri Bottas',
-  helmet: '',
+  driver_picture: 'bottas_picture.png',
+  helmet: 'bottas_helmet.png',
   team_id: 8,
   car_id: 15,
   driving_skills: 8,
@@ -673,7 +688,8 @@ Driver.create(
 Driver.create(
   id: 16,
   driver_name: 'Zhou Guanyu',
-  helmet: '',
+  driver_picture: 'guanyu_picture.png',
+  helmet: 'guanyu_helmet.png',
   team_id: 8,
   car_id: 16,
   driving_skills: 7,
@@ -687,7 +703,8 @@ Driver.create(
 Driver.create(
   id: 17,
   driver_name: 'Yuki Tsunoda',
-  helmet: '',
+  driver_picture: 'tsunoda_picture.png',
+  helmet: 'tsunoda_helmet.png',
   team_id: 9,
   car_id: 17,
   driving_skills: 7,
@@ -701,7 +718,8 @@ Driver.create(
 Driver.create(
   id: 18,
   driver_name: 'Nyck de Vries',
-  helmet: '',
+  driver_picture: 'vries_picture.png',
+  helmet: 'vries_helmet.png',
   team_id: 9,
   car_id: 18,
   driving_skills: 8,
@@ -715,7 +733,8 @@ Driver.create(
 Driver.create(
   id: 19,
   driver_name: 'Alex Albon',
-  helmet: '',
+  driver_picture: 'albon_picture.png',
+  helmet: 'albon_helmet.png',
   team_id: 10,
   car_id: 19,
   driving_skills: 9,
@@ -729,7 +748,8 @@ Driver.create(
 Driver.create(
   id: 20,
   driver_name: 'Logan Sargeant',
-  helmet: '',
+  driver_picture: 'sargeant_picture.png',
+  helmet: 'sargeant_helmet.png',
   team_id: 10,
   car_id: 20,
   driving_skills: 7,

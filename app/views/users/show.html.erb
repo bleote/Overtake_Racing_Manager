@@ -20,24 +20,22 @@
 
     <div class="profile-user text-start m-2 p-2 rounded border border-white">
       <% if @user.experience <= 1 %>
-      <p>After recently joining the grid, <%= @user.first_name %> <%= @user.last_name %>'s
+      <p>NEWS: "<%= @user.first_name %> <%= @user.last_name %>'s
       presence caught some of the press's attention earlier this year.
       Although not much can be said about the results, critics believe we'll see a good impact
-      on the team working for their new CEO.</p>
+      on the team working for their future CEO."</p>
       <% else %>
       <p><%= @user.first_name %> <%= @user.last_name %> is the boss!</p>
       <% end %>
     </div>
 
-
-
   </div>
 
-  <div class="text-center">
+  <div class="text-center pb-2">
     <%= link_to "Edit profile", edit_user_registration_path, class:"primary-btn" %>
   </div>
 
-  <div class="text-center">
+  <div class="text-center pb-3">
   <%= link_to "Back", root_path, class: "primary-btn" %>
   </div>
 
