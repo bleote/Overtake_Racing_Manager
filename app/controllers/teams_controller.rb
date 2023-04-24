@@ -21,10 +21,6 @@ class TeamsController < ApplicationController
     end
   end
 
-  # def chief
-  #   @chief = @team.chief
-  # end
-
   private
 
   def team_params
