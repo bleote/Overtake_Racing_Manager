@@ -1,12 +1,14 @@
 <div class="row justify-content-center">
   <div class="col-10 py-4">
 
-    <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    <div class="form-title pb-2 text-center">
+      <h2>Edit <%= resource_name.to_s.humanize %></h2>
+    </div>
 
     <%= simple_form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
       <%= f.error_notification %>
 
-      <div class="form-inputs">
+      <div class="form-inputs text-start">
         <%= f.input :email, required: true, autofocus: true %>
 
         <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
@@ -35,14 +37,14 @@
                     input_html: { autocomplete: "current-password" } %>
       </div>
 
-      <div class="form-actions">
-        <%= f.button :submit, "Update" %>
+      <div class="form-actions pb-4">
+        <%= f.button :submit, "Update", class: "btn-info" %>
       </div>
     <% end %>
 
-    <h3>Cancel my account</h3>
+    <h3 class="py-2">Unhappy?</h3>
 
-    <div>Unhappy? <%= button_to "Cancel my account", registration_path(resource_name), data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+    <div class="pb-3"><%= link_to "Cancel my account", registration_path(resource_name), class: "btn btn-warning", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
     <%= link_to "Back", :back %>
 

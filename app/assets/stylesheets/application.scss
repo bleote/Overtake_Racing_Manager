@@ -3,6 +3,7 @@
 @import "config/colors";
 @import "config/bootstrap_variables";
 @import "config/form_colors";
+@import "config/navbar";
 
 // External libraries
 @import "bootstrap/scss/bootstrap";
@@ -34,6 +35,12 @@ h4 {
 
 .btn-info {
   color: $dark-blue;
+}
+
+.btn-warning {
+  --bs-btn-color: #e67e22;
+  --bs-btn-bg: #e67d2200;
+  --bs-btn-border-color: #e67e22;
 }
 
 a {
