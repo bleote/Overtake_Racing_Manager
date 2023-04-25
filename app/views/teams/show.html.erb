@@ -4,7 +4,7 @@
     <h1><%= @team.team_name %></h1>
     <div class="d-flex text-start m-2 p-2 rounded border border-white">
       <div class="d-flex team-logo">
-        <%= image_tag @team.team_logo, width: 150 %>
+        <%= image_tag "logos/#{@team.team_logo}", width: 150 %>
       </div>
 
       <div class="team-description">
@@ -22,12 +22,12 @@
       </div>
 
       <div class="d-flex team-principal">
-        <%= image_tag @team.chief.chief_image, height: 100, width: 100, crop: :fill, class:"chief-photo" %>
+        <%= image_tag "chiefs/#{@team.chief.chief_image}", height: 100, width: 100, crop: :fill, class:"chief-photo" %>
       </div>
     </div>
 
     <div>
-    <p><%= image_tag @team.cars.sample.car_image, width: 200 %></p>
+    <p><%= image_tag "cars/#{@team.cars.sample.car_image}", width: 200 %></p>
     </div>
 
     <div class="pt-4">
