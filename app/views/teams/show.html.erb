@@ -8,26 +8,14 @@
       </div>
 
       <div class="team-description">
-        <% if @team.id >= 1 && @team.id < 4 %>
-        <p class="ps-2"><%= @team.team_name %> is a top-tier team and they'll expect you to lead them to victories!</p>
-        <% elsif @team.id >= 4 && @team.id < 7 %>
-        <p class="ps-2"><%= @team.team_name %> is a mid-tier team, fighting for constant points, dreaming for a podium.</p>
-        <% else %>
-        <p class="ps-2"><%= @team.team_name %> is a low-tier team and they wish to find their way into the points.</p>
-        <% end %>
+        <p class="ps-2"><%= check_team(@team) %></p>
       </div>
     </div>
 
     <div class="d-flex text-start m-2 p-2 rounded border border-white">
       <div class="team-description">
         <p class="pe-2">You'll be working directly with <strong><%= @team.chief.chief_name %></strong>
-        <% if @team.id >= 1 && @team.id < 4 %>
-        and will guide the team to make sure both drivers are bringing all available points home.</p>
-        <% elsif @team.id >= 4 && @team.id < 7 %>
-        and your strategies will be crucial to make sure you lead the battle in the midfield.</p>
-        <% else %>
-        and you'll need to capitalize on any opportunities for the drivers to reach the top 10.</p>
-        <% end %>
+        <%= team_description(@team) %></p>
       </div>
 
       <div class="d-flex team-principal me-2">
@@ -44,7 +32,7 @@
       <div class="next-previous-btns">
         <% if @team.id > 1 %>
         <% id = @team.id - 1%>
-        <%= link_to "Previous Team", team_path(id), class: "primary-btn" %>
+        <%= link_to "Previous", team_path(id), class: "primary-btn" %>
         <% else %>
         <div class="pt-4"></div>
         <% end %>
@@ -53,7 +41,7 @@
       <div class="next-previous-btns">
         <% if @team.id < 10 %>
         <% id = @team.id + 1%>
-        <%= link_to "Next Team", team_path(id), class: "primary-btn" %>
+        <%= link_to "Next", team_path(id), class: "primary-btn" %>
         <% else %>
         <div class="pt-4"></div>
         <% end %>
