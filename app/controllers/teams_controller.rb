@@ -1,7 +1,7 @@
 class TeamsController < ApplicationController
   before_action :set_team, only: %i[show edit update]
 
-  # List of all the teams available in the app
+  # List of all the teams
   def index
     @teams = Team.all
   end
@@ -17,7 +17,7 @@ class TeamsController < ApplicationController
     if @team.update(team_params)
       redirect_to team_path(@team)
     else
-      render "teams/edit", status: :unprocessable_entity
+      render 'teams/edit', status: :unprocessable_entity
     end
   end
 

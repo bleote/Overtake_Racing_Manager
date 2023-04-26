@@ -1,11 +1,7 @@
 <div class="row justify-content-center">
   <div class="text-center">
     <div class="profile-user pt-2 m-2 rounded border border-white">
-      <% if @user.photo.key %>
-        <%= cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class:"profile-photo" %>
-      <% else %>
-        <%= image_tag "photo_base.png", class:"profile-photo" %>
-      <% end %>
+      <%=  show_user_photo(current_user) %>
       <h3 class="my-2"><%= @user.first_name %> <%= @user.last_name %></h3>
     </div>
 
