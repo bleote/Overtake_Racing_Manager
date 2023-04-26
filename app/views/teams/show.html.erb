@@ -22,15 +22,15 @@
       <div class="team-description">
         <p class="pe-2">You'll be working directly with <strong><%= @team.chief.chief_name %></strong>
         <% if @team.id >= 1 && @team.id < 4 %>
-        and will guide the team to make sure both drivers are bringing all possible points home.</p>
+        and will guide the team to make sure both drivers are bringing all available points home.</p>
         <% elsif @team.id >= 4 && @team.id < 7 %>
         and your strategies will be crucial to make sure you lead the battle in the midfield.</p>
         <% else %>
-        and you'll need to capitalize any opportunities for the drivers to reach the top 10.</p>
+        and you'll need to capitalize on any opportunities for the drivers to reach the top 10.</p>
         <% end %>
       </div>
 
-      <div class="d-flex team-principal">
+      <div class="d-flex team-principal me-2">
         <%= image_tag "chiefs/#{@team.chief.chief_image}", height: 100, width: 100, crop: :fill, class:"chief-photo" %>
       </div>
     </div>

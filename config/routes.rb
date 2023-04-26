@@ -4,15 +4,15 @@ Rails.application.routes.draw do
 
   resources :users, only: :show
 
-  resources :teams, only: %i[index show update]
+  resources :teams, only: %i[index show edit update]
 
-  resources :driver, only: %i[index show update]
+  resources :driver, only: %i[index show edit update]
 
-  resources :cars, only: %i[index show update]
+  resources :cars, only: %i[index show]
 
-  resources :chiefs, only: %i[index show update]
+  resources :chiefs, only: %i[index show edit update]
 
-  resources :circuits, only: %i[index show update]
+  resources :circuits, only: %i[index]
 
-  resources :races, only: %i[create]
+  resources :races, only: %i[index new create show]
 end
