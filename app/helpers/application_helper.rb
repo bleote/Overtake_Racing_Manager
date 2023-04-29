@@ -18,15 +18,19 @@ module ApplicationHelper
     end
   end
 
-  def check_user_team(user)
-    user.team_id
-  end
+  # def check_user_team(user)
+  #   user.team_id
+  # end
 
-  def user_select_team(user, team_id, url)
-    user.team_id = team_id
-    user.save
-    url
-  end
+  # def user_select_team(user, team_id, url)
+  #   user.team_id = team_id
+  #   user.save
+  #   url
+  # end
+
+    # <div>
+    #   <%= link_to "Select this team", user_select_team(current_user, @team.id, root_path), class: "btn btn-info" %>
+    # </div>
 
   def team_tier(team)
     if team.id >= 1 && team.id < 4
