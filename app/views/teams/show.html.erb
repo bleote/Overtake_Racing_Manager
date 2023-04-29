@@ -8,7 +8,7 @@
       </div>
 
       <div class="team-description">
-        <p class="ps-2"><%= check_team(@team) %></p>
+        <p class="ps-2"><%= team_tier(@team) %></p>
       </div>
     </div>
 
@@ -23,8 +23,12 @@
       </div>
     </div>
 
-    <div>
+    <div class="pb-2">
     <p><%= image_tag "cars/#{@team.cars.sample.car_image}", width: 200 %></p>
+    </div>
+
+    <div>
+      <%= link_to "Select this team", user_select_team(current_user, @team.id, root_path), class: "btn btn-info" %>
     </div>
 
     <div class="d-flex align-middle justify-content-between mx-4 pt-4">
