@@ -777,24 +777,3 @@ Circuit.create(
 )
 
 puts '1 circuit created!'
-# puts 'creating 1 race...'
-
-# Race.create(
-#   id: 1,
-#   user_id: 1,
-#   circuit_id: 1,
-#   weather: 'Sunny',
-#   team01_id: 1,
-#   team02_id: 2,
-#   team03_id: 3,
-#   team04_id: 4,
-#   team05_id: 5,
-#   team06_id: 6,
-#   team07_id: 7,
-#   team08_id: 8,
-#   team09_id: 9,
-#   team10_id: 10,
-#   status: 'Not Started'
-# )
-
-# puts '1 race created!'

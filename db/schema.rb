@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_02_154052) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_23_191103) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -100,6 +100,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_154052) do
 
   create_table "races", force: :cascade do |t|
     t.bigint "user_id", null: false
+    t.string "selected_circuit"
+    t.string "selected_team"
     t.string "weather"
     t.string "status"
     t.bigint "team01_id", null: false
@@ -114,8 +116,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_02_154052) do
     t.bigint "team10_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "circuit"
-    t.string "selected_team"
     t.index ["team01_id"], name: "index_races_on_team01_id"
     t.index ["team02_id"], name: "index_races_on_team02_id"
     t.index ["team03_id"], name: "index_races_on_team03_id"

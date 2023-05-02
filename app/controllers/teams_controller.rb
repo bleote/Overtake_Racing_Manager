@@ -1,13 +1,13 @@
 class TeamsController < ApplicationController
-  before_action :edit_team, only: %i[edit update]
+  before_action :set_team, only: %i[edit update]
 
   # List of all the teams
-  # def index
-  #   @teams = Team.all
-  # end
+  def index
+    @teams = Team.all
+  end
 
   # Show page of a specific team
-  # def show; end
+  def show; end
 
   # Edit a team
   def edit; end
@@ -27,7 +27,7 @@ class TeamsController < ApplicationController
     params.require(:team).permit(:team_name, :team_logo, :color, :team_points)
   end
 
-  def edit_team
+  def set_team
     @team = Team.find(params[:id])
   end
 end

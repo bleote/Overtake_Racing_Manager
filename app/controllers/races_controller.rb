@@ -32,7 +32,7 @@ class RacesController < ApplicationController
 
   def race_params
     params.require(:race).permit(
-      :selected_team, :circuit, :weather, :status, :team01_id, :team02_id, :team03_id,
+      :selected_team, :selected_circuit, :weather, :status, :team01_id, :team02_id, :team03_id,
       :team04_id, :team05_id, :team06_id, :team07_id, :team08_id, :team09_id, :team10_id
     )
   end
