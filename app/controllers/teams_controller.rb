@@ -1,5 +1,5 @@
 class TeamsController < ApplicationController
-  before_action :set_team, only: %i[edit update]
+  before_action :set_team, only: %i[show edit update]
 
   # List of all the teams
   def index

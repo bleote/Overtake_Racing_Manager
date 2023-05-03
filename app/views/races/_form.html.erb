@@ -3,8 +3,8 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
     <div class="form-inputs text-start">
-      <%= f.input :selected_team, collection: Race::TEAM %>
-      <%= f.input :selected_circuit, collection: Race::CIRCUIT %>
+      <%= f.input :selected_team, label: "Select your team", collection: Race::TEAM %>
+      <%= f.input :selected_circuit, label: "Circuit", collection: Race::CIRCUIT %>
     </div>
 
   <div class="form-actions row justify-content-center py-2">

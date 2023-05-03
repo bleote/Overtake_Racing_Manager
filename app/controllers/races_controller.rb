@@ -1,13 +1,17 @@
 class RacesController < ApplicationController
   before_action :set_race, only: %i[show]
 
-  def initialize
-    @pole = nil
-    @p1 = nil
-    @p2 = nil
-    @p3 = nil
-    @podium = [@p1, @p2, @p3]
-    @status = 'Not Started'
+  # def initialize
+  #   @pole = nil
+  #   @p1 = nil
+  #   @p2 = nil
+  #   @p3 = nil
+  #   @podium = [@p1, @p2, @p3]
+  #   @status = 'Not Started'
+  # end
+
+  def index
+    @races = Race.all
   end
 
   def show; end
