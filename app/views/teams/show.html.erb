@@ -8,7 +8,7 @@
       </div>
 
       <div class="team-description">
-        <p class="ps-2"><%= check_team(@team) %></p>
+        <p class="ps-2"><%= team_tier(@team) %></p>
       </div>
     </div>
 
@@ -23,7 +23,7 @@
       </div>
     </div>
 
-    <div>
+    <div class="pb-2">
     <p><%= image_tag "cars/#{@team.cars.sample.car_image}", width: 200 %></p>
     </div>
 

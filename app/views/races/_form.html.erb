@@ -1,0 +1,13 @@
+<%= simple_form_for(@race) do |f| %>
+  <%= f.error_notification %>
+  <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+  <div class="newraceform">
+    <%= f.input :selected_team, label: "Select your team", collection: Race::TEAM %>
+    <%= f.input :selected_circuit, label: "Circuit", collection: Race::CIRCUIT %>
+  </div>
+
+  <div class="form-actions row justify-content-center py-2">
+    <%= f.button :submit, "Start Race", class: "btn btn-info" %>
+  </div>
+<% end %>

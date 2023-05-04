@@ -1,5 +1,5 @@
 module ApplicationHelper
-  @player_team = []
+
   def check_photo(user)
     if user.photo_attachment.nil?
       image_tag "photo_base.png", class: "avatar dropdown-toggle", id: "navbarDropdown",
@@ -18,11 +18,21 @@ module ApplicationHelper
     end
   end
 
-  def user_select_team(team)
-    @player_team = team
-  end
+  # def check_user_team(user)
+  #   user.team_id
+  # end
 
-  def check_team(team)
+  # def user_select_team(user, team_id, url)
+  #   user.team_id = team_id
+  #   user.save
+  #   url
+  # end
+
+    # <div>
+    #   <%= link_to "Select this team", user_select_team(current_user, @team.id, root_path), class: "btn btn-info" %>
+    # </div>
+
+  def team_tier(team)
     if team.id >= 1 && team.id < 4
       "#{team.team_name} is a top-tier team and they'll expect you to lead them to victories!"
     elsif team.id >= 4 && team.id < 7

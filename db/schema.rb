@@ -100,7 +100,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_191103) do
 
   create_table "races", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.bigint "circuit_id", null: false
+    t.string "selected_circuit"
+    t.string "selected_team"
     t.string "weather"
     t.string "status"
     t.bigint "team01_id", null: false
@@ -115,7 +116,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_191103) do
     t.bigint "team10_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["circuit_id"], name: "index_races_on_circuit_id"
     t.index ["team01_id"], name: "index_races_on_team01_id"
     t.index ["team02_id"], name: "index_races_on_team02_id"
     t.index ["team03_id"], name: "index_races_on_team03_id"
@@ -165,7 +165,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_23_191103) do
   add_foreign_key "chiefs", "teams"
   add_foreign_key "drivers", "cars"
   add_foreign_key "drivers", "teams"
-  add_foreign_key "races", "circuits"
   add_foreign_key "races", "teams", column: "team01_id"
   add_foreign_key "races", "teams", column: "team02_id"
   add_foreign_key "races", "teams", column: "team03_id"
