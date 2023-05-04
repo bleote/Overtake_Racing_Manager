@@ -1,5 +1,5 @@
 class RacesController < ApplicationController
-  before_action :set_race, only: %i[show]
+  before_action :set_race, only: %i[show destroy]
 
   # def initialize
   #   @pole = nil
@@ -30,6 +30,11 @@ class RacesController < ApplicationController
     else
       render "races/new", status: :unprocessable_entity
     end
+  end
+
+  def destroy
+    @race.destroy
+    # redirect_to user_path(current_user), status: :see_other
   end
 
   private

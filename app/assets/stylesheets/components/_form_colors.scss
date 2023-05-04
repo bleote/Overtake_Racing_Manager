@@ -1,5 +1,9 @@
 .form-control {
-  background-color: rgb(247, 7, 7);
+  background-color: white;
+}
+
+.form-control:focus {
+  background-color: white;
 }
 
 .form-actions-password .btn {
@@ -16,9 +20,5 @@
 }
 
 .form-select {
-  background-color: white;
-}
-
-.form-inputs {
   background-color: white;
 }
