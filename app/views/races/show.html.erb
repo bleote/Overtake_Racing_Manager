@@ -1,10 +1,39 @@
 <div class="row justify-content-center">
-  <div class="team-page py-4 text-center">
+  <div class="team-page text-center">
 
-    <h1><%= @race.selected_circuit %> GP</h1>
+    <div class="gp-info p-2 m-2 rounded border border-white">
+      <div class="d-flex justify-content-center align-middle">
+        <div class="d-flex pe-3">
+          <h2><%= @race.selected_circuit %> GP </h2>
+        </div>
+        <div>
+          <%= image_tag "circuits/#{check_circuit(@race.selected_circuit).circuit_flag}", width: 35 %>
+        </div>
+      </div>
+
+      <div class="circuit-layout">
+        <%= image_tag "circuits/#{check_circuit(@race.selected_circuit).circuit_layout}", width: 300 %>
+      </div>
+    </div>
+
+    <div class="row justify-content-center">
+      <div class="gp-info d-flex">
+        <div class="row text-start p-2 m-2 mt-0 me-1 rounded border border-white">
+          <p>Slow corners: <%= check_circuit(@race.selected_circuit).slow_curves %></p>
+          <p>Medium corners: <%= check_circuit(@race.selected_circuit).medium_curves %></p>
+          <p>Fast corners: <%= check_circuit(@race.selected_circuit).fast_curves %></p>
+        </div>
+        <div class="row text-start p-2 m-2 mt-0 ms-1 rounded border border-white">
+          <p>Short straights: <%= check_circuit(@race.selected_circuit).short_straights %></p>
+          <p>Medium straights: <%= check_circuit(@race.selected_circuit).medium_straights %></p>
+          <p>Long straights: <%= check_circuit(@race.selected_circuit).long_straights %></p>
+        </div>
+      </div>
+    </div>
+
 
     <div class="pt-4">
-      <%= link_to "Home page", root_path, class: "primary-btn" %>
+    <%= button_to "Cancel this race", @race, method: :delete, class: "btn btn-warning", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
     </div>
 
   </div>

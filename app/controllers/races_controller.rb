@@ -34,7 +34,7 @@ class RacesController < ApplicationController
 
   def destroy
     @race.destroy
-    # redirect_to user_path(current_user), status: :see_other
+    redirect_to root_path, status: :see_other
   end
 
   private

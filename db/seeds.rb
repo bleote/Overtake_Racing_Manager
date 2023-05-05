@@ -767,6 +767,8 @@ puts 'creating 1 circuit...'
 Circuit.create(
   id: 1,
   circuit_name: 'Brazil',
+  circuit_flag: 'brazil_flag.png',
+  circuit_layout: 'brazil_layout.png',
   slow_curves: 3,
   medium_curves: 4,
   fast_curves: 8,
