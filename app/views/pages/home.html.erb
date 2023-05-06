@@ -1,25 +1,27 @@
-<div class="row justify-content-center">
-  <div class="game-title py-4 text-center">
-    <h1>OVERTAKE</h1>
-    <h2 class="pb-3">Racing Manager</h2>
-    <%= image_tag "home_car.png", height: 200 %>
-    <% if user_signed_in? %>
-      <p class="pt-4">Hi <%= current_user.first_name %> <%= current_user.last_name %>!</p>
-      <p class="mx-4 py-3">Lead a team throughout races and become the best team manager in the paddock.</p>
-      <%= link_to "Se all teams", teams_path, class: "primary-btn" %>
+<div class="d-flex justify-content-center col-lg-8 col-md-10">
+  <div class="row">
+    <div class="game-title py-4 text-center">
+      <h1>OVERTAKE</h1>
+      <h2 class="pb-3">Racing Manager</h2>
+      <%= image_tag "home_car.png", height: 200 %>
+      <% if user_signed_in? %>
+        <p class="pt-4">Hi <%= current_user.first_name %> <%= current_user.last_name %>!</p>
+        <p class="mx-4 py-3">Lead a team throughout races and become the best team manager in the paddock.</p>
+        <%= link_to "Se all teams", teams_path, class: "primary-btn" %>
 
-      <div class="btn-new-race pt-3">
-          <%= link_to "Start a new race", new_race_path, class:"btn btn-info" %>
+        <div class="btn-new-race pt-3">
+            <%= link_to "Start a new race", new_race_path, class:"btn btn-info" %>
+          </div>
+      <% else %>
+        <p class="py-4 mx-4">Are you ready to experience the adrenaline of being the CEO of a racing team and lead its path to success?</p>
+        <div class="link-spaces pb-3">
+          <%= link_to "Log in", new_user_session_path %>
         </div>
-    <% else %>
-      <p class="py-4 mx-4">Are you ready to experience the adrenaline of being the CEO of a racing team and lead its path to success?</p>
-      <div class="link-spaces pb-3">
-        <%= link_to "Log in", new_user_session_path %>
-      </div>
 
-      <div class="link-spaces pb-3">
-        <%= link_to "Sign up", new_user_registration_path %>
-      </div>
-    <% end %>
+        <div class="link-spaces pb-3">
+          <%= link_to "Sign up", new_user_registration_path %>
+        </div>
+      <% end %>
+    </div>
   </div>
 </div>
