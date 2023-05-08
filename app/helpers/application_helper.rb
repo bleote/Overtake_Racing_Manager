@@ -26,6 +26,10 @@ module ApplicationHelper
     @selected_team = Team.find_by(team_name: team)
   end
 
+  def check_race_session(race_status)
+      @session = race_status
+  end
+
   def check_pole
     @pole = nil
   end

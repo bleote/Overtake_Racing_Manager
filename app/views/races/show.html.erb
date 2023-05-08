@@ -5,13 +5,21 @@
     <% check_selected_team(@race.selected_team) %>
 
     <div class="gp-layout p-2 m-2 rounded border border-white">
-      <div class="d-flex justify-content-center align-middle">
-        <div class="d-flex pe-3">
-          <h2><%= @circuit.circuit_name %> GP </h2>
+      <div class="gp-name-and-flag d-flex justify-content-center align-items-center">
+        <div class="gp-name d-flex pe-3 align-items-center">
+          <h1><%= @circuit.circuit_name %> GP </h1>
         </div>
-        <div>
-          <%= image_tag "circuits/#{@circuit.circuit_flag}", width: 35 %>
+        <div class="gp-flag d-flex align-items-center">
+          <%= image_tag "circuits/#{@circuit.circuit_flag}", width: 36 %>
         </div>
+      </div>
+
+      <div class="circuit-weather">
+        <p>Current weather: <%= @race.weather %> </p>
+      </div>
+
+      <div class="current-session">
+        <p>Current session: <%= check_race_session(@race.status) %> </p>
       </div>
 
       <div class="circuit-layout">
@@ -35,12 +43,47 @@
     </div>
 
     <div class="gp-layout p-2 m-2 rounded border border-white">
-      <div class="d-flex justify-content-center align-middle">
+      <div class="race-team-name d-flex justify-content-center align-items-center">
         <div class="d-flex pe-3">
-          <h3>Your Team: <%= @selected_team.team_name %></h3>
+          <h3><%= @selected_team.team_name %></h3>
         </div>
         <div class="d-flex align-middle">
-          <%= image_tag "logos/#{@selected_team.team_logo}", width: 35 %>
+          <%= image_tag "logos/#{@selected_team.team_logo}", width: 40 %>
+        </div>
+      </div>
+
+      <div class="race-car-setup-info pt-2 p-2 m-2 rounded border border-white">
+        <div class="pb-2">
+          <h4>Car Setup:</h4>
+        </div>
+
+        <div class="race-car-setup-and-image justify-content-between align-items-center">
+          <div class="race-car-image pb-2">
+            <%= image_tag "cars/#{@selected_team.cars.sample.car_image}", width: 200 %>
+          </div>
+
+          <div class="race-car-setup text-start">
+
+            <%= simple_form_for(@selected_team.cars[0]) do |f| %>
+            <%= f.error_notification %>
+            <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
+
+            <div class="newraceform">
+              <%= f.input :aero_setup, label: "Select Aero Setup:", collection: Car::AEROSETUP, include_blank: false, include_hidden: false %>
+              <%= f.input :gear_ratio, label: "Select Gear Ratio:", collection: Car::GEARS, include_blank: false, include_hidden: false %>
+              <%= f.input :tyres, label: "Select Tyres:", collection: Car::TYRES, include_blank: false, include_hidden: false %>
+            </div>
+
+            <div class="form-actions row justify-content-center py-2">
+              <%= f.button :submit, "Confirm car setup", class: "btn btn-info" %>
+            </div>
+            <% end %>
+          </div>
+
+          <div class="race-car-setup-edit">
+
+          </div>
+
         </div>
       </div>
     </div>

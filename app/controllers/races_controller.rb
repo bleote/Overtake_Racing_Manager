@@ -40,4 +40,8 @@ class RacesController < ApplicationController
   def set_race
     @race = Race.find(params[:id])
   end
+
+  def car_params
+    params.require(:car).permit(aero_setup:, gear_ratio:, tyres:)
+  end
 end

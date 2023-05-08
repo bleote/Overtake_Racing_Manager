@@ -8,7 +8,7 @@ Rails.application.routes.draw do
 
   resources :driver, only: %i[index show edit update]
 
-  resources :cars, only: %i[index show]
+  resources :cars, only: %i[index show update]
 
   resources :chiefs, only: %i[index show edit update]
 
