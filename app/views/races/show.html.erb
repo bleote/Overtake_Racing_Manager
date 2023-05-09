@@ -64,7 +64,7 @@
 
           <div class="race-car-setup text-start">
 
-            <%= simple_form_for(@selected_team.cars[0]) do |f| %>
+            <%= simple_form_for(@selected_team.cars.first) do |f| %>
             <%= f.error_notification %>
             <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
@@ -81,9 +81,7 @@
           </div>
 
           <div class="race-car-setup-edit">
-
           </div>
-
         </div>
       </div>
     </div>

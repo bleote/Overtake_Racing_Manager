@@ -14,18 +14,11 @@ class RacesController < ApplicationController
 
   # Create race based on form choices
   def create
-    @race = Race.new(race_params)
-    @race.user = current_user
-    if @race.save
-      redirect_to race_path(@race)
-    else
-      render "races/new", status: :unprocessable_entity
-    end
+    create_race
   end
 
   def destroy
-    @race.destroy
-    redirect_to root_path, status: :see_other
+    destroy_race
   end
 
   private
@@ -39,9 +32,5 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.find(params[:id])
-  end
-
-  def car_params
-    params.require(:car).permit(aero_setup:, gear_ratio:, tyres:)
   end
 end
