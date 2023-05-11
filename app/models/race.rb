@@ -42,10 +42,15 @@ class Race < ApplicationRecord
   end
 
   def set_weather
-    weather_variations = ['Sunny', 'Cloudy', 'Rainny']
-    dice = rand(0..2)
-    weather = weather_variations[dice]
-    self.weather = weather
+    self.weather
+    if self.weather.nil?
+      weather_variations = ['Sunny', 'Cloudy', 'Rainny']
+      dice = rand(0..2)
+      weather = weather_variations[dice]
+      self.weather = weather
+    else
+      self.weather
+    end
   end
 
   def set_status

@@ -14,6 +14,7 @@ class Car < ApplicationRecord
 
   belongs_to :team
   has_many :drivers
+  has_many :races, through: :team
 
   validates :aero_setup, inclusion: { in: AEROSETUP }
   validates :gear_ratio, inclusion: { in: GEARS }

@@ -1,15 +1,6 @@
 class RacesController < ApplicationController
   before_action :set_race, only: %i[show destroy]
 
-  # def initialize
-  #   @pole = nil
-  #   @p1 = nil
-  #   @p2 = nil
-  #   @p3 = nil
-  #   @podium = [@p1, @p2, @p3]
-  #   @status = 'Not Started'
-  # end
-
   def index
     @races = Race.all
   end
@@ -23,18 +14,16 @@ class RacesController < ApplicationController
 
   # Create race based on form choices
   def create
-    @race = Race.new(race_params)
-    @race.user = current_user
-    if @race.save
-      redirect_to race_path(@race)
-    else
-      render "races/new", status: :unprocessable_entity
-    end
+    create_race
   end
 
   def destroy
-    @race.destroy
-    # redirect_to user_path(current_user), status: :see_other
+    destroy_race
+  end
+
+  # Qualifying method for race
+  def qualy
+    puts 'Qualy test working'
   end
 
   private

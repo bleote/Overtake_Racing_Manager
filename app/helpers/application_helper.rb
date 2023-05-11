@@ -18,19 +18,28 @@ module ApplicationHelper
     end
   end
 
-  # def check_user_team(user)
-  #   user.team_id
-  # end
+  def check_circuit(circuit)
+    @circuit = Circuit.find_by(circuit_name: circuit)
+  end
 
-  # def user_select_team(user, team_id, url)
-  #   user.team_id = team_id
-  #   user.save
-  #   url
-  # end
+  def check_selected_team(team)
+    @selected_team = Team.find_by(team_name: team)
+  end
 
-    # <div>
-    #   <%= link_to "Select this team", user_select_team(current_user, @team.id, root_path), class: "btn btn-info" %>
-    # </div>
+  def check_race_session(race_status)
+      @session = race_status
+  end
+
+  def check_pole
+    @pole = nil
+  end
+
+  def check_race_result
+    @p1 = nil
+    @p2 = nil
+    @p3 = nil
+    @podium = [@p1, @p2, @p3]
+  end
 
   def team_tier(team)
     if team.id >= 1 && team.id < 4

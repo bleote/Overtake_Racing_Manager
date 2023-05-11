@@ -1,0 +1,2 @@
+module RaceInfo
+end
