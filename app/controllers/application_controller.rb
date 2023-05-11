@@ -25,14 +25,14 @@ class ApplicationController < ActionController::Base
   end
 
   def update_setup_first_car
-    @race = Race.find(19)
+    @race = Race.last
     @race_team = @race.selected_team
     @team_first_car = Team.find_by(team_name: @race_team).cars.first
     @team_first_car.update(car_params)
   end
 
   def update_setup_second_car
-    @race = Race.find(19)
+    @race = Race.last
     @race_team = @race.selected_team
     @team_second_car = Team.find_by(team_name: @race_team).cars.last
     @team_second_car.update(car_params)

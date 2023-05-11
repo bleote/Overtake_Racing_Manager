@@ -21,6 +21,11 @@ class RacesController < ApplicationController
     destroy_race
   end
 
+  # Qualifying method for race
+  def qualy
+    puts 'Qualy test working'
+  end
+
   private
 
   def race_params

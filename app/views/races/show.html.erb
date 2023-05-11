@@ -5,7 +5,7 @@
     <% check_selected_team(@race.selected_team) %>
 
     <div class="gp-layout p-2 m-2 rounded border border-white">
-      <div class="gp-name-and-flag d-flex justify-content-center align-items-center">
+      <div class="gp-name-and-flag d-flex justify-content-center align-items-center mb-1">
         <div class="gp-name d-flex pe-3 align-items-center">
           <h1><%= @circuit.circuit_name %> GP </h1>
         </div>
@@ -22,27 +22,38 @@
         <p>Current session: <%= check_race_session(@race.status) %> </p>
       </div>
 
-      <div class="circuit-layout">
+      <div class="circuit-layout my-2">
         <%= image_tag "circuits/#{@circuit.circuit_layout}", width: 300 %>
       </div>
-    </div>
 
-    <div class="row justify-content-center">
-      <div class="gp-info d-flex justify-content-center">
-        <div class="row text-start p-2 m-2 mt-0 me-1 rounded border border-white">
-          <p>Slow corners: <%= @circuit.slow_curves %></p>
-          <p>Medium corners: <%= @circuit.medium_curves %></p>
-          <p>Fast corners: <%= @circuit.fast_curves %></p>
-        </div>
-        <div class="row text-start p-2 m-2 mt-0 ms-1 rounded border border-white">
-          <p>Short straights: <%= @circuit.short_straights %></p>
-          <p>Medium straights: <%= @circuit.medium_straights %></p>
-          <p>Long straights: <%= @circuit.long_straights %></p>
+      <div class="circuit-layout">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item py-0 my-0">
+            <p class="accordion-header" id="headingOne">
+              <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="false" aria-controls="collapseOne">
+                Track details
+              </button>
+            </p>
+            <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="d-flex">
+                <div class="row text-start p-2 mt-0 me-1">
+                  <p>Slow corners: <%= @circuit.slow_curves %></p>
+                  <p>Medium corners: <%= @circuit.medium_curves %></p>
+                  <p>Fast corners: <%= @circuit.fast_curves %></p>
+                </div>
+                <div class="row text-start p-2 mt-0 ms-1">
+                  <p>Short straights: <%= @circuit.short_straights %></p>
+                  <p>Medium straights: <%= @circuit.medium_straights %></p>
+                  <p>Long straights: <%= @circuit.long_straights %></p>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
 
-    <div class="gp-layout p-2 m-2 rounded border border-white">
+    <div class="gp-layout pt-2 m-2 rounded border border-white">
       <div class="race-team-name d-flex justify-content-center align-items-center">
         <div class="d-flex pe-3">
           <h3><%= @selected_team.team_name %></h3>
@@ -53,16 +64,25 @@
       </div>
 
       <div class="race-car-setup-info pt-2 p-2 m-2 rounded border border-white">
-        <div class="pb-2">
-          <h4>Car Setup:</h4>
+
+        <div class="race-car-image pb-2">
+          <%= image_tag "cars/#{@selected_team.cars.first.car_image}", width: 200 %>
         </div>
 
         <div class="race-car-setup-and-image justify-content-between align-items-center">
-          <div class="race-car-image pb-2">
-            <%= image_tag "cars/#{@selected_team.cars.sample.car_image}", width: 200 %>
+          <div class="pb-2">
+            <h4>Current Car Setup:</h4>
           </div>
 
-          <div class="race-car-setup text-start">
+          <div class="race-car-setup-current text-start">
+            <ul>
+              <li>Aero Setup: <%= @selected_team.cars.first.aero_setup %></li>
+              <li>Gear Ratio: <%= @selected_team.cars.first.gear_ratio %></li>
+              <li>Tyres: <%= @selected_team.cars.first.tyres %></li>
+            </ul>
+          </div>
+
+          <div class="race-car-setup-edit text-start">
 
             <%= simple_form_for(@selected_team.cars.first) do |f| %>
             <%= f.error_notification %>
@@ -86,9 +106,12 @@
       </div>
     </div>
 
+    <div class="pt-4">
+      <%= button_to "Start Qualifying", qualy_race_path(@race), method: :put %>
+    </div>
 
     <div class="pt-4">
-    <%= button_to "Cancel this race", @race, method: :delete, class: "btn btn-warning", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+      <%= button_to "Cancel this race", @race, method: :delete, class: "btn btn-warning", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
     </div>
 
   </div>
