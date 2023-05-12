@@ -12,7 +12,7 @@ module ApplicationHelper
 
   def show_user_photo(user)
     if user.photo.key
-      cl_image_tag @user.photo.key, height: 150, width: 150, crop: :fill, class:"profile-photo"
+      cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill, class:"profile-photo"
     else
       image_tag "photo_base.png", class:"profile-photo"
     end

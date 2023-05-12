@@ -3,25 +3,29 @@
 }
 
 .btn-primary {
-  color: $dark-blue;
-  --bs-btn-hover-color: $dark-blue;
-  --bs-btn-active-color: $dark-blue;
+  color: #081f49;
+  --bs-btn-hover-color: #081f49;
+  --bs-btn-active-color: #081f49;
 }
 
 .btn-info {
-  color: $dark-blue;
-  --bs-btn-hover-color: $dark-blue;
-  --bs-btn-active-color: $dark-blue;
+  color: #081f49;
+  --bs-btn-hover-color: #081f49;
+  --bs-btn-active-color: #081f49;
 }
 
 .btn-warning {
   --bs-btn-color: white;
   --bs-btn-bg: #e67d2200;
   --bs-btn-border-color: white;
+  --bs-btn-hover-color: #081f49;
+  --bs-btn-active-color: #081f49;
 }
 
 .btn-danger {
   --bs-btn-color: #e67e22;
   --bs-btn-bg: #e67d2200;
   --bs-btn-border-color: #e67e22;
+  --bs-btn-hover-color: #081f49;
+  --bs-btn-active-color: #081f49;
 }

@@ -1,19 +1,24 @@
 <div class="row justify-content-center col-lg-6 col-md-8">
   <div class="text-center">
-    <div class="profile-user pt-2 m-2 rounded border border-white">
-      <%=  show_user_photo(current_user) %>
+    <div class="profile-user m-2 rounded border border-white">
       <h3 class="my-2"><%= @user.first_name %> <%= @user.last_name %></h3>
     </div>
+    <div class="profile-user m-2 rounded border border-white">
+      <div class="d-flex profile-info justify-content-between text-end m-2">
+        <div class="d-flex align-items-center">
+          <%=  show_user_photo(current_user) %>
+        </div>
 
-    <div class="profile-user text-start m-2 p-2 rounded border border-white">
-      <h4>Experience: <%= @user.experience %></h4>
-      <h4>Prestige: <%= @user.prestige %></h4>
-      <h4>Team Races: <%= @user.user_races %></h4>
-      <h4>Team Poles: <%= @user.user_poles %></h4>
-      <h4>Team Podiums: <%= @user.user_podiums %></h4>
-      <h4>Team Victories: <%= @user.user_victories %></h4>
+        <div>
+          <h4>Experience: <%= @user.experience %></h4>
+          <h4>Prestige: <%= @user.prestige %></h4>
+          <h4>Team Races: <%= @user.user_races %></h4>
+          <h4>Team Poles: <%= @user.user_poles %></h4>
+          <h4>Team Podiums: <%= @user.user_podiums %></h4>
+          <h4>Team Victories: <%= @user.user_victories %></h4>
+        </div>
+      </div>
     </div>
-
     <div class="profile-user text-start m-2 p-2 rounded border border-white">
       <% if @user.experience <= 1 %>
       <p>NEWS: "<%= @user.first_name %> <%= @user.last_name %>'s
@@ -24,15 +29,11 @@
       <p><%= @user.first_name %> <%= @user.last_name %> is the boss!</p>
       <% end %>
     </div>
-
   </div>
 
-  <div class="text-center pb-2">
-    <%= link_to "Edit profile", edit_user_registration_path, class:"primary-btn" %>
-  </div>
-
-  <div class="text-center pb-3">
-  <%= link_to "Back", root_path, class: "primary-btn" %>
+  <div class="d-flex justify-content-between text-center pb-2 px-3">
+    <%= link_to "Back", root_path, class: "btn btn-warning" %>
+    <%= link_to "Edit profile", edit_user_registration_path, class:"btn btn-primary" %>
   </div>
 
 </div>
