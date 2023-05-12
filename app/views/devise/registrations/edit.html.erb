@@ -38,13 +38,13 @@
       </div>
 
       <div class="form-actions pb-4">
-        <%= f.button :submit, "Update", class: "btn-info" %>
+        <%= f.button :submit, "Update", class: "btn-primary" %>
       </div>
     <% end %>
 
     <h3 class="py-2">Unhappy?</h3>
 
-    <div class="pb-3"><%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-warning", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
+    <div class="pb-3"><%= button_to "Cancel my account", registration_path(resource_name), class: "btn btn-danger", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %></div>
 
     <%= link_to "Back", :back %>
 

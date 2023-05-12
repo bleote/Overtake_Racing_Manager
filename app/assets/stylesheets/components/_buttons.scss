@@ -1,0 +1,27 @@
+.btn {
+  --bs-btn-border-radius: 25px;
+}
+
+.btn-primary {
+  color: $dark-blue;
+  --bs-btn-hover-color: $dark-blue;
+  --bs-btn-active-color: $dark-blue;
+}
+
+.btn-info {
+  color: $dark-blue;
+  --bs-btn-hover-color: $dark-blue;
+  --bs-btn-active-color: $dark-blue;
+}
+
+.btn-warning {
+  --bs-btn-color: white;
+  --bs-btn-bg: #e67d2200;
+  --bs-btn-border-color: white;
+}
+
+.btn-danger {
+  --bs-btn-color: #e67e22;
+  --bs-btn-bg: #e67d2200;
+  --bs-btn-border-color: #e67e22;
+}
