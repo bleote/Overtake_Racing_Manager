@@ -54,7 +54,7 @@
     </div>
 
     <div class="gp-layout pt-2 m-2 rounded border border-white">
-      <div class="race-team-name d-flex justify-content-center align-items-center">
+      <div class="race-team-name d-flex justify-content-between align-items-center mx-3">
         <div class="d-flex pe-3">
           <h3><%= @selected_team.team_name %></h3>
         </div>
@@ -64,25 +64,36 @@
       </div>
 
       <div class="race-car-setup-info pt-2 p-2 m-2 rounded border border-white">
-
         <div class="race-car-image pb-2">
           <%= image_tag "cars/#{@selected_team.cars.first.car_image}", width: 200 %>
         </div>
 
-        <div class="race-car-setup-and-image justify-content-between align-items-center">
+        <div id="currentSetup" class="race-car-setup-current justify-content-between align-items-center">
           <div class="pb-2">
-            <h4>Current Car Setup:</h4>
+            <h3>Current Car Setup:</h3>
           </div>
 
-          <div class="race-car-setup-current text-start">
-            <ul>
-              <li>Aero Setup: <%= @selected_team.cars.first.aero_setup %></li>
-              <li>Gear Ratio: <%= @selected_team.cars.first.gear_ratio %></li>
-              <li>Tyres: <%= @selected_team.cars.first.tyres %></li>
-            </ul>
+          <div class="d-flex race-car-setup-current-info justify-content-between text-start">
+            <div>
+              <p>Aero Setup: <%= @selected_team.cars.first.aero_setup %></p>
+              <p>Gear Ratio: <%= @selected_team.cars.first.gear_ratio %></p>
+              <p>Tyres: <%= @selected_team.cars.first.tyres %></p>
+            </div>
+
+            <div class="row justify-content-end">
+              <p></p>
+              <button class="btn btn-info" onclick="editSetupButton()">Edit Setup</button>
+              <p></p>
+            </div>
+          </div>
+        </div>
+
+        <div id="editSetup" class="race-car-setup-edit justify-content-between align-items-center" style="display: none">
+          <div class="pb-2">
+            <h3>Edit Car Setup:</h3>
           </div>
 
-          <div class="race-car-setup-edit text-start">
+          <div class="race-car-setup-edit-form text-start">
 
             <%= simple_form_for(@selected_team.cars.first) do |f| %>
             <%= f.error_notification %>
@@ -95,24 +106,38 @@
             </div>
 
             <div class="form-actions row justify-content-center py-2">
-              <%= f.button :submit, "Confirm car setup", class: "btn btn-info" %>
+              <%= f.button :submit, "Confirm car setup", class: "btn btn-primary" %>
             </div>
             <% end %>
-          </div>
-
-          <div class="race-car-setup-edit">
           </div>
         </div>
       </div>
     </div>
 
-    <div class="pt-4">
-      <%= button_to "Start Qualifying", qualy_race_path(@race), method: :put %>
+    <div class="d-flex justify-content-center py-2">
+      <%= button_to "Start Qualifying", qualy_race_path(@race), method: :put, class:"btn btn-info" %>
     </div>
 
-    <div class="pt-4">
-      <%= button_to "Cancel this race", @race, method: :delete, class: "btn btn-warning", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
+    <div class="py-4">
+      <%= button_to "Cancel this race", @race, method: :delete, class: "btn btn-danger", data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete %>
     </div>
 
   </div>
 </div>
+
+<script>
+function editSetupButton() {
+  var x = document.getElementById("currentSetup");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+  var y = document.getElementById("editSetup");
+  if (y.style.display === "none") {
+    y.style.display = "block";
+  } else {
+    y.style.display = "none";
+  }
+}
+</script>
