@@ -17,11 +17,11 @@
       <% else %>
         <p class="py-4 mx-4">Are you ready to experience the adrenaline of being the CEO of a racing team and lead its path to success?</p>
         <div class="link-spaces pb-3">
-          <%= link_to "Log in", new_user_session_path %>
+          <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
         </div>
 
         <div class="link-spaces pb-3">
-          <%= link_to "Sign up", new_user_registration_path %>
+          <%= link_to "Sign up", new_user_registration_path, class: "btn btn-info" %>
         </div>
       <% end %>
     </div>
