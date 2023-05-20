@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_16_192234) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,6 +69,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
 
   create_table "circuits", force: :cascade do |t|
     t.string "circuit_name"
+    t.string "circuit_layout"
+    t.string "circuit_flag"
     t.integer "slow_curves"
     t.integer "medium_curves"
     t.integer "fast_curves"
@@ -78,12 +80,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
     t.integer "pitstop_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "circuit_layout"
-    t.string "circuit_flag"
   end
 
   create_table "drivers", force: :cascade do |t|
     t.string "driver_name"
+    t.string "driver_picture"
     t.string "helmet"
     t.bigint "team_id", null: false
     t.bigint "car_id", null: false
@@ -95,14 +96,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
     t.integer "driver_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "driver_picture"
     t.index ["car_id"], name: "index_drivers_on_car_id"
     t.index ["team_id"], name: "index_drivers_on_team_id"
   end
 
+  create_table "race_teams", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "races", force: :cascade do |t|
     t.bigint "user_id", null: false
-    t.string "selected_circuit"
+    t.bigint "circuit_id", null: false
     t.string "selected_team"
     t.string "weather"
     t.string "status"
@@ -118,6 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
     t.bigint "team10_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["circuit_id"], name: "index_races_on_circuit_id"
     t.index ["team01_id"], name: "index_races_on_team01_id"
     t.index ["team02_id"], name: "index_races_on_team02_id"
     t.index ["team03_id"], name: "index_races_on_team03_id"
@@ -129,6 +135,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
     t.index ["team09_id"], name: "index_races_on_team09_id"
     t.index ["team10_id"], name: "index_races_on_team10_id"
     t.index ["user_id"], name: "index_races_on_user_id"
+  end
+
+  create_table "races_teams", id: false, force: :cascade do |t|
+    t.bigint "race_id"
+    t.bigint "team_id"
+    t.index ["race_id"], name: "index_races_teams_on_race_id"
+    t.index ["team_id"], name: "index_races_teams_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -167,6 +180,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
   add_foreign_key "chiefs", "teams"
   add_foreign_key "drivers", "cars"
   add_foreign_key "drivers", "teams"
+  add_foreign_key "races", "circuits"
   add_foreign_key "races", "teams", column: "team01_id"
   add_foreign_key "races", "teams", column: "team02_id"
   add_foreign_key "races", "teams", column: "team03_id"

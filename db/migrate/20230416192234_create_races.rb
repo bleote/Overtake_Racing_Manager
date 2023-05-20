@@ -2,7 +2,7 @@ class CreateRaces < ActiveRecord::Migration[7.0]
   def change
     create_table :races do |t|
       t.references :user, null: false, foreign_key: true
-      t.string :selected_circuit
+      t.references :circuit, null: false, foreign_key: true
       t.string :selected_team
       t.string :weather
       t.string :status

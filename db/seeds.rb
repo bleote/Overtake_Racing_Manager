@@ -1,7 +1,6 @@
 require "open-uri"
 
-puts 'Cleaning Database (Races, Circuits, Drivers, Cars, Chiefs, and Teams)'
-Race.destroy_all
+puts 'Cleaning Database (Circuits, Drivers, Cars, Chiefs, and Teams)'
 Circuit.destroy_all
 Driver.destroy_all
 Car.destroy_all

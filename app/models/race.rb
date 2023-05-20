@@ -1,5 +1,6 @@
 class Race < ApplicationRecord
   belongs_to :user
+  belongs_to :circuit
   belongs_to :team01, class_name: 'Team'
   belongs_to :team02, class_name: 'Team'
   belongs_to :team03, class_name: 'Team'
@@ -23,7 +24,6 @@ class Race < ApplicationRecord
     Team.find(9).team_name, Team.find(10).team_name
   ]
 
-  validates :selected_circuit, inclusion: { in: CIRCUIT }
   validates :selected_team, inclusion: { in: TEAM }
 
   private

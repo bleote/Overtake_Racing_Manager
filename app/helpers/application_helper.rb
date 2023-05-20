@@ -18,10 +18,6 @@ module ApplicationHelper
     end
   end
 
-  def check_circuit(circuit)
-    @circuit = Circuit.find_by(circuit_name: circuit)
-  end
-
   def check_selected_team(team)
     @selected_team = Team.find_by(team_name: team)
   end
