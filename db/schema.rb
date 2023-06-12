@@ -108,32 +108,33 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_192234) do
   create_table "races", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "circuit_id", null: false
-    t.string "selected_team"
+    t.bigint "team_id", null: false
     t.string "weather"
     t.string "status"
-    t.bigint "team01_id", null: false
-    t.bigint "team02_id", null: false
-    t.bigint "team03_id", null: false
-    t.bigint "team04_id", null: false
-    t.bigint "team05_id", null: false
-    t.bigint "team06_id", null: false
-    t.bigint "team07_id", null: false
-    t.bigint "team08_id", null: false
-    t.bigint "team09_id", null: false
-    t.bigint "team10_id", null: false
+    t.bigint "team_a_id", null: false
+    t.bigint "team_b_id", null: false
+    t.bigint "team_c_id", null: false
+    t.bigint "team_d_id", null: false
+    t.bigint "team_e_id", null: false
+    t.bigint "team_f_id", null: false
+    t.bigint "team_g_id", null: false
+    t.bigint "team_h_id", null: false
+    t.bigint "team_i_id", null: false
+    t.bigint "team_j_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["circuit_id"], name: "index_races_on_circuit_id"
-    t.index ["team01_id"], name: "index_races_on_team01_id"
-    t.index ["team02_id"], name: "index_races_on_team02_id"
-    t.index ["team03_id"], name: "index_races_on_team03_id"
-    t.index ["team04_id"], name: "index_races_on_team04_id"
-    t.index ["team05_id"], name: "index_races_on_team05_id"
-    t.index ["team06_id"], name: "index_races_on_team06_id"
-    t.index ["team07_id"], name: "index_races_on_team07_id"
-    t.index ["team08_id"], name: "index_races_on_team08_id"
-    t.index ["team09_id"], name: "index_races_on_team09_id"
-    t.index ["team10_id"], name: "index_races_on_team10_id"
+    t.index ["team_a_id"], name: "index_races_on_team_a_id"
+    t.index ["team_b_id"], name: "index_races_on_team_b_id"
+    t.index ["team_c_id"], name: "index_races_on_team_c_id"
+    t.index ["team_d_id"], name: "index_races_on_team_d_id"
+    t.index ["team_e_id"], name: "index_races_on_team_e_id"
+    t.index ["team_f_id"], name: "index_races_on_team_f_id"
+    t.index ["team_g_id"], name: "index_races_on_team_g_id"
+    t.index ["team_h_id"], name: "index_races_on_team_h_id"
+    t.index ["team_i_id"], name: "index_races_on_team_i_id"
+    t.index ["team_id"], name: "index_races_on_team_id"
+    t.index ["team_j_id"], name: "index_races_on_team_j_id"
     t.index ["user_id"], name: "index_races_on_user_id"
   end
 
@@ -181,15 +182,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_192234) do
   add_foreign_key "drivers", "cars"
   add_foreign_key "drivers", "teams"
   add_foreign_key "races", "circuits"
-  add_foreign_key "races", "teams", column: "team01_id"
-  add_foreign_key "races", "teams", column: "team02_id"
-  add_foreign_key "races", "teams", column: "team03_id"
-  add_foreign_key "races", "teams", column: "team04_id"
-  add_foreign_key "races", "teams", column: "team05_id"
-  add_foreign_key "races", "teams", column: "team06_id"
-  add_foreign_key "races", "teams", column: "team07_id"
-  add_foreign_key "races", "teams", column: "team08_id"
-  add_foreign_key "races", "teams", column: "team09_id"
-  add_foreign_key "races", "teams", column: "team10_id"
+  add_foreign_key "races", "teams"
+  add_foreign_key "races", "teams", column: "team_a_id"
+  add_foreign_key "races", "teams", column: "team_b_id"
+  add_foreign_key "races", "teams", column: "team_c_id"
+  add_foreign_key "races", "teams", column: "team_d_id"
+  add_foreign_key "races", "teams", column: "team_e_id"
+  add_foreign_key "races", "teams", column: "team_f_id"
+  add_foreign_key "races", "teams", column: "team_g_id"
+  add_foreign_key "races", "teams", column: "team_h_id"
+  add_foreign_key "races", "teams", column: "team_i_id"
+  add_foreign_key "races", "teams", column: "team_j_id"
   add_foreign_key "races", "users"
 end

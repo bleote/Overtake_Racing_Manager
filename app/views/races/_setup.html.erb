@@ -1,16 +1,16 @@
 <div class="race-setup pt-2 m-2 rounded border border-white">
       <div class="race-team-name d-flex justify-content-between align-items-center mx-3">
         <div class="d-flex pe-3">
-          <h3><%= @selected_team.team_name %></h3>
+          <h3><%= @team.team_name %></h3>
         </div>
         <div class="d-flex align-middle">
-          <%= image_tag "logos/#{@selected_team.team_logo}", width: 40 %>
+          <%= image_tag "logos/#{@team.team_logo}", width: 40 %>
         </div>
       </div>
 
       <div class="race-car-setup-info pt-2 p-2 m-2 rounded border border-white">
         <div class="race-car-image pb-2">
-          <%= image_tag "cars/#{@selected_team.cars.first.car_image}", width: 200 %>
+          <%= image_tag "cars/#{@team.cars.first.car_image}", width: 200 %>
         </div>
 
         <div id="currentSetup" class="race-car-setup-current justify-content-between align-items-center">
@@ -20,9 +20,9 @@
 
           <div class="d-flex race-car-setup-current-info justify-content-between text-start">
             <div>
-              <p>Aero Setup: <%= @selected_team.cars.first.aero_setup %></p>
-              <p>Gear Ratio: <%= @selected_team.cars.first.gear_ratio %></p>
-              <p>Tyres: <%= @selected_team.cars.first.tyres %></p>
+              <p>Aero Setup: <%= @team.cars.first.aero_setup %></p>
+              <p>Gear Ratio: <%= @team.cars.first.gear_ratio %></p>
+              <p>Tyres: <%= @team.cars.first.tyres %></p>
             </div>
 
             <div class="row justify-content-end me-2">
@@ -40,7 +40,7 @@
 
           <div class="race-car-setup-edit-form text-start">
 
-            <%= simple_form_for(@selected_team.cars.first) do |f| %>
+            <%= simple_form_for(@team.cars.first) do |f| %>
             <%= f.error_notification %>
             <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 

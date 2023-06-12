@@ -7,6 +7,7 @@ class RacesController < ApplicationController
 
   def show
     @circuit = @race.circuit
+    @team = @race.team
   end
 
   # Setup a new race
@@ -18,7 +19,6 @@ class RacesController < ApplicationController
   def create
     @race = Race.new(race_params)
     @race.user = current_user
-    @circuit = Circuit.find(params[:race][:circuit_id])
     if @race.save
       redirect_to race_path(@race)
     else
@@ -40,8 +40,8 @@ class RacesController < ApplicationController
 
   def race_params
     params.require(:race).permit(
-      :user_id, :circuit_id, :selected_team, :weather, :status, :team01_id, :team02_id, :team03_id,
-      :team04_id, :team05_id, :team06_id, :team07_id, :team08_id, :team09_id, :team10_id
+      :user_id, :circuit_id, :team_id, :weather, :status, :team_a_id, :team_b_id, :team_c_id,
+      :team_d_id, :team_e_id, :team_f_id, :team_g_id, :team_h_id, :team_i_id, :team_j_id
     )
   end
 

@@ -3,7 +3,7 @@
   <%= f.error_notification message: f.object.errors[:base].to_sentence if f.object.errors[:base].present? %>
 
   <div class="newraceform">
-    <%= f.input :selected_team, label: "Select your team", collection: Race::TEAM, include_blank: false, include_hidden: false %>
+    <%= f.input :team_id, as: :select, collection: Team.pluck(:team_name, :id), label: 'Select your team', include_blank: false, required: false, input_html: { required: false } %>
     <%= f.input :circuit_id, as: :select, collection: Circuit.pluck(:circuit_name, :id), label: 'Circuit', include_blank: false, required: false, input_html: { required: false } %>
   </div>
 
