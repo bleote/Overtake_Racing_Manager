@@ -774,7 +774,8 @@ Circuit.create(
   short_straights: 5,
   medium_straights: 4,
   long_straights: 2,
-  pitstop_time: 22_000
+  pitstop_time: 20_600,
+  ideal_lap_time: 67_794
 )
 
 puts '1 circuit created!'

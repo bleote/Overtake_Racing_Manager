@@ -17,13 +17,15 @@ class Race < ApplicationRecord
   after_initialize :set_weather
   after_initialize :set_status
 
-  CIRCUIT = [ Circuit.find(1).circuit_name ]
+  def lap_time(driver, car, circuit, ideal_lap_time)
+    # Calculate time adjustments based on driver skills and car performance
+    driver_adjustment = driver_adjustment(driver)
+    car_adjustment = car_adjustment(car, circuit)
 
-  TEAM = [
-    Team.find(1).team_name, Team.find(2).team_name, Team.find(3).team_name, Team.find(4).team_name,
-    Team.find(5).team_name, Team.find(6).team_name, Team.find(7).team_name, Team.find(8).team_name,
-    Team.find(9).team_name, Team.find(10).team_name
-  ]
+    # Add adjustments to the ideal lap time to get the final lap time
+    final_lap_time = ideal_lap_time + driver_adjustment + car_adjustment
+    final_lap_time
+  end
 
   private
 

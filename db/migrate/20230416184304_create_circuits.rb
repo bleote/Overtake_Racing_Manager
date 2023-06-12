@@ -11,6 +11,7 @@ class CreateCircuits < ActiveRecord::Migration[7.0]
       t.integer :medium_straights
       t.integer :long_straights
       t.integer :pitstop_time
+      t.integer :ideal_lap_time
 
       t.timestamps
     end
