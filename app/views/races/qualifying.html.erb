@@ -1,0 +1,12 @@
+<div class="race-qualy pt-2 m-2 rounded border border-white">
+  <div class="race-team-name d-flex justify-content-between align-items-center mx-3">
+    <div class="d-flex row">
+      <h1>Qualifying Session</h1>
+      <!-- Display lap times for the 20 drivers -->
+      <% @lap_times.each do |lap_time| %>
+        <!-- Display driver's lap time information -->
+        <p>Driver: <%= lap_time.driver.driver_name %>. Lap Time: <%= format_lap_time(lap_time.time) %></p>
+      <% end %>
+    </div>
+  </div>
+</div>

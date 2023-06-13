@@ -14,7 +14,11 @@ Rails.application.routes.draw do
 
   resources :circuits, only: %i[index]
 
-  resources :races
+  resources :races do
+    member do
+      get 'qualifying'
+    end
+  end
 
   # Route for the qualifying method inside races controller
   put 'races/:id/qualy', to: 'races#qualy', as: 'qualy_race'

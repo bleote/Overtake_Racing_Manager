@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_16_192234) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -101,6 +101,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_192234) do
     t.index ["team_id"], name: "index_drivers_on_team_id"
   end
 
+  create_table "lap_times", force: :cascade do |t|
+    t.bigint "driver_id", null: false
+    t.integer "time"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["driver_id"], name: "index_lap_times_on_driver_id"
+  end
+
   create_table "race_teams", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -182,6 +190,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_192234) do
   add_foreign_key "chiefs", "teams"
   add_foreign_key "drivers", "cars"
   add_foreign_key "drivers", "teams"
+  add_foreign_key "lap_times", "drivers"
   add_foreign_key "races", "circuits"
   add_foreign_key "races", "teams"
   add_foreign_key "races", "teams", column: "team_a_id"

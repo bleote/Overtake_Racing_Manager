@@ -30,42 +30,59 @@ class Race < ApplicationRecord
     car_adjustment = car_adjustment(car, circuit)
 
     # Add adjustments to the ideal lap time to get the final lap time
-    final_lap_time = ideal_lap_time + driver_adjustment + car_adjustment
-    final_lap_time
+    ideal_lap_time + driver_adjustment + car_adjustment
+  end
+
+  def calculate_lap_times
+    # Perform the necessary logic to calculate lap times and return the lap times for the drivers
+    drivers = Driver.all.limit(20)
+    lap_times = []
+
+    drivers.each do |driver|
+      car = driver.car
+      circuit = self.circuit
+      ideal_lap_time = 67794
+
+      # Calculate lap time using the lap_time method
+      lap_time = lap_time(driver, car, circuit, ideal_lap_time)
+
+      # Create a LapTime object to store the lap time information
+      lap_times << LapTime.new(driver: driver, time: lap_time)
+    end
+
+    lap_times
   end
 
   private
 
   def circuit_corners(circuit)
-    total_corner_time = ((circuit.slow_corners * 3) + (circuit.medium_corners * 2) + (circuit.fast_corners * 1))
+    total_corner_time ||= (circuit.slow_corners * 3) + (circuit.medium_corners * 2) + (circuit.fast_corners * 1)
   end
 
   def circuit_straights(circuit)
-    total_straight_time = ((circuit.short_straights * 3) + (circuit.medium_straights * 4) + (circuit.long_straights * 6))
+    total_straight_time ||= (circuit.short_straights * 3) + (circuit.medium_straights * 4) + (circuit.long_straights * 6)
   end
 
   def driver_adjustment(driver)
     # Adjust the lap time based on the driver's skills
-    random_number_skills = rand(0.0..0.200)
-    driving_skills_adjustment = (11 - driver.driving_skills) * random_number_skills
-    random_number_fitness = rand(0.0..0.100)
-    fitness_level_adjustment = (11 - driver.fitness_level) * random_number_fitness
-    if self.weather == 'Rainny'
-      wet_race_adjustment = (11 - driver.wet_race) * 0.2 + 2
-    else
-      wet_race_adjustment = 0
-    end
+    driving_skills_adjustment = (11 - driver.driving_skills) * (rand * 0.2)
+    fitness_level_adjustment = (11 - driver.fitness_level) * (rand * 0.1)
+    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * 0.2 + 2 : 0
 
-    driver_adjustment = driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
+    driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
   end
 
   def car_adjustment(car, circuit)
     # Adjust the lap time based on the car's performance
-    gearbox_adjustment = (11 - car.gearbox) * (circuit_corners(circuit) + circuit_straights(circuit)) * 0.001
-    suspension_adjustment = (11 - car.suspension) * (circuit_corners(circuit) + circuit_straights(circuit))* 0.002
-    downforce_adjustment = (11 - car.downforce) * (circuit_corners(circuit) + circuit_straights(circuit)) * 0.003
+    gearbox_adjustment = (11 - car.gearbox) * circuit_characteristics(circuit) * 0.001
+    suspension_adjustment = (11 - car.suspension) * circuit_characteristics(circuit) * 0.002
+    downforce_adjustment = (11 - car.downforce) * circuit_characteristics(circuit) * 0.003
 
-    car_adjustment = gearbox_adjustment + suspension_adjustment + downforce_adjustment
+    gearbox_adjustment + suspension_adjustment + downforce_adjustment
+  end
+
+  def circuit_characteristics(circuit)
+    @circuit_characteristics ||= circuit_corners(circuit) + circuit_straights(circuit)
   end
 
   def set_team_defaults

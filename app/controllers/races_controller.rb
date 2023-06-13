@@ -1,4 +1,5 @@
 class RacesController < ApplicationController
+  helper RaceHelper
   before_action :set_race, only: %i[show destroy]
 
   def index
@@ -32,8 +33,16 @@ class RacesController < ApplicationController
   end
 
   # Qualifying method for race
-  def qualy
-    puts 'Qualy test working'
+  def qualifying
+    @race = Race.find(params[:id])
+    # Retrieve lap times and other qualifying data
+    # Assign the lap times to an instance variable to be used in the view
+    @lap_times = @race.calculate_lap_times
+
+    # You can also perform any other necessary data retrieval or calculations here
+
+    # Render the qualifying.html.erb template
+    render "qualifying"
   end
 
   private
