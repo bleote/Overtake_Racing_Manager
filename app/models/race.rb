@@ -17,13 +17,6 @@ class Race < ApplicationRecord
   after_initialize :set_weather
   after_initialize :set_status
 
-  # race = Race.find(race_id)
-  # driver = Driver.find(driver_id)
-  # car = Car.find(car_id)
-  # circuit = Circuit.find(circuit_id)
-  # ideal_lap_time = 90 # Replace with the actual ideal lap time for the circuit
-  # lap_time = race.lap_time(driver, car, circuit, ideal_lap_time)
-
   def lap_time(driver, car, circuit, ideal_lap_time)
     # Calculate time adjustments based on driver skills and car performance
     driver_adjustment = driver_adjustment(driver)
@@ -56,27 +49,27 @@ class Race < ApplicationRecord
   private
 
   def circuit_corners(circuit)
-    total_corner_time ||= (circuit.slow_corners * 3) + (circuit.medium_corners * 2) + (circuit.fast_corners * 1)
+    total_corner_time ||= (circuit.slow_corners * 30) + (circuit.medium_corners * 20) + (circuit.fast_corners * 10)
   end
 
   def circuit_straights(circuit)
-    total_straight_time ||= (circuit.short_straights * 3) + (circuit.medium_straights * 4) + (circuit.long_straights * 6)
+    total_straight_time ||= (circuit.short_straights * 30) + (circuit.medium_straights * 40) + (circuit.long_straights * 60)
   end
 
   def driver_adjustment(driver)
     # Adjust the lap time based on the driver's skills
-    driving_skills_adjustment = (11 - driver.driving_skills) * (rand * 0.2)
-    fitness_level_adjustment = (11 - driver.fitness_level) * (rand * 0.1)
-    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * 0.2 + 2 : 0
+    driving_skills_adjustment = (11 - driver.driving_skills) * rand(0..455)
+    fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..225)
+    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * 200 + 2000 : 0
 
     driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
   end
 
   def car_adjustment(car, circuit)
     # Adjust the lap time based on the car's performance
-    gearbox_adjustment = (11 - car.gearbox) * circuit_characteristics(circuit) * 0.001
-    suspension_adjustment = (11 - car.suspension) * circuit_characteristics(circuit) * 0.002
-    downforce_adjustment = (11 - car.downforce) * circuit_characteristics(circuit) * 0.003
+    gearbox_adjustment = (9.7 - car.gearbox) * circuit_characteristics(circuit) * 1 / 10
+    suspension_adjustment = (9.7 - car.suspension) * circuit_characteristics(circuit) * 2 / 10
+    downforce_adjustment = (9.7 - car.downforce) * circuit_characteristics(circuit) * 3 / 10
 
     gearbox_adjustment + suspension_adjustment + downforce_adjustment
   end

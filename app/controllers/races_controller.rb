@@ -37,7 +37,7 @@ class RacesController < ApplicationController
     @race = Race.find(params[:id])
     # Retrieve lap times and other qualifying data
     # Assign the lap times to an instance variable to be used in the view
-    @lap_times = @race.calculate_lap_times
+    @lap_times = @race.calculate_lap_times.sort_by(&:time)
 
     # You can also perform any other necessary data retrieval or calculations here
 
