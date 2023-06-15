@@ -26,24 +26,42 @@ class Race < ApplicationRecord
     ideal_lap_time + driver_adjustment + car_adjustment
   end
 
-  def calculate_lap_times
-    # Perform the necessary logic to calculate lap times and return the lap times for the drivers
+  def calculate_lap_times_for_q1
     drivers = Driver.all.limit(20)
     lap_times = []
 
     drivers.each do |driver|
       car = driver.car
       circuit = self.circuit
-      ideal_lap_time = 67794
+      ideal_lap_time = self.circuit.ideal_lap_time
 
       # Calculate lap time using the lap_time method
-      lap_time = lap_time(driver, car, circuit, ideal_lap_time)
+      lap_time_q1 = lap_time(driver, car, circuit, ideal_lap_time)
 
       # Create a LapTime object to store the lap time information
-      lap_times << LapTime.new(driver: driver, time: lap_time)
+      lap_times << LapTime.new(driver: driver, time: lap_time_q1)
     end
 
-    lap_times
+    @q1 = lap_times.sort_by(&:time)
+  end
+
+  def calculate_lap_times_for_q2
+    top_15_q1_lap_times = @q1.first(15)
+
+    q2_lap_times = []
+
+    top_15_q1_lap_times.each do |lap_time|
+      driver = lap_time.driver
+      car = driver.car
+      circuit = self.circuit
+      ideal_lap_time = self.circuit.ideal_lap_time
+
+      lap_time_q2 = lap_time(driver, car, circuit, ideal_lap_time)
+
+      q2_lap_times << LapTime.new(driver: driver, time: lap_time_q2)
+    end
+
+    @q2 = q2_lap_times.sort_by(&:time)
   end
 
   private

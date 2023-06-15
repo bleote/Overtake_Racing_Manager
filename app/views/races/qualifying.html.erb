@@ -2,11 +2,25 @@
   <div class="race-team-name d-flex justify-content-between align-items-center mx-3">
     <div class="d-flex row">
       <h1>Qualifying Session</h1>
-      <!-- Display lap times for the 20 drivers -->
-      <% @lap_times.each do |lap_time| %>
-        <!-- Display driver's lap time information -->
-        <p>Driver: <%= lap_time.driver.driver_name %>. Lap Time: <%= format_lap_time(lap_time.time) %></p>
-      <% end %>
+      <div class="all-qs d-flex">
+        <div class="q1 text-start mx-2">
+        <!-- Display lap times for Q1 drivers -->
+          <h3>Q1 Lap Times</h3>
+          <% @q1_lap_times.each do |lap_time| %>
+            <!-- Display driver's lap time information -->
+            <p><%= lap_time.driver.driver_name %>: <%= format_lap_time(lap_time.time) %></p>
+          <% end %>
+        </div>
+        <div class="q2 text-start mx-2">
+        <!-- Display lap times for Q2 drivers -->
+          <h3>Q2 Lap Times</h3>
+          <% @q2_lap_times.each do |lap_time| %>
+            <!-- Display driver's lap time information -->
+            <p><%= lap_time.driver.driver_name %>: <%= format_lap_time(lap_time.time) %></p>
+          <% end %>
+
+        </div>
+      </div>
     </div>
   </div>
 </div>

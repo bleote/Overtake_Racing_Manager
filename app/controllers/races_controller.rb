@@ -1,3 +1,5 @@
+require_relative '../models/lap_time'
+
 class RacesController < ApplicationController
   helper RaceHelper
   before_action :set_race, only: %i[show destroy]
@@ -35,13 +37,19 @@ class RacesController < ApplicationController
   # Qualifying method for race
   def qualifying
     @race = Race.find(params[:id])
-    # Retrieve lap times and other qualifying data
-    # Assign the lap times to an instance variable to be used in the view
-    @lap_times = @race.calculate_lap_times.sort_by(&:time)
+    q1_lap_times = Rails.cache.fetch("q1_lap_times_#{params[:id]}", expires_in: 2.days) do
+      @race.calculate_lap_times_for_q1.sort_by(&:time)
+    end
 
-    # You can also perform any other necessary data retrieval or calculations here
+    top_20_q1_lap_times = q1_lap_times.first(20)
 
-    # Render the qualifying.html.erb template
+    q2_lap_times = Rails.cache.fetch("q2_lap_times_#{params[:id]}", expires_in: 2.days) do
+      @race.calculate_lap_times_for_q2
+    end
+
+    @q1_lap_times = top_20_q1_lap_times
+    @q2_lap_times = q2_lap_times
+
     render "qualifying"
   end
 
