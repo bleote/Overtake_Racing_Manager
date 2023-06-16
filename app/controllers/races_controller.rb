@@ -38,17 +38,20 @@ class RacesController < ApplicationController
   def qualifying
     @race = Race.find(params[:id])
     q1_lap_times = Rails.cache.fetch("q1_lap_times_#{params[:id]}", expires_in: 2.days) do
-      @race.calculate_lap_times_for_q1.sort_by(&:time)
+      @race.calculate_lap_times_for_q1
     end
-
-    top_20_q1_lap_times = q1_lap_times.first(20)
 
     q2_lap_times = Rails.cache.fetch("q2_lap_times_#{params[:id]}", expires_in: 2.days) do
       @race.calculate_lap_times_for_q2
     end
 
-    @q1_lap_times = top_20_q1_lap_times
+    q3_lap_times = Rails.cache.fetch("q3_lap_times_#{params[:id]}", expires_in: 2.days) do
+      @race.calculate_lap_times_for_q3
+    end
+
+    @q1_lap_times = q1_lap_times
     @q2_lap_times = q2_lap_times
+    @q3_lap_times = q3_lap_times
 
     render "qualifying"
   end
