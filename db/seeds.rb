@@ -1,7 +1,6 @@
 require "open-uri"
 
-puts 'Cleaning Database (Races, Circuits, Drivers, Cars, Chiefs, and Teams)'
-Race.destroy_all
+puts 'Cleaning Database (Circuits, Drivers, Cars, Chiefs, and Teams)'
 Circuit.destroy_all
 Driver.destroy_all
 Car.destroy_all
@@ -769,13 +768,14 @@ Circuit.create(
   circuit_name: 'Brazil',
   circuit_flag: 'brazil_flag.png',
   circuit_layout: 'brazil_layout.png',
-  slow_curves: 3,
-  medium_curves: 4,
-  fast_curves: 8,
+  slow_corners: 3,
+  medium_corners: 4,
+  fast_corners: 8,
   short_straights: 5,
   medium_straights: 4,
   long_straights: 2,
-  pitstop_time: 22_000
+  pitstop_time: 20_600,
+  ideal_lap_time: 67_794
 )
 
 puts '1 circuit created!'

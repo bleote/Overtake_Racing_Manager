@@ -1,44 +1,131 @@
 class Race < ApplicationRecord
   belongs_to :user
-  belongs_to :team01, class_name: 'Team'
-  belongs_to :team02, class_name: 'Team'
-  belongs_to :team03, class_name: 'Team'
-  belongs_to :team04, class_name: 'Team'
-  belongs_to :team05, class_name: 'Team'
-  belongs_to :team06, class_name: 'Team'
-  belongs_to :team07, class_name: 'Team'
-  belongs_to :team08, class_name: 'Team'
-  belongs_to :team09, class_name: 'Team'
-  belongs_to :team10, class_name: 'Team'
+  belongs_to :circuit
+  belongs_to :team
+  belongs_to :team_a, class_name: 'Team'
+  belongs_to :team_b, class_name: 'Team'
+  belongs_to :team_c, class_name: 'Team'
+  belongs_to :team_d, class_name: 'Team'
+  belongs_to :team_e, class_name: 'Team'
+  belongs_to :team_f, class_name: 'Team'
+  belongs_to :team_g, class_name: 'Team'
+  belongs_to :team_h, class_name: 'Team'
+  belongs_to :team_i, class_name: 'Team'
+  belongs_to :team_j, class_name: 'Team'
 
   after_initialize :set_team_defaults
   after_initialize :set_weather
   after_initialize :set_status
 
-  CIRCUIT = [ Circuit.find(1).circuit_name ]
+  def lap_time(driver, car, circuit, ideal_lap_time)
+    # Calculate time adjustments based on driver skills and car performance
+    driver_adjustment = driver_adjustment(driver)
+    car_adjustment = car_adjustment(car, circuit)
 
-  TEAM = [
-    Team.find(1).team_name, Team.find(2).team_name, Team.find(3).team_name, Team.find(4).team_name,
-    Team.find(5).team_name, Team.find(6).team_name, Team.find(7).team_name, Team.find(8).team_name,
-    Team.find(9).team_name, Team.find(10).team_name
-  ]
+    # Add adjustments to the ideal lap time to get the final lap time
+    ideal_lap_time + driver_adjustment + car_adjustment
+  end
 
-  validates :selected_circuit, inclusion: { in: CIRCUIT }
-  validates :selected_team, inclusion: { in: TEAM }
+  def calculate_lap_times_for_q1
+    drivers = Driver.all.limit(20)
+    lap_times = []
+
+    drivers.each do |driver|
+      car = driver.car
+      circuit = self.circuit
+      ideal_lap_time = circuit.ideal_lap_time
+
+      # Calculate lap time using the lap_time method
+      lap_time_q1 = lap_time(driver, car, circuit, ideal_lap_time)
+
+      # Create a LapTime object to store the lap time information
+      lap_times << LapTime.new(driver: driver, time: lap_time_q1)
+    end
+
+    @q1 = lap_times.sort_by(&:time)
+  end
+
+  def calculate_lap_times_for_q2
+    top_15_q1_lap_times = @q1.first(15)
+
+    q2_lap_times = []
+
+    top_15_q1_lap_times.each do |lap_time|
+      driver = lap_time.driver
+      car = driver.car
+      circuit = self.circuit
+      ideal_lap_time = circuit.ideal_lap_time
+
+      lap_time_q2 = lap_time(driver, car, circuit, ideal_lap_time)
+
+      q2_lap_times << LapTime.new(driver: driver, time: lap_time_q2)
+    end
+
+    @q2 = q2_lap_times.sort_by(&:time)
+  end
+
+  def calculate_lap_times_for_q3
+    top_10_q2_lap_times = @q2.first(10)
+
+    q3_lap_times = []
+
+    top_10_q2_lap_times.each do |lap_time|
+      driver = lap_time.driver
+      car = driver.car
+      circuit = self.circuit
+      ideal_lap_time = circuit.ideal_lap_time
+
+      lap_time_q3 = lap_time(driver, car, circuit, ideal_lap_time)
+
+      q3_lap_times << LapTime.new(driver: driver, time: lap_time_q3)
+    end
+
+    @q3 = q3_lap_times.sort_by(&:time)
+  end
 
   private
 
+  def circuit_corners(circuit)
+    total_corner_time ||= (circuit.slow_corners * 30) + (circuit.medium_corners * 20) + (circuit.fast_corners * 10)
+  end
+
+  def circuit_straights(circuit)
+    total_straight_time ||= (circuit.short_straights * 30) + (circuit.medium_straights * 40) + (circuit.long_straights * 60)
+  end
+
+  def driver_adjustment(driver)
+    # Adjust the lap time based on the driver's skills
+    driving_skills_adjustment = (11 - driver.driving_skills) * rand(0..455)
+    fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..225)
+    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * 200 + 2000 : 0
+
+    driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
+  end
+
+  def car_adjustment(car, circuit)
+    # Adjust the lap time based on the car's performance
+    gearbox_adjustment = (9.7 - car.gearbox) * circuit_characteristics(circuit) * 1 / 10
+    suspension_adjustment = (9.7 - car.suspension) * circuit_characteristics(circuit) * 2 / 10
+    downforce_adjustment = (9.7 - car.downforce) * circuit_characteristics(circuit) * 3 / 10
+
+    gearbox_adjustment + suspension_adjustment + downforce_adjustment
+  end
+
+  def circuit_characteristics(circuit)
+    @circuit_characteristics ||= circuit_corners(circuit) + circuit_straights(circuit)
+  end
+
   def set_team_defaults
-    self.team01_id = Team.find(1).id
-    self.team02_id = Team.find(2).id
-    self.team03_id = Team.find(3).id
-    self.team04_id = Team.find(4).id
-    self.team05_id = Team.find(5).id
-    self.team06_id = Team.find(6).id
-    self.team07_id = Team.find(7).id
-    self.team08_id = Team.find(8).id
-    self.team09_id = Team.find(9).id
-    self.team10_id = Team.find(10).id
+    self.team_a_id = Team.find(1).id
+    self.team_b_id = Team.find(2).id
+    self.team_c_id = Team.find(3).id
+    self.team_d_id = Team.find(4).id
+    self.team_e_id = Team.find(5).id
+    self.team_f_id = Team.find(6).id
+    self.team_g_id = Team.find(7).id
+    self.team_h_id = Team.find(8).id
+    self.team_i_id = Team.find(9).id
+    self.team_j_id = Team.find(10).id
   end
 
   def set_weather

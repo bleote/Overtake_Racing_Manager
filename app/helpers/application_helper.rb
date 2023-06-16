@@ -18,14 +18,6 @@ module ApplicationHelper
     end
   end
 
-  def check_circuit(circuit)
-    @circuit = Circuit.find_by(circuit_name: circuit)
-  end
-
-  def check_selected_team(team)
-    @selected_team = Team.find_by(team_name: team)
-  end
-
   def check_race_session(race_status)
       @session = race_status
   end
@@ -35,10 +27,10 @@ module ApplicationHelper
   end
 
   def check_race_result
-    @p1 = nil
-    @p2 = nil
-    @p3 = nil
-    @podium = [@p1, @p2, @p3]
+    @first = nil
+    @second = nil
+    @third = nil
+    @podium = [@first, @second, @third]
   end
 
   def team_tier(team)

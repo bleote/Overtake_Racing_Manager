@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
+ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -69,21 +69,23 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
 
   create_table "circuits", force: :cascade do |t|
     t.string "circuit_name"
-    t.integer "slow_curves"
-    t.integer "medium_curves"
-    t.integer "fast_curves"
+    t.string "circuit_layout"
+    t.string "circuit_flag"
+    t.integer "slow_corners"
+    t.integer "medium_corners"
+    t.integer "fast_corners"
     t.integer "short_straights"
     t.integer "medium_straights"
     t.integer "long_straights"
     t.integer "pitstop_time"
+    t.integer "ideal_lap_time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "circuit_layout"
-    t.string "circuit_flag"
   end
 
   create_table "drivers", force: :cascade do |t|
     t.string "driver_name"
+    t.string "driver_picture"
     t.string "helmet"
     t.bigint "team_id", null: false
     t.bigint "car_id", null: false
@@ -95,40 +97,61 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
     t.integer "driver_points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.string "driver_picture"
     t.index ["car_id"], name: "index_drivers_on_car_id"
     t.index ["team_id"], name: "index_drivers_on_team_id"
   end
 
-  create_table "races", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.string "selected_circuit"
-    t.string "selected_team"
-    t.string "weather"
-    t.string "status"
-    t.bigint "team01_id", null: false
-    t.bigint "team02_id", null: false
-    t.bigint "team03_id", null: false
-    t.bigint "team04_id", null: false
-    t.bigint "team05_id", null: false
-    t.bigint "team06_id", null: false
-    t.bigint "team07_id", null: false
-    t.bigint "team08_id", null: false
-    t.bigint "team09_id", null: false
-    t.bigint "team10_id", null: false
+  create_table "lap_times", force: :cascade do |t|
+    t.bigint "driver_id", null: false
+    t.integer "time"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["team01_id"], name: "index_races_on_team01_id"
-    t.index ["team02_id"], name: "index_races_on_team02_id"
-    t.index ["team03_id"], name: "index_races_on_team03_id"
-    t.index ["team04_id"], name: "index_races_on_team04_id"
-    t.index ["team05_id"], name: "index_races_on_team05_id"
-    t.index ["team06_id"], name: "index_races_on_team06_id"
-    t.index ["team07_id"], name: "index_races_on_team07_id"
-    t.index ["team08_id"], name: "index_races_on_team08_id"
-    t.index ["team09_id"], name: "index_races_on_team09_id"
-    t.index ["team10_id"], name: "index_races_on_team10_id"
+    t.index ["driver_id"], name: "index_lap_times_on_driver_id"
+  end
+
+  create_table "race_teams", force: :cascade do |t|
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "races", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "circuit_id", null: false
+    t.bigint "team_id", null: false
+    t.string "weather"
+    t.string "status"
+    t.bigint "team_a_id", null: false
+    t.bigint "team_b_id", null: false
+    t.bigint "team_c_id", null: false
+    t.bigint "team_d_id", null: false
+    t.bigint "team_e_id", null: false
+    t.bigint "team_f_id", null: false
+    t.bigint "team_g_id", null: false
+    t.bigint "team_h_id", null: false
+    t.bigint "team_i_id", null: false
+    t.bigint "team_j_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["circuit_id"], name: "index_races_on_circuit_id"
+    t.index ["team_a_id"], name: "index_races_on_team_a_id"
+    t.index ["team_b_id"], name: "index_races_on_team_b_id"
+    t.index ["team_c_id"], name: "index_races_on_team_c_id"
+    t.index ["team_d_id"], name: "index_races_on_team_d_id"
+    t.index ["team_e_id"], name: "index_races_on_team_e_id"
+    t.index ["team_f_id"], name: "index_races_on_team_f_id"
+    t.index ["team_g_id"], name: "index_races_on_team_g_id"
+    t.index ["team_h_id"], name: "index_races_on_team_h_id"
+    t.index ["team_i_id"], name: "index_races_on_team_i_id"
+    t.index ["team_id"], name: "index_races_on_team_id"
+    t.index ["team_j_id"], name: "index_races_on_team_j_id"
     t.index ["user_id"], name: "index_races_on_user_id"
+  end
+
+  create_table "races_teams", id: false, force: :cascade do |t|
+    t.bigint "race_id"
+    t.bigint "team_id"
+    t.index ["race_id"], name: "index_races_teams_on_race_id"
+    t.index ["team_id"], name: "index_races_teams_on_team_id"
   end
 
   create_table "teams", force: :cascade do |t|
@@ -167,15 +190,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_05_05_140348) do
   add_foreign_key "chiefs", "teams"
   add_foreign_key "drivers", "cars"
   add_foreign_key "drivers", "teams"
-  add_foreign_key "races", "teams", column: "team01_id"
-  add_foreign_key "races", "teams", column: "team02_id"
-  add_foreign_key "races", "teams", column: "team03_id"
-  add_foreign_key "races", "teams", column: "team04_id"
-  add_foreign_key "races", "teams", column: "team05_id"
-  add_foreign_key "races", "teams", column: "team06_id"
-  add_foreign_key "races", "teams", column: "team07_id"
-  add_foreign_key "races", "teams", column: "team08_id"
-  add_foreign_key "races", "teams", column: "team09_id"
-  add_foreign_key "races", "teams", column: "team10_id"
+  add_foreign_key "lap_times", "drivers"
+  add_foreign_key "races", "circuits"
+  add_foreign_key "races", "teams"
+  add_foreign_key "races", "teams", column: "team_a_id"
+  add_foreign_key "races", "teams", column: "team_b_id"
+  add_foreign_key "races", "teams", column: "team_c_id"
+  add_foreign_key "races", "teams", column: "team_d_id"
+  add_foreign_key "races", "teams", column: "team_e_id"
+  add_foreign_key "races", "teams", column: "team_f_id"
+  add_foreign_key "races", "teams", column: "team_g_id"
+  add_foreign_key "races", "teams", column: "team_h_id"
+  add_foreign_key "races", "teams", column: "team_i_id"
+  add_foreign_key "races", "teams", column: "team_j_id"
   add_foreign_key "races", "users"
 end
