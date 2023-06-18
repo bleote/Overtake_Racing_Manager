@@ -3,10 +3,10 @@
 
     <div class="gp-name-and-flag d-flex justify-content-center align-items-center mb-1">
       <div class="gp-name d-flex pe-3 align-items-center">
-        <h2><%= @race.circuit.circuit_name %> GP </h2>
+        <h2><%= @circuit.circuit_name %> GP </h2>
       </div>
        <div class="gp-flag d-flex align-items-center">
-        <%= image_tag "circuits/#{@race.circuit.circuit_flag}", width: 38 %>
+        <%= image_tag "circuits/#{@circuit.circuit_flag}", width: 38 %>
       </div>
     </div>
 
@@ -19,10 +19,10 @@
     </div>
 
     <div class="circuit-layout my-2">
-      <%= image_tag "circuits/#{@race.circuit.circuit_layout}", width: 300 %>
+      <%= image_tag "circuits/#{@circuit.circuit_layout}", width: 300 %>
     </div>
 
-    <div class="d-flex row">
+    <div class="qualifying-results d-flex row">
       <div id="q1-results" class="q1-results text-start mx-2">
       <!-- Display lap times for Q1 drivers -->
         <h3 class="text-center">Q1 Lap Times</h3>
@@ -35,6 +35,7 @@
           <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
           </p>
         <% end %>
+        <div class="qualifying-empty"></div>
       </div>
 
       <div class="d-flex justify-content-center">
@@ -53,6 +54,7 @@
           <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
           </p>
         <% end %>
+        <div class="qualifying-empty"></div>
       </div>
 
       <div class="d-flex justify-content-center">
@@ -71,11 +73,13 @@
           <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
           </p>
         <% end %>
+        <div class="qualifying-empty"></div>
       </div>
 
       <div class="d-flex justify-content-center">
       <button id="go-to-race-btn" class="btn btn-primary" style="display: none;">Go To Race</button>
       </div>
+      <div class="qualifying-empty"></div>
     </div>
   </div>
 </div>

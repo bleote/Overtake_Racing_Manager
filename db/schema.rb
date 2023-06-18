@@ -79,6 +79,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
     t.integer "long_straights"
     t.integer "pitstop_time"
     t.integer "ideal_lap_time"
+    t.integer "total_laps"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
