@@ -26,7 +26,7 @@
       <div id="q1-results" class="q1-results text-start mx-2">
       <!-- Display lap times for Q1 drivers -->
         <h3 class="text-center">Q1 Lap Times</h3>
-        <p class="text-center">(Bottom 5 drivers won't advance to Q2)</p>
+        <p class="text-center pb-2">(Bottom 5 drivers won't advance to Q2)</p>
         <% @q1_lap_times.each_with_index do |lap_time, index| %>
           <!-- Display driver's lap time information -->
           <% driver_name = lap_time.driver.driver_name %>
@@ -44,7 +44,7 @@
       <div id="q2-results" class="q2-results text-start mx-2" style="display: none;">
       <!-- Display lap times for Q2 drivers -->
         <h3 class="text-center">Q2 Lap Times</h3>
-        <p class="text-center">(Top 10 drivers advance to Q3)</p>
+        <p class="text-center pb-2">(Top 10 drivers advance to Q3)</p>
         <% @q2_lap_times.each_with_index do |lap_time, index| %>
           <!-- Display driver's lap time information -->
           <% driver_name = lap_time.driver.driver_name %>
@@ -62,7 +62,7 @@
       <div id="q3-results" class="q3-results text-start mx-2" style="display: none;">
       <!-- Display lap times for Q3 drivers -->
         <h3 class="text-center">Q3 Lap Times</h3>
-        <p class="text-center">(Best time will start on pole position)</p>
+        <p class="text-center pb-2">(Best time will start on pole position)</p>
         <% @q3_lap_times.each_with_index do |lap_time, index| %>
           <!-- Display driver's lap time information -->
           <% driver_name = lap_time.driver.driver_name %>
