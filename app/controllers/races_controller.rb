@@ -2,16 +2,15 @@ require_relative '../models/lap_time'
 
 class RacesController < ApplicationController
   helper RaceHelper
-  before_action :set_race, only: %i[show destroy]
+  before_action :set_race, only: %i[show destroy qualifying]
+  before_action :set_circuit, only: %i[show qualifying]
+  before_action :set_team, only: %i[show qualifying]
 
   def index
     @races = Race.all
   end
 
-  def show
-    @circuit = @race.circuit
-    @team = @race.team
-  end
+  def show; end
 
   # Setup a new race
   def new
@@ -36,7 +35,7 @@ class RacesController < ApplicationController
 
   # Qualifying method for race
   def qualifying
-    @race = Race.find(params[:id])
+    @race.status = "Qualifying"
     q1_lap_times = Rails.cache.fetch("q1_lap_times_#{params[:id]}", expires_in: 2.days) do
       @race.calculate_lap_times_for_q1
     end
@@ -67,5 +66,13 @@ class RacesController < ApplicationController
 
   def set_race
     @race = Race.find(params[:id])
+  end
+
+  def set_circuit
+    @circuit = @race.circuit
+  end
+
+  def set_team
+    @team = @race.team
   end
 end

@@ -605,7 +605,7 @@ Driver.create(
   fitness_level: 8,
   overtaking: 7,
   defending: 6,
-  wet_race: 8,
+  wet_race: 7,
   driver_points: 0
 )
 
@@ -620,7 +620,7 @@ Driver.create(
   fitness_level: 8,
   overtaking: 8,
   defending: 10,
-  wet_race: 7,
+  wet_race: 8,
   driver_points: 0
 )
 
@@ -650,7 +650,7 @@ Driver.create(
   fitness_level: 9,
   overtaking: 8,
   defending: 8,
-  wet_race: 7,
+  wet_race: 8,
   driver_points: 0
 )
 
@@ -706,11 +706,11 @@ Driver.create(
   helmet: 'tsunoda_helmet.png',
   team_id: 9,
   car_id: 17,
-  driving_skills: 7,
+  driving_skills: 8,
   fitness_level: 8,
   overtaking: 8,
   defending: 7,
-  wet_race: 5,
+  wet_race: 7,
   driver_points: 0
 )
 
@@ -721,11 +721,11 @@ Driver.create(
   helmet: 'vries_helmet.png',
   team_id: 9,
   car_id: 18,
-  driving_skills: 8,
+  driving_skills: 7,
   fitness_level: 9,
   overtaking: 7,
   defending: 7,
-  wet_race: 7,
+  wet_race: 6,
   driver_points: 0
 )
 
@@ -740,7 +740,7 @@ Driver.create(
   fitness_level: 9,
   overtaking: 8,
   defending: 7,
-  wet_race: 8,
+  wet_race: 9,
   driver_points: 0
 )
 
@@ -775,7 +775,8 @@ Circuit.create(
   medium_straights: 4,
   long_straights: 2,
   pitstop_time: 20_600,
-  ideal_lap_time: 67_794
+  ideal_lap_time: 67_794,
+  total_laps: 71
 )
 
 puts '1 circuit created!'

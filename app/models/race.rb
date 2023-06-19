@@ -36,7 +36,7 @@ class Race < ApplicationRecord
       ideal_lap_time = circuit.ideal_lap_time
 
       # Calculate lap time using the lap_time method
-      lap_time_q1 = lap_time(driver, car, circuit, ideal_lap_time)
+      lap_time_q1 = lap_time(driver, car, circuit, ideal_lap_time) + 1500
 
       # Create a LapTime object to store the lap time information
       lap_times << LapTime.new(driver: driver, time: lap_time_q1)
@@ -56,7 +56,7 @@ class Race < ApplicationRecord
       circuit = self.circuit
       ideal_lap_time = circuit.ideal_lap_time
 
-      lap_time_q2 = lap_time(driver, car, circuit, ideal_lap_time)
+      lap_time_q2 = lap_time(driver, car, circuit, ideal_lap_time) + 750
 
       q2_lap_times << LapTime.new(driver: driver, time: lap_time_q2)
     end
@@ -97,7 +97,7 @@ class Race < ApplicationRecord
     # Adjust the lap time based on the driver's skills
     driving_skills_adjustment = (11 - driver.driving_skills) * rand(0..455)
     fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..225)
-    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * 200 + 2000 : 0
+    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * rand(0..225) + ((self.circuit.ideal_lap_time / 100) * 21) : 0
 
     driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
   end
