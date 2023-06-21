@@ -28,7 +28,7 @@ class Race < ApplicationRecord
 
   def calculate_lap_times_for_q1
     drivers = Driver.all.limit(20)
-    lap_times = []
+    q1_lap_times = []
 
     drivers.each do |driver|
       car = driver.car
@@ -39,10 +39,10 @@ class Race < ApplicationRecord
       lap_time_q1 = lap_time(driver, car, circuit, ideal_lap_time) + 1500
 
       # Create a LapTime object to store the lap time information
-      lap_times << LapTime.new(driver: driver, time: lap_time_q1)
+      q1_lap_times << LapTime.new(driver: driver, time: lap_time_q1)
     end
 
-    @q1 = lap_times.sort_by(&:time)
+    @q1 = q1_lap_times.sort_by(&:time)
   end
 
   def calculate_lap_times_for_q2

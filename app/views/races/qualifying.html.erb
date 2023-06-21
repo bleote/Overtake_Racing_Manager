@@ -77,8 +77,9 @@
       </div>
 
       <div class="d-flex justify-content-center">
-      <button id="go-to-race-btn" class="btn btn-primary" style="display: none;">Go To Race</button>
+        <%= link_to 'Go To Race', gp_race_path(@race), class: 'btn btn-primary', id: 'go-to-race-btn', style: 'display: none;' %>
       </div>
+
       <div class="qualifying-empty"></div>
     </div>
   </div>

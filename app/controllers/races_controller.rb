@@ -2,9 +2,9 @@ require_relative '../models/lap_time'
 
 class RacesController < ApplicationController
   helper RaceHelper
-  before_action :set_race, only: %i[show destroy qualifying]
-  before_action :set_circuit, only: %i[show qualifying]
-  before_action :set_team, only: %i[show qualifying]
+  before_action :set_race, only: %i[show destroy qualifying gp]
+  before_action :set_circuit, only: %i[show qualifying gp]
+  before_action :set_team, only: %i[show qualifying gp]
 
   def index
     @races = Race.all
@@ -51,8 +51,14 @@ class RacesController < ApplicationController
     @q1_lap_times = q1_lap_times
     @q2_lap_times = q2_lap_times
     @q3_lap_times = q3_lap_times
+  end
 
-    render "qualifying"
+  def gp
+    qualifying
+    @race.status = "Race day"
+
+    @qualifying_valid_laps = @q1_lap_times.last(5) + @q2_lap_times.last(5) + @q3_lap_times
+    @starting_grid = @qualifying_valid_laps.sort_by(&:time)
   end
 
   private
