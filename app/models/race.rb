@@ -83,6 +83,31 @@ class Race < ApplicationRecord
     @q3 = q3_lap_times.sort_by(&:time)
   end
 
+  def calculate_race_laps
+    total_laps = self.circuit.total_laps
+    driver_times = {}
+
+    (1..total_laps).each do |lap_number|
+      calculate_lap_times_for_race(lap_number, driver_times)
+    end
+
+    driver_times.sort_by { |_, total_time| total_time }
+  end
+
+  def calculate_lap_times_for_race(lap_number, driver_times)
+    drivers = Driver.all
+
+    drivers.each do |driver|
+      car = driver.car
+      circuit = self.circuit
+      ideal_lap_time = circuit.ideal_lap_time
+
+      lap_time = lap_time(driver, car, circuit, ideal_lap_time)
+      driver_times[driver] ||= 0
+      driver_times[driver] += lap_time
+    end
+  end
+
   private
 
   def circuit_corners(circuit)

@@ -10,29 +10,61 @@
       </div>
     </div>
 
-    <div class="circuit-weather">
-      <p>Current weather: <%= @race.weather %> </p>
+    <div class="current-session">
+      <p>Your team: <%= @team.team_name %> </p>
     </div>
 
     <div class="current-session">
       <p>Current session: <%= @race.status %> </p>
     </div>
 
+    <div class="circuit-weather">
+      <p>Current weather: <%= @race.weather %> </p>
+    </div>
+
     <div class="circuit-layout my-2">
       <%= image_tag "circuits/#{@circuit.circuit_layout}", width: 300 %>
     </div>
 
-    <div id="starting-grid" class="starting-grid text-start mx-2">
-      <!-- Display starting grid order -->
+    <div id="starting-grid" class="starting-grid text-start">
+      <div class="d-flex row grid-organizer justify-content-center">
+        <!-- Display starting grid order -->
         <h3 class="text-center">Starting Grid</h3>
-        <% @starting_grid.each_with_index do |lap_time, index| %>
-          <!-- Display driver's lap time information -->
-          <% driver_name = lap_time.driver.driver_name %>
-          <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
-          </p>
-        <% end %>
-        <div class="qualifying-empty"></div>
+        <div class="col-sm-12 col-md-10">
+          <% @starting_grid.each_with_index do |lap_time, index| %>
+            <!-- Display driver's name, car and helmet -->
+            <% driver_name = lap_time.driver.driver_name %>
+            <% driver_car = image_path("cars/#{lap_time.driver.car.car_image}") %>
+            <% alignment_class = index.even? ? 'align-left' : 'align-right' %>
+            <div class="driver-info <%= alignment_class %>">
+              <div class="car-info">
+                <div class="d-flex car-image justify-content-center">
+                  <div class="text-center">
+                    <img src="<%= driver_car %>" alt="Car Image">
+                  </div>
+                </div>
+                <div class="driver-name">
+                  <%= "#{index + 1} - #{driver_name}" %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          <div class="qualifying-empty"></div>
+        </div>
       </div>
+    </div>
+
+    <div id="race-results" class="race-results text-start mx-2">
+      <!-- Display race results -->
+      <h3 class="text-center">Race Results</h3>
+      <% @start_race.each_with_index do |lap_time, index| %>
+        <!-- Display driver's race result -->
+        <% driver_name = lap_time.driver.driver_name %>
+        <% total_race_time = lap_time.total_race_time %>
+        <%= "#{index + 1} - #{driver_name}: #{total_race_time}" %>
+      <% end %>
+    </div>
+
 
   </div>
 </div>
