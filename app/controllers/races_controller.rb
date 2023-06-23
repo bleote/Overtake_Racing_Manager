@@ -60,7 +60,7 @@ class RacesController < ApplicationController
     @qualifying_valid_laps = @q1_lap_times.last(5) + @q2_lap_times.last(5) + @q3_lap_times
     @starting_grid = @qualifying_valid_laps.sort_by(&:time)
 
-    @start_race = @race.calculate_race_laps(@starting_grid)
+    @start_race = @race.calculate_race_laps
   end
 
   private

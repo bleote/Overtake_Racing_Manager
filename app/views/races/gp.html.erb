@@ -49,7 +49,7 @@
               </div>
             </div>
           <% end %>
-          <div class="qualifying-empty"></div>
+          <div class="gp-empty"></div>
         </div>
       </div>
     </div>
@@ -57,14 +57,24 @@
     <div id="race-results" class="race-results text-start mx-2">
       <!-- Display race results -->
       <h3 class="text-center">Race Results</h3>
+      <% winner_time = @start_race.first[1] %>
       <% @start_race.each_with_index do |lap_time, index| %>
         <!-- Display driver's race result -->
-        <% driver_name = lap_time.driver.driver_name %>
-        <% total_race_time = lap_time.total_race_time %>
-        <%= "#{index + 1} - #{driver_name}: #{total_race_time}" %>
+        <% driver = lap_time[0] %>
+        <% total_race_time = lap_time[1] %>
+        <% time_difference = total_race_time - winner_time %> <!-- Calculate time difference to the winner -->
+        <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %> <!-- Add any desired styling for specific lap times -->
+        <p id="race-lap-time-<%= index %>" style="<%= lap_time_style %>">
+          <% if index > 0 %>
+            <% time_difference = "+#{format_lap_time(time_difference)}" %> <!-- Add "+" sign before the time difference -->
+          <% else %>
+            <% time_difference = "Winner" %>
+          <% end %>
+          <%= "#{index + 1} - #{driver.driver_name}: #{time_difference}" %>
+        </p>
       <% end %>
+      <div class="gp-empty"></div>
     </div>
-
 
   </div>
 </div>
