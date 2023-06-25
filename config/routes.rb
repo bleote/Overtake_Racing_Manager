@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :races do
     member do
       get 'qualifying'
+      get 'gp'
     end
   end
 

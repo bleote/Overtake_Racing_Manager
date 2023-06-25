@@ -10,12 +10,16 @@
       </div>
     </div>
 
-    <div class="circuit-weather">
-      <p>Current weather: <%= @race.weather %> </p>
+    <div class="current-session">
+      <p>Your team: <%= @team.team_name %> </p>
     </div>
 
     <div class="current-session">
       <p>Current session: <%= @race.status %> </p>
+    </div>
+
+    <div class="circuit-weather">
+      <p>Current weather: <%= @race.weather %> </p>
     </div>
 
     <div class="circuit-layout my-2">
@@ -77,8 +81,9 @@
       </div>
 
       <div class="d-flex justify-content-center">
-      <button id="go-to-race-btn" class="btn btn-primary" style="display: none;">Go To Race</button>
+        <%= link_to 'Go To Race', gp_race_path(@race), class: 'btn btn-primary', id: 'go-to-race-btn', style: 'display: none;' %>
       </div>
+
       <div class="qualifying-empty"></div>
     </div>
   </div>
