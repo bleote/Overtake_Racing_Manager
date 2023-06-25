@@ -60,8 +60,14 @@ class RacesController < ApplicationController
     @qualifying_valid_laps = @q1_lap_times.last(5) + @q2_lap_times.last(5) + @q3_lap_times
     @starting_grid = @qualifying_valid_laps.sort_by(&:time)
 
-    @start_race = @race.calculate_race_laps
+    start_race = Rails.cache.fetch("start_race_#{params[:id]}", expires_in: 2.days) do
+      @race.calculate_race_laps(@starting_grid)
+    end
+
+    @start_race = start_race
   end
+
+
 
   private
 

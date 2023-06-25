@@ -57,21 +57,23 @@
     <div id="race-results" class="race-results text-start mx-2">
       <!-- Display race results -->
       <h3 class="text-center">Race Results</h3>
-      <% winner_time = @start_race.first[1] %>
-      <% @start_race.each_with_index do |lap_time, index| %>
+      <% sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.first[:lap_time] } %>
+      <% sorted_race_results.each_with_index do |(driver, lap_times), index| %>
         <!-- Display driver's race result -->
-        <% driver = lap_time[0] %>
-        <% total_race_time = lap_time[1] %>
-        <% time_difference = total_race_time - winner_time %> <!-- Calculate time difference to the winner -->
-        <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %> <!-- Add any desired styling for specific lap times -->
-        <p id="race-lap-time-<%= index %>" style="<%= lap_time_style %>">
-          <% if index > 0 %>
-            <% time_difference = "+#{format_lap_time(time_difference)}" %> <!-- Add "+" sign before the time difference -->
-          <% else %>
-            <% time_difference = "Winner" %>
-          <% end %>
-          <%= "#{index + 1} - #{driver.driver_name}: #{time_difference}" %>
-        </p>
+        <% driver_name = driver.driver_name %>
+        <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
+        <% if index == 0 %>
+          <p id="race-lap-time-<%= index %>" style="<%= lap_time_style %>">
+            <%= "#{index + 1} - #{driver_name}: Leader" %>
+          </p>
+        <% else %>
+          <% leader_lap_time = sorted_race_results.first.last.first[:lap_time] %>
+          <% time_difference = lap_times.first[:lap_time] - leader_lap_time %>
+          <% formatted_time_difference = format_lap_time(time_difference) %>
+          <p id="race-lap-time-<%= index %>" style="<%= lap_time_style %>">
+            <%= "#{index + 1} - #{driver_name}: + #{formatted_time_difference}" %>
+          </p>
+        <% end %>
       <% end %>
       <div class="gp-empty"></div>
     </div>
