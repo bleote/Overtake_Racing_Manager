@@ -1,0 +1,18 @@
+.driver-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.align-left {
+  justify-content: flex-start;
+}
+
+.align-right {
+  justify-content: flex-end;
+}
+
+.car-image img {
+  width: 50px;
+  height: auto;
+}

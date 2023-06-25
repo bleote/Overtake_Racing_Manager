@@ -28,7 +28,7 @@ class Race < ApplicationRecord
 
   def calculate_lap_times_for_q1
     drivers = Driver.all.limit(20)
-    lap_times = []
+    q1_lap_times = []
 
     drivers.each do |driver|
       car = driver.car
@@ -39,10 +39,10 @@ class Race < ApplicationRecord
       lap_time_q1 = lap_time(driver, car, circuit, ideal_lap_time) + 1500
 
       # Create a LapTime object to store the lap time information
-      lap_times << LapTime.new(driver: driver, time: lap_time_q1)
+      q1_lap_times << LapTime.new(driver: driver, time: lap_time_q1)
     end
 
-    @q1 = lap_times.sort_by(&:time)
+    @q1 = q1_lap_times.sort_by(&:time)
   end
 
   def calculate_lap_times_for_q2
@@ -83,6 +83,31 @@ class Race < ApplicationRecord
     @q3 = q3_lap_times.sort_by(&:time)
   end
 
+  def calculate_race_laps
+    total_laps = self.circuit.total_laps
+    driver_times = {}
+
+    (1..total_laps).each do |lap_number|
+      calculate_lap_times_for_race(lap_number, driver_times)
+    end
+
+    driver_times.sort_by { |_, total_time| total_time }
+  end
+
+  def calculate_lap_times_for_race(lap_number, driver_times)
+    drivers = Driver.all
+
+    drivers.each do |driver|
+      car = driver.car
+      circuit = self.circuit
+      ideal_lap_time = circuit.ideal_lap_time
+
+      lap_time = lap_time(driver, car, circuit, ideal_lap_time)
+      driver_times[driver] ||= 0
+      driver_times[driver] += lap_time
+    end
+  end
+
   private
 
   def circuit_corners(circuit)
@@ -95,9 +120,9 @@ class Race < ApplicationRecord
 
   def driver_adjustment(driver)
     # Adjust the lap time based on the driver's skills
-    driving_skills_adjustment = (11 - driver.driving_skills) * rand(0..455)
-    fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..225)
-    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * rand(0..225) + ((self.circuit.ideal_lap_time / 100) * 21) : 0
+    driving_skills_adjustment = (11 - driver.driving_skills) * rand(0..400)
+    fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..200)
+    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * rand(0..300) + ((self.circuit.ideal_lap_time / 100) * 21) : 0
 
     driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
   end
