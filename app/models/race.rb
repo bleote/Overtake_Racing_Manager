@@ -85,7 +85,6 @@ class Race < ApplicationRecord
 
   def calculate_race_laps(starting_grid)
     driver_lap_times = {} # Store lap times for each driver
-    lap_number = 1
 
     starting_grid.each do |lap_time|
       driver = lap_time.driver
@@ -96,11 +95,12 @@ class Race < ApplicationRecord
       lap_time_race = lap_time(driver, car, circuit, ideal_lap_time)
 
       driver_lap_times[driver] ||= []
-      driver_lap_times[driver] << { lap_number: lap_number, lap_time: lap_time_race }
+      driver_lap_times[driver] << { lap_time: lap_time_race }
     end
 
     driver_lap_times
   end
+
 
   private
 

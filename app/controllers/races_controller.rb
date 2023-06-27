@@ -36,44 +36,38 @@ class RacesController < ApplicationController
   # Qualifying method for race
   def qualifying
     @race.status = "Qualifying"
-    q1_lap_times = Rails.cache.fetch("q1_lap_times_#{params[:id]}", expires_in: 2.days) do
+    @q1_lap_times = Rails.cache.fetch("q1_lap_times_#{params[:id]}", expires_in: 2.days) do
       @race.calculate_lap_times_for_q1
     end
 
-    q2_lap_times = Rails.cache.fetch("q2_lap_times_#{params[:id]}", expires_in: 2.days) do
+    @q2_lap_times = Rails.cache.fetch("q2_lap_times_#{params[:id]}", expires_in: 2.days) do
       @race.calculate_lap_times_for_q2
     end
 
-    q3_lap_times = Rails.cache.fetch("q3_lap_times_#{params[:id]}", expires_in: 2.days) do
+    @q3_lap_times = Rails.cache.fetch("q3_lap_times_#{params[:id]}", expires_in: 2.days) do
       @race.calculate_lap_times_for_q3
     end
-
-    @q1_lap_times = q1_lap_times
-    @q2_lap_times = q2_lap_times
-    @q3_lap_times = q3_lap_times
   end
 
   def gp
     qualifying
     @race.status = "Race day"
+    @lap_number = @race.lap_number
 
     @qualifying_valid_laps = @q1_lap_times.last(5) + @q2_lap_times.last(5) + @q3_lap_times
     @starting_grid = @qualifying_valid_laps.sort_by(&:time)
 
-    start_race = Rails.cache.fetch("start_race_#{params[:id]}", expires_in: 2.days) do
+    @start_race = Rails.cache.fetch("start_race_#{params[:id]}", expires_in: 2.days) do
+      @lap_number += 1
       @race.calculate_race_laps(@starting_grid)
     end
-
-    @start_race = start_race
   end
-
-
 
   private
 
   def race_params
     params.require(:race).permit(
-      :user_id, :circuit_id, :team_id, :weather, :status, :team_a_id, :team_b_id, :team_c_id,
+      :user_id, :circuit_id, :team_id, :weather, :status, :lap_number, :team_a_id, :team_b_id, :team_c_id,
       :team_d_id, :team_e_id, :team_f_id, :team_g_id, :team_h_id, :team_i_id, :team_j_id
     )
   end

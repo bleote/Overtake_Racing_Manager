@@ -55,8 +55,10 @@
     </div>
 
     <div id="race-results" class="race-results text-start mx-2">
-      <!-- Display race results -->
+      <!-- Display race information -->
       <h3 class="text-center">Race Results</h3>
+      <!-- Display lap information -->
+      <p>Lap: <%= @lap_number %> of <%= @circuit.total_laps %></p>
       <% sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.first[:lap_time] } %>
       <% sorted_race_results.each_with_index do |(driver, lap_times), index| %>
         <!-- Display driver's race result -->
@@ -64,14 +66,14 @@
         <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
         <% if index == 0 %>
           <p id="race-lap-time-<%= index %>" style="<%= lap_time_style %>">
-            <%= "#{index + 1} - #{driver_name}: Leader" %>
+            <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_times.first[:lap_time])} (Leader)" %>
           </p>
         <% else %>
           <% leader_lap_time = sorted_race_results.first.last.first[:lap_time] %>
           <% time_difference = lap_times.first[:lap_time] - leader_lap_time %>
           <% formatted_time_difference = format_lap_time(time_difference) %>
           <p id="race-lap-time-<%= index %>" style="<%= lap_time_style %>">
-            <%= "#{index + 1} - #{driver_name}: + #{formatted_time_difference}" %>
+            <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_times.first[:lap_time])} (+ #{formatted_time_difference})" %>
           </p>
         <% end %>
       <% end %>
