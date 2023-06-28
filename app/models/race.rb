@@ -104,6 +104,45 @@ class Race < ApplicationRecord
     driver_lap_times
   end
 
+  def calculate_race_laps(starting_grid)
+    driver_lap_times = {} # Store lap times for each driver
+    total_laps = self.circuit.total_laps
+
+    total_laps.times do |lap_number|
+      previous_lap_time_race = nil # Store the previous driver's lap time
+
+      starting_grid.each_with_index do |lap_time, index|
+        driver = lap_time.driver
+        car = driver.car
+        circuit = self.circuit
+        ideal_lap_time = circuit.ideal_lap_time
+
+        lap_time_race = lap_time(driver, car, circuit, ideal_lap_time)
+
+        # Add time penalty on the first lap based on the driver's position
+        if lap_number.zero?
+          time_penalty = index * 250 # 250 milliseconds
+          lap_time_race += time_penalty
+        end
+
+        # Apply draft benefit after lap 3 if the driver is 1 second or less behind the previous driver
+        if lap_number >= 3 && previous_lap_time_race && (previous_lap_time_race - lap_time_race).abs <= 1
+          lap_time_race -= 300 # 300 milliseconds
+        end
+
+        driver_lap_times[driver] ||= []
+        driver_lap_times[driver] << { lap_time: lap_time_race }
+
+        # Update the previous driver's lap time for the next iteration
+        previous_lap_time_race = lap_time_race
+      end
+    end
+
+    driver_lap_times
+  end
+
+
+
 
   private
 
