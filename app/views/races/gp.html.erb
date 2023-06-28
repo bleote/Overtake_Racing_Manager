@@ -81,7 +81,7 @@
         <h3 class="text-center">Race Results</h3>
         <div class="gp-empty"></div>
         <!-- Display lap information -->
-        <p>Lap: <%= @lap_number %> of <%= @circuit.total_laps %></p>
+        <p>Lap: <%= @circuit.total_laps %> of <%= @circuit.total_laps %></p>
         <div class="gp-empty"></div>
         <!-- Info to calculate race results -->
         <% sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } } %>
@@ -234,7 +234,7 @@
           document.getElementById('dynamic-results').style.display = 'none';
           document.getElementById('static-results').style.display = 'block';
       }
-    }, 10000);
+    }, 1000);
   }
 
   // Call the startRace function when the "Start Race" button is clicked

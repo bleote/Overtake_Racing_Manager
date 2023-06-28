@@ -58,7 +58,6 @@ class RacesController < ApplicationController
     @starting_grid = @qualifying_valid_laps.sort_by(&:time)
 
     @start_race = Rails.cache.fetch("start_race_#{params[:id]}", expires_in: 2.days) do
-      @lap_number += 1
       @race.calculate_race_laps(@starting_grid)
     end
 
