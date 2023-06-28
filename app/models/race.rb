@@ -126,7 +126,7 @@ class Race < ApplicationRecord
         end
 
         # Apply draft benefit after lap 3 if the driver is 1 second or less behind the previous driver
-        if lap_number >= 3 && previous_lap_time_race && (previous_lap_time_race - lap_time_race).abs <= 1
+        if lap_number >= 3 && previous_lap_time_race && (previous_lap_time_race - lap_time_race).abs <= 1000
           lap_time_race -= 300 # 300 milliseconds
         end
 
@@ -156,18 +156,18 @@ class Race < ApplicationRecord
 
   def driver_adjustment(driver)
     # Adjust the lap time based on the driver's skills
-    driving_skills_adjustment = (11 - driver.driving_skills) * rand(0..400)
-    fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..200)
+    driving_skills_adjustment = (11 - driver.driving_skills) * rand(0..150)
+    fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..50)
     wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * rand(0..300) + ((self.circuit.ideal_lap_time / 100) * 21) : 0
 
-    driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
+    driving_skills_adjustment + fitness_level_adjustment # + wet_race_adjustment
   end
 
   def car_adjustment(car, circuit)
     # Adjust the lap time based on the car's performance
     gearbox_adjustment = (9.7 - car.gearbox) * circuit_characteristics(circuit) * 1 / 10
-    suspension_adjustment = (9.7 - car.suspension) * circuit_characteristics(circuit) * 2 / 10
-    downforce_adjustment = (9.7 - car.downforce) * circuit_characteristics(circuit) * 3 / 10
+    suspension_adjustment = (9.7 - car.suspension) * circuit_characteristics(circuit) * 1 / 10
+    downforce_adjustment = (9.7 - car.downforce) * circuit_characteristics(circuit) * 2 / 10
 
     gearbox_adjustment + suspension_adjustment + downforce_adjustment
   end
