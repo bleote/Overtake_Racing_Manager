@@ -61,7 +61,19 @@ class RacesController < ApplicationController
       @lap_number += 1
       @race.calculate_race_laps(@starting_grid)
     end
+
+    # Convert @start_race to JSON
+    @start_race_json = @start_race.map do |driver, lap_times|
+      [driver.id, {name: driver.driver_name, lap_times: lap_times.map { |lt| lt[:lap_time] }}]
+    end.to_h.to_json
   end
+
+  def update_lap_number
+    @race = Race.find(params[:race_id])
+    @race.update(lap_number: params[:lap_number])
+    render json: { status: 'success' }
+  end
+
 
   private
 

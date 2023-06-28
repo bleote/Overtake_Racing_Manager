@@ -28,8 +28,13 @@
 
     <div id="starting-grid" class="starting-grid text-start">
       <div class="d-flex row grid-organizer justify-content-center">
+        <div class="d-flex justify-content-center">
+          <button id="start-race-1" class="btn btn-primary">Start Race</button>
+        </div>
+        <div class="gp-empty"></div>
         <!-- Display starting grid order -->
-        <h3 class="text-center">Starting Grid</h3>
+        <h3 class="text-center">Starting Grid:</h3>
+        <div class="gp-empty"></div>
         <div class="col-sm-12 col-md-10">
           <% @starting_grid.each_with_index do |lap_time, index| %>
             <!-- Display driver's name, car and helmet -->
@@ -50,35 +55,220 @@
             </div>
           <% end %>
           <div class="gp-empty"></div>
+          <div class="d-flex justify-content-center">
+            <button id="start-race-2" class="btn btn-primary">Start Race</button>
+          </div>
+          <div class="gp-empty"></div>
         </div>
       </div>
     </div>
 
-    <div id="race-results" class="race-results text-start mx-2">
-      <!-- Display race information -->
-      <h3 class="text-center">Race Results</h3>
-      <!-- Display lap information -->
-      <p>Lap: <%= @lap_number %> of <%= @circuit.total_laps %></p>
-      <% sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.first[:lap_time] } %>
-      <% sorted_race_results.each_with_index do |(driver, lap_times), index| %>
-        <!-- Display driver's race result -->
-        <% driver_name = driver.driver_name %>
-        <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
-        <% if index == 0 %>
-          <p id="race-lap-time-<%= index %>" style="<%= lap_time_style %>">
-            <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_times.first[:lap_time])} (Leader)" %>
-          </p>
-        <% else %>
-          <% leader_lap_time = sorted_race_results.first.last.first[:lap_time] %>
-          <% time_difference = lap_times.first[:lap_time] - leader_lap_time %>
-          <% formatted_time_difference = format_lap_time(time_difference) %>
-          <p id="race-lap-time-<%= index %>" style="<%= lap_time_style %>">
-            <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_times.first[:lap_time])} (+ #{formatted_time_difference})" %>
-          </p>
-        <% end %>
-      <% end %>
+    <!-- Dynamic view -->
+    <div id="dynamic-results" class="race-results text-start mx-2" style="display: none;">
+      <h3 id="race-header" class="text-center"></h3>
+      <div class="gp-empty"></div>
+      <p id="lap-count"></p>
+      <div class="gp-empty"></div>
+      <div id="driver-results">
+        <!-- This will be populated by JavaScript -->
+      </div>
       <div class="gp-empty"></div>
     </div>
 
+    <!-- Static view -->
+    <div id="static-results" class="race-results text-start mx-2" style="display: none;">
+        <!-- Display race information -->
+        <h3 class="text-center">Race Results</h3>
+        <div class="gp-empty"></div>
+        <!-- Display lap information -->
+        <p>Lap: <%= @lap_number %> of <%= @circuit.total_laps %></p>
+        <div class="gp-empty"></div>
+        <!-- Info to calculate race results -->
+        <% sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } } %>
+        <% winner_lap_time = sorted_race_results.first.last.sum { |lt| lt[:lap_time] } %>
+        <% sorted_race_results.each_with_index do |(driver, lap_times), index| %>
+          <!-- Display driver's race result -->
+          <% driver_name = driver.driver_name %>
+          <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
+          <% total_time = lap_times.sum { |lt| lt[:lap_time] } %>
+          <% time_difference = total_time - winner_lap_time %>
+          <% formatted_time_difference = format_lap_time(time_difference) %>
+          <p id="race-lap-time-<%= driver.id %>" style="<%= lap_time_style %>">
+            <% if index == 0 %>
+              <%= "#{index + 1} - #{driver_name}: Winner" %>
+            <% else %>
+              <%= "#{index + 1} - #{driver_name}: +#{formatted_time_difference}" %>
+            <% end %>
+          </p>
+        <% end %>
+
+        <div class="gp-empty"></div>
+
+    </div>
   </div>
 </div>
+
+<script>
+  var startRaceData = <%= @start_race_json.html_safe %>;
+</script>
+
+<script>
+  // Function to format lap time
+  function formatLapTime(milliseconds) {
+    var minutes = Math.floor(milliseconds / (1000 * 60));
+    var seconds = Math.floor((milliseconds / 1000) % 60);
+    var milliseconds_remainder = Math.floor(milliseconds) % 1000;
+
+    // Pad minutes, seconds and milliseconds with leading zeros if necessary
+    var minutes_str = (minutes < 10 ? '0' : '') + minutes;
+    var seconds_str = (seconds < 10 ? '0' : '') + seconds;
+    var milliseconds_str = (milliseconds_remainder < 100 ? '0' : '') + (milliseconds_remainder < 10 ? '0' : '') + milliseconds_remainder;
+
+    return minutes_str + ":" + seconds_str + "." + milliseconds_str;
+  }
+
+  // Wrap the race starting logic in a function
+  function startRace() {
+    var startRaceData = <%= @start_race_json.html_safe %>;
+    var startingGrid = <%= @starting_grid.to_json.html_safe %>;
+    var currentLap = 0; // Start from lap 0
+    var totalLaps = <%= @circuit.total_laps %>; // Get total laps from server
+    var yourRaceId = <%= @race.id %>;
+
+    var startingGridOrder = {};
+    for (var i = 0; i < startingGrid.length; i++) {
+      startingGridOrder[startingGrid[i].driver_id] = i;
+    }
+
+    function updateRaceResults() {
+      // Calculate the total time for each driver
+      var totalTimeData = [];
+      for (var driverId in startRaceData) {
+        if (startRaceData.hasOwnProperty(driverId)) {
+          var totalTime = 0;
+          for (var i = 0; i < currentLap; i++) {
+            totalTime += startRaceData[driverId].lap_times[i];
+          }
+          totalTimeData.push({id: driverId, name: startRaceData[driverId].name, totalTime: totalTime});
+        }
+      }
+
+      // Update the header and lap count
+      document.getElementById('race-header').textContent = "Race Results";
+      document.getElementById('lap-count').textContent = "Lap: " + currentLap + " of " + totalLaps;
+
+      // Sort the drivers by total time
+        if (currentLap === 0) {
+          // Sort based on the initial order in @starting_grid
+          totalTimeData.sort(function(a, b) {
+            return startingGridOrder[a.id] - startingGridOrder[b.id];
+          });
+        } else {
+          // Sort based on total time
+          totalTimeData.sort(function(a, b) {
+            return a.totalTime - b.totalTime;
+          });
+        }
+
+      // Get the parent element
+      var parentElement = document.getElementById('driver-results');
+
+      // Clear the parent element
+      while (parentElement.firstChild) {
+        parentElement.removeChild(parentElement.firstChild);
+      }
+
+      // Create new elements for each driver and append them to the parent element
+      for (var i = 0; i < totalTimeData.length; i++) {
+          var driverElement = document.createElement('div');
+          driverElement.id = 'race-lap-time-' + totalTimeData[i].id;
+
+          // Calculate the gap to the leader
+          var gapToLeader = (i === 0) ? 0 : totalTimeData[i].totalTime - totalTimeData[0].totalTime;
+
+          // Check if the driver is the leader
+          var gapText = (i === 0) ? "Leader" : "+" + formatLapTime(gapToLeader) + "";
+
+          driverElement.textContent = (i + 1) + " - " + totalTimeData[i].name + ": " + gapText;
+
+          // If the driver is the leader, change the font color
+          if (i === 0) {
+              driverElement.style.color = "#1edd88";
+          }
+
+          parentElement.appendChild(driverElement);
+      }
+
+      // Increment the current lap
+      currentLap++;
+
+      // Update the lap number on the server
+      fetch('/races/update_lap_number', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
+        },
+        body: JSON.stringify({ lap_number: currentLap, race_id: yourRaceId }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        // Handle success
+      })
+      .catch((error) => {
+        // Handle error
+      });
+    }
+
+    // Call the updateRaceResults function immediately
+    updateRaceResults();
+
+    // Then call the updateRaceResults function every second
+    var intervalId = setInterval(function() {
+      if (currentLap < totalLaps) {
+          updateRaceResults();
+      } else {
+          clearInterval(intervalId); // Stop updating when currentLap equals totalLaps
+
+          // Hide dynamic view and show static view
+          document.getElementById('dynamic-results').style.display = 'none';
+          document.getElementById('static-results').style.display = 'block';
+      }
+    }, 10000);
+  }
+
+  // Call the startRace function when the "Start Race" button is clicked
+  document.getElementById('start-race-1').addEventListener('click', function() {
+    // Hide this start race button
+    this.style.display = 'none';
+
+    // Hide the second start race button
+    document.getElementById('start-race-2').style.display = 'none';
+
+    // Hide the starting-grid div
+    document.getElementById('starting-grid').style.display = 'none';
+
+    // Show the dynamic results div
+    document.getElementById('dynamic-results').style.display = 'block';
+
+    // Start the race
+    startRace();
+  });
+
+  document.getElementById('start-race-2').addEventListener('click', function() {
+    // Hide this start race button
+    this.style.display = 'none';
+
+    // Hide the first start race button
+    document.getElementById('start-race-1').style.display = 'none';
+
+    // Hide the starting-grid div
+    document.getElementById('starting-grid').style.display = 'none';
+
+    // Show the dynamic results div
+    document.getElementById('dynamic-results').style.display = 'block';
+
+    // Start the race
+    startRace();
+  });
+</script>

@@ -21,6 +21,5 @@ Rails.application.routes.draw do
     end
   end
 
-  # Route for the qualifying method inside races controller
-  put 'races/:id/qualy', to: 'races#qualy', as: 'qualy_race'
+  post 'races/update_lap_number', to: 'races#update_lap_number', as: 'update_lap_number'
 end
