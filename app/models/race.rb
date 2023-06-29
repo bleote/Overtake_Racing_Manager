@@ -87,31 +87,10 @@ class Race < ApplicationRecord
     driver_lap_times = {} # Store lap times for each driver
     total_laps = self.circuit.total_laps
 
-    total_laps.times do
-      starting_grid.each do |lap_time|
-        driver = lap_time.driver
-        car = driver.car
-        circuit = self.circuit
-        ideal_lap_time = circuit.ideal_lap_time
-
-        lap_time_race = lap_time(driver, car, circuit, ideal_lap_time)
-
-        driver_lap_times[driver] ||= []
-        driver_lap_times[driver] << { lap_time: lap_time_race }
-      end
-    end
-
-    driver_lap_times
-  end
-
-  def calculate_race_laps(starting_grid)
-    driver_lap_times = {} # Store lap times for each driver
-    total_laps = self.circuit.total_laps
-
     total_laps.times do |lap_number|
-      previous_lap_time_race = nil # Store the previous driver's lap time
+      sorted_grid = starting_grid
 
-      starting_grid.each_with_index do |lap_time, index|
+      sorted_grid.each_with_index do |lap_time, index|
         driver = lap_time.driver
         car = driver.car
         circuit = self.circuit
@@ -125,24 +104,14 @@ class Race < ApplicationRecord
           lap_time_race += time_penalty
         end
 
-        # Apply draft benefit after lap 3 if the driver is 1 second or less behind the previous driver
-        if lap_number >= 3 && previous_lap_time_race && (previous_lap_time_race - lap_time_race).abs <= 1000
-          lap_time_race -= 300 # 300 milliseconds
-        end
-
+        # Add the current lap time to the driver's total race time
         driver_lap_times[driver] ||= []
         driver_lap_times[driver] << { lap_time: lap_time_race }
-
-        # Update the previous driver's lap time for the next iteration
-        previous_lap_time_race = lap_time_race
       end
     end
 
     driver_lap_times
   end
-
-
-
 
   private
 
@@ -156,7 +125,10 @@ class Race < ApplicationRecord
 
   def driver_adjustment(driver)
     # Adjust the lap time based on the driver's skills
-    driving_skills_adjustment = (11 - driver.driving_skills) * rand(0..150)
+    proficiency_variations = [rand(0..100), rand(0..200), rand(0..300), rand(0..400)]
+    randomize = rand(0..3)
+    driver_proficiency = proficiency_variations[randomize]
+    driving_skills_adjustment = (11 - driver.driving_skills) * driver_proficiency
     fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..50)
     wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * rand(0..300) + ((self.circuit.ideal_lap_time / 100) * 21) : 0
 

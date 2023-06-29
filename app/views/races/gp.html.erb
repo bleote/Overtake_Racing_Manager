@@ -189,6 +189,7 @@
           // Check if the driver is the leader
           var gapText = (i === 0) ? "Leader" : "+" + formatLapTime(gapToLeader) + "";
 
+
           driverElement.textContent = (i + 1) + " - " + totalTimeData[i].name + ": " + gapText;
 
           // If the driver is the leader, change the font color
@@ -198,6 +199,7 @@
 
           parentElement.appendChild(driverElement);
       }
+
 
       // Increment the current lap
       currentLap++;
@@ -234,7 +236,7 @@
           document.getElementById('dynamic-results').style.display = 'none';
           document.getElementById('static-results').style.display = 'block';
       }
-    }, 500);
+    }, 300);
   }
 
   // Call the startRace function when the "Start Race" button is clicked
