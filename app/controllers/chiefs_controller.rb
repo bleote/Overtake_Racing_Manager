@@ -21,7 +21,7 @@ class ChiefsController < ApplicationController
   private
 
   def chief_params
-    params.require(:chiefs).permit(:team_id, :chief_name, :chief_image)
+    params.require(:chiefs).permit(:team_id, :name, :image)
   end
 
   def set_chief

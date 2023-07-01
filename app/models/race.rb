@@ -125,14 +125,14 @@ class Race < ApplicationRecord
 
   def driver_adjustment(driver)
     # Adjust the lap time based on the driver's skills
-    proficiency_variations = [rand(0..100), rand(0..200), rand(0..300), rand(0..400)]
+    proficiency_variations = [100, 200, 300, 400]
     randomize = rand(0..3)
     driver_proficiency = proficiency_variations[randomize]
     driving_skills_adjustment = (11 - driver.driving_skills) * driver_proficiency
     fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..50)
     wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * rand(0..300) + ((self.circuit.ideal_lap_time / 100) * 21) : 0
 
-    driving_skills_adjustment + fitness_level_adjustment # + wet_race_adjustment
+    driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
   end
 
   def car_adjustment(car, circuit)

@@ -44,7 +44,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
 
   create_table "cars", force: :cascade do |t|
     t.bigint "team_id", null: false
-    t.string "car_image"
+    t.string "image"
+    t.string "lg_image"
     t.string "constructor"
     t.string "engine"
     t.integer "gearbox"
@@ -59,8 +60,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   end
 
   create_table "chiefs", force: :cascade do |t|
-    t.string "chief_name"
-    t.string "chief_image"
+    t.string "name"
+    t.string "image"
     t.bigint "team_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -68,9 +69,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   end
 
   create_table "circuits", force: :cascade do |t|
-    t.string "circuit_name"
-    t.string "circuit_layout"
-    t.string "circuit_flag"
+    t.string "name"
+    t.string "layout"
+    t.string "flag"
     t.integer "slow_corners"
     t.integer "medium_corners"
     t.integer "fast_corners"
@@ -85,8 +86,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   end
 
   create_table "drivers", force: :cascade do |t|
-    t.string "driver_name"
-    t.string "driver_picture"
+    t.string "name"
+    t.string "initials"
+    t.string "picture"
     t.string "helmet"
     t.bigint "team_id", null: false
     t.bigint "car_id", null: false
@@ -157,11 +159,11 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   end
 
   create_table "teams", force: :cascade do |t|
-    t.string "team_name"
-    t.string "team_logo"
+    t.string "name"
+    t.string "logo"
     t.string "color"
     t.string "description"
-    t.integer "team_points"
+    t.integer "points"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

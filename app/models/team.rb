@@ -5,6 +5,6 @@ class Team < ApplicationRecord
   has_many :races
   has_many :users
 
-  validates_uniqueness_of :team_name
-  validates_presence_of :team_name
+  validates_uniqueness_of :name
+  validates_presence_of :name
 end

@@ -3,15 +3,15 @@
 
     <div class="gp-name-and-flag d-flex justify-content-center align-items-center mb-1">
       <div class="gp-name d-flex pe-3 align-items-center">
-        <h2><%= @circuit.circuit_name %> GP </h2>
+        <h2><%= @circuit.name %> GP </h2>
       </div>
        <div class="gp-flag d-flex align-items-center">
-        <%= image_tag "circuits/#{@circuit.circuit_flag}", width: 38 %>
+        <%= image_tag "circuits/#{@circuit.flag}", width: 38 %>
       </div>
     </div>
 
     <div class="current-session">
-      <p>Your team: <%= @team.team_name %> </p>
+      <p>Your team: <%= @team.name %> </p>
     </div>
 
     <div class="current-session">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="circuit-layout my-2">
-      <%= image_tag "circuits/#{@circuit.circuit_layout}", width: 300 %>
+      <%= image_tag "circuits/#{@circuit.layout}", width: 300 %>
     </div>
 
     <div class="qualifying-results d-flex row">
@@ -33,10 +33,10 @@
         <p class="text-center pb-2">(Bottom 5 drivers won't advance to Q2)</p>
         <% @q1_lap_times.each_with_index do |lap_time, index| %>
           <!-- Display driver's lap time information -->
-          <% driver_name = lap_time.driver.driver_name %>
+          <% driver_name = lap_time.driver.name %>
           <% lap_time_style = index >= @q1_lap_times.length - 5 ? 'color: #df0000;' : '' %>
           <p id="q1-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
-          <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
           </p>
         <% end %>
         <div class="qualifying-empty"></div>
@@ -52,10 +52,10 @@
         <p class="text-center pb-2">(Top 10 drivers advance to Q3)</p>
         <% @q2_lap_times.each_with_index do |lap_time, index| %>
           <!-- Display driver's lap time information -->
-          <% driver_name = lap_time.driver.driver_name %>
+          <% driver_name = lap_time.driver.name %>
           <% lap_time_style = index >= @q2_lap_times.length - 5 ? 'color: #df0000;' : '' %>
           <p id="q2-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
-          <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
           </p>
         <% end %>
         <div class="qualifying-empty"></div>
@@ -71,10 +71,10 @@
         <p class="text-center pb-2">(Best time will start on pole position)</p>
         <% @q3_lap_times.each_with_index do |lap_time, index| %>
           <!-- Display driver's lap time information -->
-          <% driver_name = lap_time.driver.driver_name %>
+          <% driver_name = lap_time.driver.name %>
           <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
           <p id="q3-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
-          <%= "#{index + 1} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
           </p>
         <% end %>
         <div class="qualifying-empty"></div>

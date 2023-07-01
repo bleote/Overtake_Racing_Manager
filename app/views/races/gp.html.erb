@@ -3,15 +3,15 @@
 
     <div class="gp-name-and-flag d-flex justify-content-center align-items-center mb-1">
       <div class="gp-name d-flex pe-3 align-items-center">
-        <h2><%= @circuit.circuit_name %> GP </h2>
+        <h2><%= @circuit.name %> GP </h2>
       </div>
        <div class="gp-flag d-flex align-items-center">
-        <%= image_tag "circuits/#{@circuit.circuit_flag}", width: 38 %>
+        <%= image_tag "circuits/#{@circuit.flag}", width: 38 %>
       </div>
     </div>
 
     <div class="current-session">
-      <p>Your team: <%= @team.team_name %> </p>
+      <p>Your team: <%= @team.name %> </p>
     </div>
 
     <div class="current-session">
@@ -23,7 +23,7 @@
     </div>
 
     <div class="circuit-layout my-2">
-      <%= image_tag "circuits/#{@circuit.circuit_layout}", width: 300 %>
+      <%= image_tag "circuits/#{@circuit.layout}", width: 300 %>
     </div>
 
     <div id="starting-grid" class="starting-grid text-start">
@@ -38,8 +38,8 @@
         <div class="col-sm-12 col-md-10">
           <% @starting_grid.each_with_index do |lap_time, index| %>
             <!-- Display driver's name, car and helmet -->
-            <% driver_name = lap_time.driver.driver_name %>
-            <% driver_car = image_path("cars/#{lap_time.driver.car.car_image}") %>
+            <% driver_name = lap_time.driver.name %>
+            <% driver_car = image_path("cars/#{lap_time.driver.car.lg_image}") %>
             <% alignment_class = index.even? ? 'align-left' : 'align-right' %>
             <div class="driver-info <%= alignment_class %>">
               <div class="car-info">
@@ -49,7 +49,7 @@
                   </div>
                 </div>
                 <div class="driver-name">
-                  <%= "#{index + 1} - #{driver_name}" %>
+                  <%= "#{sprintf('%02d', index + 1)} - #{driver_name}" %>
                 </div>
               </div>
             </div>
@@ -88,16 +88,16 @@
         <% winner_lap_time = sorted_race_results.first.last.sum { |lt| lt[:lap_time] } %>
         <% sorted_race_results.each_with_index do |(driver, lap_times), index| %>
           <!-- Display driver's race result -->
-          <% driver_name = driver.driver_name %>
+          <% driver_car = image_path("cars/#{driver.car.image}") %>
           <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
           <% total_time = lap_times.sum { |lt| lt[:lap_time] } %>
           <% time_difference = total_time - winner_lap_time %>
           <% formatted_time_difference = format_lap_time(time_difference) %>
           <p id="race-lap-time-<%= driver.id %>" style="<%= lap_time_style %>">
             <% if index == 0 %>
-              <%= "#{index + 1} - #{driver_name}: Winner" %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}" %> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Winner
             <% else %>
-              <%= "#{index + 1} - #{driver_name}: +#{formatted_time_difference}" %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> <%= " +#{formatted_time_difference}" %>
             <% end %>
           </p>
         <% end %>
@@ -107,10 +107,6 @@
     </div>
   </div>
 </div>
-
-<script>
-  var startRaceData = <%= @start_race_json.html_safe %>;
-</script>
 
 <script>
   // Function to format lap time
@@ -149,7 +145,12 @@
           for (var i = 0; i < currentLap; i++) {
             totalTime += startRaceData[driverId].lap_times[i];
           }
-          totalTimeData.push({id: driverId, name: startRaceData[driverId].name, totalTime: totalTime});
+          totalTimeData.push({
+            id: driverId,
+            name: startRaceData[driverId].name,
+            initials: startRaceData[driverId].initials,
+            car_image: startRaceData[driverId].car_image,
+            totalTime: totalTime});
         }
       }
 
@@ -189,8 +190,31 @@
           // Check if the driver is the leader
           var gapText = (i === 0) ? "Leader" : "+" + formatLapTime(gapToLeader) + "";
 
+          // Add leading zero if index is less than or equal to 8
+          var indexText = (i <= 8) ? "0" + (i + 1) : (i + 1);
 
-          driverElement.textContent = (i + 1) + " - " + totalTimeData[i].name + ": " + gapText;
+          // Get the driver's initials
+          var initials = totalTimeData[i].initials;
+
+          // Get the driver's car image URL
+          var carImage = totalTimeData[i].car_image;
+
+          // Create the text node for index and initials
+          var indexInitialsText = document.createTextNode(indexText + " - " + initials + " ");
+
+          // Create an image element for the car image
+          var carImageElement = document.createElement('img');
+          carImageElement.src = '/assets/cars/' + carImage;
+          carImageElement.alt = 'Car Image';
+          carImageElement.style.width = '35px';
+
+          // Create the text node for the gap text
+          var gapTextElement = document.createTextNode(" " + gapText);
+
+          // Append the child nodes in the desired order
+          driverElement.appendChild(indexInitialsText);
+          driverElement.appendChild(carImageElement);
+          driverElement.appendChild(gapTextElement);
 
           // If the driver is the leader, change the font color
           if (i === 0) {
@@ -236,7 +260,7 @@
           document.getElementById('dynamic-results').style.display = 'none';
           document.getElementById('static-results').style.display = 'block';
       }
-    }, 300);
+    }, 1000);
   }
 
   // Call the startRace function when the "Start Race" button is clicked
