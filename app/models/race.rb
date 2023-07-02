@@ -125,21 +125,24 @@ class Race < ApplicationRecord
 
   def driver_adjustment(driver)
     # Adjust the lap time based on the driver's skills
-    proficiency_variations = [100, 200, 300, 400]
+    proficiency_variations = [rand(0..100), rand(0..200), rand(0..300), rand(0..400)]
     randomize = rand(0..3)
     driver_proficiency = proficiency_variations[randomize]
     driving_skills_adjustment = (11 - driver.driving_skills) * driver_proficiency
     fitness_level_adjustment = (11 - driver.fitness_level) * rand(0..50)
-    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * rand(0..300) + ((self.circuit.ideal_lap_time / 100) * 21) : 0
+    wet_race_adjustment = self.weather == 'Rainny' ? (11 - driver.wet_race) * rand(0..400) + ((self.circuit.ideal_lap_time / 100) * 21) : 0
+    driver_error_variations = [0, 0, 0, 0, 150, 150, 300, 300, 500, 500]
+    error_spin = rand(0..9)
+    driver_errors = driver_error_variations[error_spin]
 
-    driving_skills_adjustment + fitness_level_adjustment + wet_race_adjustment
+    driving_skills_adjustment + fitness_level_adjustment + driver_errors + wet_race_adjustment
   end
 
   def car_adjustment(car, circuit)
     # Adjust the lap time based on the car's performance
-    gearbox_adjustment = (9.7 - car.gearbox) * circuit_characteristics(circuit) * 1 / 10
-    suspension_adjustment = (9.7 - car.suspension) * circuit_characteristics(circuit) * 1 / 10
-    downforce_adjustment = (9.7 - car.downforce) * circuit_characteristics(circuit) * 2 / 10
+    gearbox_adjustment = (9.9 - car.gearbox) * circuit_characteristics(circuit) * 1 / 30
+    suspension_adjustment = (9.9 - car.suspension) * circuit_characteristics(circuit) * 1 / 30
+    downforce_adjustment = (9.9 - car.downforce) * circuit_characteristics(circuit) * 2 / 30
 
     gearbox_adjustment + suspension_adjustment + downforce_adjustment
   end

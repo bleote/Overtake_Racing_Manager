@@ -39,7 +39,7 @@
           <% @starting_grid.each_with_index do |lap_time, index| %>
             <!-- Display driver's name, car and helmet -->
             <% driver_name = lap_time.driver.name %>
-            <% driver_car = image_path("cars/#{lap_time.driver.car.lg_image}") %>
+            <% driver_car = image_path("cars/#{lap_time.driver.car.image_lg}") %>
             <% alignment_class = index.even? ? 'align-left' : 'align-right' %>
             <div class="driver-info <%= alignment_class %>">
               <div class="car-info">

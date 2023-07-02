@@ -45,7 +45,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   create_table "cars", force: :cascade do |t|
     t.bigint "team_id", null: false
     t.string "image"
-    t.string "lg_image"
+    t.string "image_lg"
     t.string "constructor"
     t.string "engine"
     t.integer "gearbox"
