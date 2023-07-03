@@ -1,9 +1,9 @@
 class CreateCircuits < ActiveRecord::Migration[7.0]
   def change
     create_table :circuits do |t|
-      t.string :circuit_name
-      t.string :circuit_layout
-      t.string :circuit_flag
+      t.string :name
+      t.string :layout
+      t.string :flag
       t.integer :slow_corners
       t.integer :medium_corners
       t.integer :fast_corners

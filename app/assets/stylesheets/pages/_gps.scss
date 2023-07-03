@@ -13,6 +13,20 @@
 }
 
 .car-image img {
-  width: 50px;
+  width: 60px;
   height: auto;
+}
+
+#light-container {
+  justify-content: center;
+}
+
+.light {
+  width: 20px;
+  height: 20px;
+  margin: 5px;
+}
+
+.light-on {
+  display: none;
 }

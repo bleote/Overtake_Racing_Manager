@@ -11,92 +11,92 @@ puts 'Creating 10 teams...'
 
 Team.create(
   id: 1,
-  team_name: 'Red Bull',
-  team_logo: 'redbull_logo.png',
+  name: 'Red Bull',
+  logo: 'redbull_logo.png',
   color: 'Dark Blue',
   description: 'Red Bull finished 1st in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 2,
-  team_name: 'Ferrari',
-  team_logo: 'ferrari_logo.png',
+  name: 'Ferrari',
+  logo: 'ferrari_logo.png',
   color: 'Red',
   description: 'Ferrari finished 2nd in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 3,
-  team_name: 'Mercedes',
-  team_logo: 'mercedes_logo.png',
+  name: 'Mercedes',
+  logo: 'mercedes_logo.png',
   color: 'Black',
   description: 'Mercedes finished 3rd in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 4,
-  team_name: 'McLaren',
-  team_logo: 'mclaren_logo.png',
+  name: 'McLaren',
+  logo: 'mclaren_logo.png',
   color: 'Orange',
   description: 'McLaren finished 5th in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 5,
-  team_name: 'Aston Martin',
-  team_logo: 'astonmartin_logo.png',
+  name: 'Aston Martin',
+  logo: 'astonmartin_logo.png',
   color: 'Green',
   description: 'Aston Martin finished 7th in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 6,
-  team_name: 'Alpine',
-  team_logo: 'alpine_logo.png',
+  name: 'Alpine',
+  logo: 'alpine_logo.png',
   color: 'Light Blue',
   description: 'Alpine finished 4th in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 7,
-  team_name: 'Haas',
-  team_logo: 'haas_logo.png',
+  name: 'Haas',
+  logo: 'haas_logo.png',
   color: 'White',
   description: 'Haas finished 8th in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 8,
-  team_name: 'Alfa Romeo',
-  team_logo: 'alfaromeo_logo.png',
+  name: 'Alfa Romeo',
+  logo: 'alfaromeo_logo.png',
   color: 'Red and White',
   description: 'Alfa Romeo finished 6th in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 9,
-  team_name: 'AlphaTauri',
-  team_logo: 'alphatauri_logo.png',
+  name: 'AlphaTauri',
+  logo: 'alphatauri_logo.png',
   color: 'White and Blue',
   description: 'AlphaTauri finished 9th in 2021',
-  team_points: 0
+  points: 0
 )
 
 Team.create(
   id: 10,
-  team_name: 'Williams',
-  team_logo: 'williams_logo.png',
+  name: 'Williams',
+  logo: 'williams_logo.png',
   color: 'Blue',
   description: 'Williams finished 10th in 2021',
-  team_points: 0
+  points: 0
 )
 
 puts '10 teams created!'
@@ -104,71 +104,71 @@ puts '10 teams created!'
 puts 'Hiring Team Principals...'
 Chief.create(
   id: 1,
-  chief_name: 'Christian Horner',
-  chief_image: 'horner.png',
+  name: 'Christian Horner',
+  image: 'horner.png',
   team_id: 1
 )
 
 Chief.create(
   id: 2,
-  chief_name: 'Frédéric Vasseur',
-  chief_image: 'vasseur.png',
+  name: 'Frédéric Vasseur',
+  image: 'vasseur.png',
   team_id: 2
 )
 
 Chief.create(
   id: 3,
-  chief_name: 'Toto Wolff',
-  chief_image: 'wolff.png',
+  name: 'Toto Wolff',
+  image: 'wolff.png',
   team_id: 3
 )
 
 Chief.create(
   id: 4,
-  chief_name: 'Andrea Stella',
-  chief_image: 'stella.png',
+  name: 'Andrea Stella',
+  image: 'stella.png',
   team_id: 4
 )
 
 Chief.create(
   id: 5,
-  chief_name: 'Mike Krack',
-  chief_image: 'krack.png',
+  name: 'Mike Krack',
+  image: 'krack.png',
   team_id: 5
 )
 
 Chief.create(
   id: 6,
-  chief_name: 'Otmar Szafnauer',
-  chief_image: 'szafnauer.png',
+  name: 'Otmar Szafnauer',
+  image: 'szafnauer.png',
   team_id: 6
 )
 
 Chief.create(
   id: 7,
-  chief_name: 'Guenther Steiner',
-  chief_image: 'steiner.png',
+  name: 'Guenther Steiner',
+  image: 'steiner.png',
   team_id: 7
 )
 
 Chief.create(
   id: 8,
-  chief_name: 'Alessandro Bravi',
-  chief_image: 'bravi.png',
+  name: 'Alessandro Bravi',
+  image: 'bravi.png',
   team_id: 8
 )
 
 Chief.create(
   id: 9,
-  chief_name: 'Franz Tost',
-  chief_image: 'tost.png',
+  name: 'Franz Tost',
+  image: 'tost.png',
   team_id: 9
 )
 
 Chief.create(
   id: 10,
-  chief_name: 'James Vowles',
-  chief_image: 'vowles.png',
+  name: 'James Vowles',
+  image: 'vowles.png',
   team_id: 10
 )
 
@@ -178,7 +178,8 @@ puts 'Teams are now building their chassis...'
 Car.create(
   id: 1,
   team_id: 1,
-  car_image: 'redbull_car.png',
+  image: 'redbull_car.png',
+  image_lg: 'redbull_car_lg.png',
   constructor: 'Red Bull',
   engine: 'Red Bull Power Trains',
   gearbox: 10,
@@ -192,7 +193,8 @@ Car.create(
 Car.create(
   id: 2,
   team_id: 1,
-  car_image: 'redbull_car.png',
+  image: 'redbull_car.png',
+  image_lg: 'redbull_car_lg.png',
   constructor: 'Red Bull',
   engine: 'Red Bull Power Trains',
   gearbox: 10,
@@ -206,7 +208,8 @@ Car.create(
 Car.create(
   id: 3,
   team_id: 2,
-  car_image: 'ferrari_car.png',
+  image: 'ferrari_car.png',
+  image_lg: 'ferrari_car_lg.png',
   constructor: 'Ferrari',
   engine: 'Ferrari',
   gearbox: 10,
@@ -220,7 +223,8 @@ Car.create(
 Car.create(
   id: 4,
   team_id: 2,
-  car_image: 'ferrari_car.png',
+  image: 'ferrari_car.png',
+  image_lg: 'ferrari_car_lg.png',
   constructor: 'Ferrari',
   engine: 'Ferrari',
   gearbox: 10,
@@ -234,7 +238,8 @@ Car.create(
 Car.create(
   id: 5,
   team_id: 3,
-  car_image: 'mercedes_car.png',
+  image: 'mercedes_car.png',
+  image_lg: 'mercedes_car_lg.png',
   constructor: 'Mercedes',
   engine: 'Mercedes',
   gearbox: 10,
@@ -248,7 +253,8 @@ Car.create(
 Car.create(
   id: 6,
   team_id: 3,
-  car_image: 'mercedes_car.png',
+  image: 'mercedes_car.png',
+  image_lg: 'mercedes_car_lg.png',
   constructor: 'Mercedes',
   engine: 'Mercedes',
   gearbox: 10,
@@ -262,12 +268,13 @@ Car.create(
 Car.create(
   id: 7,
   team_id: 4,
-  car_image: 'mclaren_car.png',
+  image: 'mclaren_car.png',
+  image_lg: 'mclaren_car_lg.png',
   constructor: 'McLaren',
   engine: 'Mercedes',
-  gearbox: 8,
-  suspension: 7,
-  downforce: 7,
+  gearbox: 9,
+  suspension: 8,
+  downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
   tyres: 'Soft'
@@ -276,12 +283,13 @@ Car.create(
 Car.create(
   id: 8,
   team_id: 4,
-  car_image: 'mclaren_car.png',
+  image: 'mclaren_car.png',
+  image_lg: 'mclaren_car_lg.png',
   constructor: 'McLaren',
   engine: 'Mercedes',
-  gearbox: 8,
-  suspension: 7,
-  downforce: 7,
+  gearbox: 9,
+  suspension: 8,
+  downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
   tyres: 'Soft'
@@ -290,7 +298,8 @@ Car.create(
 Car.create(
   id: 9,
   team_id: 5,
-  car_image: 'astonmartin_car.png',
+  image: 'astonmartin_car.png',
+  image_lg: 'astonmartin_car_lg.png',
   constructor: 'Aston Martin',
   engine: 'Mercedes',
   gearbox: 10,
@@ -304,7 +313,8 @@ Car.create(
 Car.create(
   id: 10,
   team_id: 5,
-  car_image: 'astonmartin_car.png',
+  image: 'astonmartin_car.png',
+  image_lg: 'astonmartin_car_lg.png',
   constructor: 'Aston Martin',
   engine: 'Mercedes',
   gearbox: 10,
@@ -318,12 +328,13 @@ Car.create(
 Car.create(
   id: 11,
   team_id: 6,
-  car_image: 'alpine_car.png',
+  image: 'alpine_car.png',
+  image_lg: 'alpine_car_lg.png',
   constructor: 'Alpine',
   engine: 'Renault',
-  gearbox: 8,
+  gearbox: 9,
   suspension: 8,
-  downforce: 8,
+  downforce: 9,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
   tyres: 'Soft'
@@ -332,9 +343,25 @@ Car.create(
 Car.create(
   id: 12,
   team_id: 6,
-  car_image: 'alpine_car.png',
+  image: 'alpine_car.png',
+  image_lg: 'alpine_car_lg.png',
   constructor: 'Alpine',
   engine: 'Renault',
+  gearbox: 9,
+  suspension: 8,
+  downforce: 9,
+  aero_setup: 'Balanced',
+  gear_ratio: 'Balanced',
+  tyres: 'Soft'
+)
+
+Car.create(
+  id: 13,
+  team_id: 7,
+  image: 'haas_car.png',
+  image_lg: 'haas_car_lg.png',
+  constructor: 'Haas',
+  engine: 'Ferrari',
   gearbox: 8,
   suspension: 8,
   downforce: 8,
@@ -344,28 +371,15 @@ Car.create(
 )
 
 Car.create(
-  id: 13,
-  team_id: 7,
-  car_image: 'haas_car.png',
-  constructor: 'Haas',
-  engine: 'Ferrari',
-  gearbox: 7,
-  suspension: 8,
-  downforce: 7,
-  aero_setup: 'Balanced',
-  gear_ratio: 'Balanced',
-  tyres: 'Soft'
-)
-
-Car.create(
   id: 14,
   team_id: 7,
-  car_image: 'haas_car.png',
+  image: 'haas_car.png',
+  image_lg: 'haas_car_lg.png',
   constructor: 'Haas',
   engine: 'Ferrari',
-  gearbox: 7,
+  gearbox: 8,
   suspension: 8,
-  downforce: 7,
+  downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
   tyres: 'Soft'
@@ -374,11 +388,12 @@ Car.create(
 Car.create(
   id: 15,
   team_id: 8,
-  car_image: 'alfaromeo_car.png',
+  image: 'alfaromeo_car.png',
+  image_lg: 'alfaromeo_car_lg.png',
   constructor: 'Alfa Romeo',
   engine: 'Ferrari',
-  gearbox: 7,
-  suspension: 7,
+  gearbox: 8,
+  suspension: 8,
   downforce: 7,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
@@ -388,11 +403,12 @@ Car.create(
 Car.create(
   id: 16,
   team_id: 8,
-  car_image: 'alfaromeo_car.png',
+  image: 'alfaromeo_car.png',
+  image_lg: 'alfaromeo_car_lg.png',
   constructor: 'Alfa Romeo',
   engine: 'Ferrari',
-  gearbox: 7,
-  suspension: 7,
+  gearbox: 8,
+  suspension: 8,
   downforce: 7,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
@@ -402,12 +418,13 @@ Car.create(
 Car.create(
   id: 17,
   team_id: 9,
-  car_image: 'alphatauri_car.png',
+  image: 'alphatauri_car.png',
+  image_lg: 'alphatauri_car_lg.png',
   constructor: 'AlphaTauri',
   engine: 'Red Bull Power Trains',
   gearbox: 8,
   suspension: 7,
-  downforce: 7,
+  downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
   tyres: 'Soft'
@@ -416,12 +433,13 @@ Car.create(
 Car.create(
   id: 18,
   team_id: 9,
-  car_image: 'alphatauri_car.png',
+  image: 'alphatauri_car.png',
+  image_lg: 'alphatauri_car_lg.png',
   constructor: 'AlphaTauri',
   engine: 'Red Bull Power Trains',
   gearbox: 8,
   suspension: 7,
-  downforce: 7,
+  downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
   tyres: 'Soft'
@@ -430,12 +448,13 @@ Car.create(
 Car.create(
   id: 19,
   team_id: 10,
-  car_image: 'williams_car.png',
+  image: 'williams_car.png',
+  image_lg: 'williams_car_lg.png',
   constructor: 'Williams',
   engine: 'Mercedes',
   gearbox: 7,
   suspension: 7,
-  downforce: 6,
+  downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
   tyres: 'Soft'
@@ -444,12 +463,13 @@ Car.create(
 Car.create(
   id: 20,
   team_id: 10,
-  car_image: 'williams_car.png',
+  image: 'williams_car.png',
+  image_lg: 'williams_car_lg.png',
   constructor: 'Williams',
   engine: 'Mercedes',
   gearbox: 7,
   suspension: 7,
-  downforce: 6,
+  downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
   tyres: 'Soft'
@@ -461,8 +481,9 @@ puts 'Teams are signing with drivers...'
 
 Driver.create(
   id: 1,
-  driver_name: 'Max Verstappen',
-  driver_picture: 'verstappen_picture.png',
+  name: 'Max Verstappen',
+  initials: 'VER',
+  picture: 'verstappen_picture.png',
   helmet: 'verstappen_helmet.png',
   team_id: 1,
   car_id: 1,
@@ -476,13 +497,14 @@ Driver.create(
 
 Driver.create(
   id: 2,
-  driver_name: 'Sergio Pérez',
-  driver_picture: 'perez_picture.png',
+  name: 'Sergio Pérez',
+  initials: 'PER',
+  picture: 'perez_picture.png',
   helmet: 'perez_helmet.png',
   team_id: 1,
   car_id: 2,
   driving_skills: 9,
-  fitness_level: 9,
+  fitness_level: 10,
   overtaking: 8,
   defending: 10,
   wet_race: 7,
@@ -491,8 +513,9 @@ Driver.create(
 
 Driver.create(
   id: 3,
-  driver_name: 'Charles Leclerc',
-  driver_picture: 'leclerc_picture.png',
+  name: 'Charles Leclerc',
+  initials: 'LEC',
+  picture: 'leclerc_picture.png',
   helmet: 'leclerc_helmet.png',
   team_id: 2,
   car_id: 3,
@@ -506,12 +529,13 @@ Driver.create(
 
 Driver.create(
   id: 4,
-  driver_name: 'Carlos Sainz',
-  driver_picture: 'sainz_picture.png',
+  name: 'Carlos Sainz',
+  initials: 'SAI',
+  picture: 'sainz_picture.png',
   helmet: 'sainz_helmet.png',
   team_id: 2,
   car_id: 4,
-  driving_skills: 9,
+  driving_skills: 10,
   fitness_level: 9,
   overtaking: 9,
   defending: 9,
@@ -521,8 +545,9 @@ Driver.create(
 
 Driver.create(
   id: 5,
-  driver_name: 'Lewis Hamilton',
-  driver_picture: 'hamilton_picture.png',
+  name: 'Lewis Hamilton',
+  initials: 'HAM',
+  picture: 'hamilton_picture.png',
   helmet: 'hamilton_helmet.png',
   team_id: 3,
   car_id: 5,
@@ -536,8 +561,9 @@ Driver.create(
 
 Driver.create(
   id: 6,
-  driver_name: 'George Russell',
-  driver_picture: 'russell_picture.png',
+  name: 'George Russell',
+  initials: 'RUS',
+  picture: 'russell_picture.png',
   helmet: 'russell_helmet.png',
   team_id: 3,
   car_id: 6,
@@ -545,14 +571,15 @@ Driver.create(
   fitness_level: 10,
   overtaking: 9,
   defending: 10,
-  wet_race: 9,
+  wet_race: 10,
   driver_points: 0
 )
 
 Driver.create(
   id: 7,
-  driver_name: 'Lando Norris',
-  driver_picture: 'norris_picture.png',
+  name: 'Lando Norris',
+  initials: 'NOR',
+  picture: 'norris_picture.png',
   helmet: 'norris_helmet.png',
   team_id: 4,
   car_id: 7,
@@ -566,8 +593,9 @@ Driver.create(
 
 Driver.create(
   id: 8,
-  driver_name: 'Oscar Piastri',
-  driver_picture: 'piastri_picture.png',
+  name: 'Oscar Piastri',
+  initials: 'PIA',
+  picture: 'piastri_picture.png',
   helmet: 'piastri_helmet.png',
   team_id: 4,
   car_id: 8,
@@ -575,19 +603,20 @@ Driver.create(
   fitness_level: 9,
   overtaking: 8,
   defending: 7,
-  wet_race: 6,
+  wet_race: 8,
   driver_points: 0
 )
 
 Driver.create(
   id: 9,
-  driver_name: 'Fernando Alonso',
-  driver_picture: 'alonso_picture.png',
+  name: 'Fernando Alonso',
+  initials: 'ALO',
+  picture: 'alonso_picture.png',
   helmet: 'alonso_helmet.png',
   team_id: 5,
   car_id: 9,
   driving_skills: 10,
-  fitness_level: 9,
+  fitness_level: 10,
   overtaking: 10,
   defending: 10,
   wet_race: 10,
@@ -596,53 +625,57 @@ Driver.create(
 
 Driver.create(
   id: 10,
-  driver_name: 'Lance Stroll',
-  driver_picture: 'stroll_picture.png',
+  name: 'Lance Stroll',
+  initials: 'STR',
+  picture: 'stroll_picture.png',
   helmet: 'stroll_helmet.png',
   team_id: 5,
   car_id: 10,
-  driving_skills: 7,
+  driving_skills: 8,
   fitness_level: 8,
   overtaking: 7,
   defending: 6,
-  wet_race: 7,
-  driver_points: 0
-)
-
-Driver.create(
-  id: 11,
-  driver_name: 'Esteban Ocon',
-  driver_picture: 'ocon_picture.png',
-  helmet: 'ocon_helmet.png',
-  team_id: 6,
-  car_id: 11,
-  driving_skills: 8,
-  fitness_level: 8,
-  overtaking: 8,
-  defending: 10,
   wet_race: 8,
   driver_points: 0
 )
 
 Driver.create(
+  id: 11,
+  name: 'Esteban Ocon',
+  initials: 'OCO',
+  picture: 'ocon_picture.png',
+  helmet: 'ocon_helmet.png',
+  team_id: 6,
+  car_id: 11,
+  driving_skills: 9,
+  fitness_level: 9,
+  overtaking: 8,
+  defending: 10,
+  wet_race: 10,
+  driver_points: 0
+)
+
+Driver.create(
   id: 12,
-  driver_name: 'Pierre Gasly',
-  driver_picture: 'gasly_picture.png',
+  name: 'Pierre Gasly',
+  initials: 'GAS',
+  picture: 'gasly_picture.png',
   helmet: 'gasly_helmet.png',
   team_id: 6,
   car_id: 12,
-  driving_skills: 8,
-  fitness_level: 9,
+  driving_skills: 9,
+  fitness_level: 8,
   overtaking: 8,
   defending: 9,
-  wet_race: 7,
+  wet_race: 8,
   driver_points: 0
 )
 
 Driver.create(
   id: 13,
-  driver_name: 'Nico Hülkenberg',
-  driver_picture: 'hulkenberg_picture.png',
+  name: 'Nico Hülkenberg',
+  initials: 'HUL',
+  picture: 'hulkenberg_picture.png',
   helmet: 'hulkenberg_helmet.png',
   team_id: 7,
   car_id: 13,
@@ -650,29 +683,31 @@ Driver.create(
   fitness_level: 9,
   overtaking: 8,
   defending: 8,
-  wet_race: 8,
+  wet_race: 10,
   driver_points: 0
 )
 
 Driver.create(
   id: 14,
-  driver_name: 'Kevin Magnussen',
-  driver_picture: 'magnussen_picture.png',
+  name: 'Kevin Magnussen',
+  initials: 'MAG',
+  picture: 'magnussen_picture.png',
   helmet: 'magnussen_helmet.png',
   team_id: 7,
   car_id: 14,
   driving_skills: 8,
-  fitness_level: 8,
+  fitness_level: 9,
   overtaking: 8,
   defending: 9,
-  wet_race: 8,
+  wet_race: 9,
   driver_points: 0
 )
 
 Driver.create(
   id: 15,
-  driver_name: 'Valtteri Bottas',
-  driver_picture: 'bottas_picture.png',
+  name: 'Valtteri Bottas',
+  initials: 'BOT',
+  picture: 'bottas_picture.png',
   helmet: 'bottas_helmet.png',
   team_id: 8,
   car_id: 15,
@@ -686,12 +721,13 @@ Driver.create(
 
 Driver.create(
   id: 16,
-  driver_name: 'Zhou Guanyu',
-  driver_picture: 'guanyu_picture.png',
+  name: 'Zhou Guanyu',
+  initials: 'ZHO',
+  picture: 'guanyu_picture.png',
   helmet: 'guanyu_helmet.png',
   team_id: 8,
   car_id: 16,
-  driving_skills: 7,
+  driving_skills: 8,
   fitness_level: 9,
   overtaking: 8,
   defending: 8,
@@ -701,13 +737,14 @@ Driver.create(
 
 Driver.create(
   id: 17,
-  driver_name: 'Yuki Tsunoda',
-  driver_picture: 'tsunoda_picture.png',
+  name: 'Yuki Tsunoda',
+  initials: 'TSU',
+  picture: 'tsunoda_picture.png',
   helmet: 'tsunoda_helmet.png',
   team_id: 9,
   car_id: 17,
   driving_skills: 8,
-  fitness_level: 8,
+  fitness_level: 9,
   overtaking: 8,
   defending: 7,
   wet_race: 7,
@@ -716,13 +753,14 @@ Driver.create(
 
 Driver.create(
   id: 18,
-  driver_name: 'Nyck de Vries',
-  driver_picture: 'vries_picture.png',
+  name: 'Nyck de Vries',
+  initials: 'DEV',
+  picture: 'vries_picture.png',
   helmet: 'vries_helmet.png',
   team_id: 9,
   car_id: 18,
-  driving_skills: 7,
-  fitness_level: 9,
+  driving_skills: 8,
+  fitness_level: 8,
   overtaking: 7,
   defending: 7,
   wet_race: 6,
@@ -731,8 +769,9 @@ Driver.create(
 
 Driver.create(
   id: 19,
-  driver_name: 'Alex Albon',
-  driver_picture: 'albon_picture.png',
+  name: 'Alex Albon',
+  initials: 'ALB',
+  picture: 'albon_picture.png',
   helmet: 'albon_helmet.png',
   team_id: 10,
   car_id: 19,
@@ -740,19 +779,20 @@ Driver.create(
   fitness_level: 9,
   overtaking: 8,
   defending: 7,
-  wet_race: 9,
+  wet_race: 10,
   driver_points: 0
 )
 
 Driver.create(
   id: 20,
-  driver_name: 'Logan Sargeant',
-  driver_picture: 'sargeant_picture.png',
+  name: 'Logan Sargeant',
+  initials: 'SAR',
+  picture: 'sargeant_picture.png',
   helmet: 'sargeant_helmet.png',
   team_id: 10,
   car_id: 20,
   driving_skills: 7,
-  fitness_level: 9,
+  fitness_level: 10,
   overtaking: 7,
   defending: 6,
   wet_race: 5,
@@ -765,9 +805,9 @@ puts 'creating 1 circuit...'
 
 Circuit.create(
   id: 1,
-  circuit_name: 'Brazil',
-  circuit_flag: 'brazil_flag.png',
-  circuit_layout: 'brazil_layout.png',
+  name: 'Brazil',
+  flag: 'brazil_flag.png',
+  layout: 'brazil_layout.png',
   slow_corners: 3,
   medium_corners: 4,
   fast_corners: 8,

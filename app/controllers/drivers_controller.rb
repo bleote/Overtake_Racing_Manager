@@ -21,7 +21,7 @@ class DriversController < ApplicationController
 
   def driver_params
     params.require(:driver).permit(
-      :team_id, :car_id, :driver_name, :driver_picture, :helmet, :driving_skills,
+      :team_id, :car_id, :name, :initials, :picture, :helmet, :driving_skills,
       :fitness_level, :overtaking, :defending, :wet_race, :driver_points
     )
   end

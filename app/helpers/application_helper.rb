@@ -35,11 +35,11 @@ module ApplicationHelper
 
   def team_tier(team)
     if team.id >= 1 && team.id < 4
-      "#{team.team_name} is a top-tier team and they'll expect you to lead them to victories!"
+      "#{team.name} is a top-tier team and they'll expect you to lead them to victories!"
     elsif team.id >= 4 && team.id < 7
-      "#{team.team_name} is a mid-tier team, fighting for constant points, dreaming for a podium."
+      "#{team.name} is a mid-tier team, fighting for constant points, dreaming for a podium."
     else
-      "#{team.team_name} is a low-tier team and they wish to find their way into the points."
+      "#{team.name} is a low-tier team and they wish to find their way into the points."
     end
   end
 

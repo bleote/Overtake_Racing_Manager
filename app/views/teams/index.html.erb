@@ -3,7 +3,7 @@
     <h1>Teams</h1>
     <div class="teams-list pt-2">
       <% @teams.each do |team| %>
-        <p class="pb-3"><%= link_to "#{team.team_name}", team, class: "primary-btn" %></p>
+        <p class="pb-3"><%= link_to "#{team.name}", team, class: "primary-btn" %></p>
       <% end %>
     </div>
 
