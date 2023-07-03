@@ -65,6 +65,18 @@
 
     <!-- Dynamic view -->
     <div id="dynamic-results" class="race-results text-start mx-2" style="display: none;">
+      <div id="light-container" class="light-container d-flex">
+        <img id="light1" class="light" src="<%= asset_path('light_off.png') %>" alt="Light Off" style="display: block;">
+        <img id="light2" class="light" src="<%= asset_path('light_on.png') %>" alt="Light On" style="display: none;">
+        <img id="light3" class="light" src="<%= asset_path('light_off.png') %>" alt="Light Off" style="display: block;">
+        <img id="light4" class="light" src="<%= asset_path('light_on.png') %>" alt="Light On" style="display: none;">
+        <img id="light5" class="light" src="<%= asset_path('light_off.png') %>" alt="Light Off" style="display: block;">
+        <img id="light6" class="light" src="<%= asset_path('light_on.png') %>" alt="Light On" style="display: none;">
+        <img id="light7" class="light" src="<%= asset_path('light_off.png') %>" alt="Light Off" style="display: block;">
+        <img id="light8" class="light" src="<%= asset_path('light_on.png') %>" alt="Light On" style="display: none;">
+        <img id="light9" class="light" src="<%= asset_path('light_off.png') %>" alt="Light Off" style="display: block;">
+        <img id="light10" class="light" src="<%= asset_path('light_on.png') %>" alt="Light On" style="display: none;">
+      </div>
       <h3 id="race-header" class="text-center"></h3>
       <div class="gp-empty"></div>
       <p id="lap-count"></p>
@@ -109,6 +121,61 @@
 </div>
 
 <script>
+  // Function to activate grid lights start procedure
+  function gridLights() {
+    var lightContainer = document.getElementById("light-container");
+    var lights = lightContainer.getElementsByClassName("light");
+
+    // Wait for 5 seconds
+    setTimeout(function() {
+      lights[0].style.display = "none";
+      lights[1].style.display = "block";
+    }, 5000);
+
+    // After 500 milliseconds more
+    setTimeout(function() {
+      lights[2].style.display = "none";
+      lights[3].style.display = "block";
+    }, 6000);
+
+    // After 500 milliseconds more
+    setTimeout(function() {
+      lights[4].style.display = "none";
+      lights[5].style.display = "block";
+    }, 7000);
+
+    // After 500 milliseconds more
+    setTimeout(function() {
+      lights[6].style.display = "none";
+      lights[7].style.display = "block";
+    }, 8000);
+
+    // After 500 milliseconds more
+    setTimeout(function() {
+      lights[8].style.display = "none";
+      lights[9].style.display = "block";
+    }, 9000);
+
+    // After 1 second more, reset to initial display
+    setTimeout(function() {
+      for (var i = 0; i < lights.length; i++) {
+        if (i % 2 === 0) {
+          lights[i].style.display = "block";
+        } else {
+          lights[i].style.display = "none";
+        }
+      }
+    }, 10000);
+
+    // After 2 seconds, hide the light container
+    setTimeout(function() {
+      lightContainer.style.display = "none";
+      for (var i = 0; i < lights.length; i++) {
+        lights[i].style.display = "none"; // hide individual lights as well
+      }
+    }, 11000);
+  }
+
   // Function to format lap time
   function formatLapTime(milliseconds) {
     var minutes = Math.floor(milliseconds / (1000 * 60));
@@ -125,11 +192,12 @@
 
   // Wrap the race starting logic in a function
   function startRace() {
+    var yourRaceId = <%= @race.id %>;
     var startRaceData = <%= @start_race_json.html_safe %>;
     var startingGrid = <%= @starting_grid.to_json.html_safe %>;
     var currentLap = 0; // Start from lap 0
     var totalLaps = <%= @circuit.total_laps %>; // Get total laps from server
-    var yourRaceId = <%= @race.id %>;
+    var lightsOut = 0;
 
     var startingGridOrder = {};
     for (var i = 0; i < startingGrid.length; i++) {
@@ -187,8 +255,13 @@
           // Calculate the gap to the leader
           var gapToLeader = (i === 0) ? 0 : totalTimeData[i].totalTime - totalTimeData[0].totalTime;
 
-          // Check if the driver is the leader
-          var gapText = (i === 0) ? "Leader" : "+" + formatLapTime(gapToLeader) + "";
+          // Check if the driver is the pole/leader or not, and the current gap to the leader
+          if (i === 0) {
+            var gapText = (currentLap === 0) ? "" : "Leader";
+          }
+          else {
+            var gapText = (currentLap === 0) ? "": "+" + formatLapTime(gapToLeader);
+          }
 
           // Add leading zero if index is less than or equal to 8
           var indexText = (i <= 8) ? "0" + (i + 1) : (i + 1);
@@ -224,9 +297,14 @@
           parentElement.appendChild(driverElement);
       }
 
-
-      // Increment the current lap
-      currentLap++;
+      // Turn lights out variable to one and starts incrementing the current lap
+      if (lightsOut === 0) {
+        setTimeout(function() {
+          lightsOut = 1;
+        }, 11000);
+      } else {
+        currentLap++;
+      }
 
       // Update the lap number on the server
       fetch('/races/update_lap_number', {
@@ -260,7 +338,7 @@
           document.getElementById('dynamic-results').style.display = 'none';
           document.getElementById('static-results').style.display = 'block';
       }
-    }, 1000);
+    }, 500);
   }
 
   // Call the startRace function when the "Start Race" button is clicked
@@ -276,6 +354,9 @@
 
     // Show the dynamic results div
     document.getElementById('dynamic-results').style.display = 'block';
+
+    // Kick off the grid lights
+    gridLights();
 
     // Start the race
     startRace();
@@ -293,6 +374,9 @@
 
     // Show the dynamic results div
     document.getElementById('dynamic-results').style.display = 'block';
+
+    // Kick off the grid lights
+    gridLights();
 
     // Start the race
     startRace();
