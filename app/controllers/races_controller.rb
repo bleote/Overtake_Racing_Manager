@@ -49,6 +49,7 @@ class RacesController < ApplicationController
     end
   end
 
+  # GP method with race updates
   def gp
     qualifying
     @race.status = "Race day"
@@ -73,6 +74,13 @@ class RacesController < ApplicationController
     render json: { status: 'success' }
   end
 
+  # Results from race
+  def results
+    @race.status = "Finished"
+    gp
+
+    sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } }
+  end
 
   private
 

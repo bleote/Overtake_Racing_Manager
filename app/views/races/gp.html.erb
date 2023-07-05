@@ -305,23 +305,6 @@
       } else {
         currentLap++;
       }
-
-      // Update the lap number on the server
-      fetch('/races/update_lap_number', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-        },
-        body: JSON.stringify({ lap_number: currentLap, race_id: yourRaceId }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Handle success
-      })
-      .catch((error) => {
-        // Handle error
-      });
     }
 
     // Call the updateRaceResults function immediately
@@ -338,7 +321,7 @@
           document.getElementById('dynamic-results').style.display = 'none';
           document.getElementById('static-results').style.display = 'block';
       }
-    }, 1500);
+    }, 500);
   }
 
   // Call the startRace function when the "Start Race" button is clicked
