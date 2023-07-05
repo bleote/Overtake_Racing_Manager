@@ -1,14 +1,97 @@
-<div class="row">
+<div class="teams-index-container">
+  <% team_1 = @teams.find(1) %>
+  <% team_2 = @teams.find(2) %>
+  <% team_3 = @teams.find(3) %>
+  <% team_4 = @teams.find(4) %>
+  <% team_5 = @teams.find(5) %>
+  <% team_6 = @teams.find(6) %>
+  <% team_7 = @teams.find(7) %>
+  <% team_8 = @teams.find(8) %>
+  <% team_9 = @teams.find(9) %>
+  <% team_10 = @teams.find(10) %>
+
   <div class="py-2 text-center">
     <h1>Teams</h1>
-    <div class="teams-list pt-2">
-      <% @teams.each do |team| %>
-        <p class="pb-3"><%= link_to "#{team.name}", team, class: "primary-btn" %></p>
-      <% end %>
+    <div class="team-list p-3 m-2 rounded border border-white">
+      <h3 class="mb-3">Front Runners</h3>
+      <div class="d-flex row justify-content-center">
+        <p class="pb-2">
+          <%= link_to team_path(team_1.id) do %>
+            <%= team_1.name %>
+            <%= image_tag("logos/#{team_1.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+        <p class="pb-2">
+          <%= link_to team_path(team_2.id) do %>
+            <%= team_2.name %>
+            <%= image_tag("logos/#{team_2.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+        <p class="pb-2">
+          <%= link_to team_path(team_3.id) do %>
+            <%= team_3.name %>
+            <%= image_tag("logos/#{team_3.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+
+    <div class="team-list p-3 m-2 rounded border border-white">
+      <h3 class="mb-3">Midfield</h3>
+      <div class="d-flex row justify-content-center">
+        <p class="pb-2">
+          <%= link_to team_path(team_4.id) do %>
+            <%= team_4.name %>
+            <%= image_tag("logos/#{team_4.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+        <p class="pb-2">
+          <%= link_to team_path(team_5.id) do %>
+            <%= team_5.name %>
+            <%= image_tag("logos/#{team_5.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+        <p class="pb-2">
+          <%= link_to team_path(team_6.id) do %>
+            <%= team_6.name %>
+            <%= image_tag("logos/#{team_6.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+      </div>
+    </div>
+
+    <div class="team-list p-3 m-2 rounded border border-white">
+      <h3 class="mb-3">Backmarkers</h3>
+      <div class="d-flex row justify-content-center">
+        <p class="pb-2">
+          <%= link_to team_path(team_7.id) do %>
+            <%= team_7.name %>
+            <%= image_tag("logos/#{team_7.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+        <p class="pb-2">
+          <%= link_to team_path(team_8.id) do %>
+            <%= team_8.name %>
+            <%= image_tag("logos/#{team_8.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+        <p class="pb-2">
+          <%= link_to team_path(team_9.id) do %>
+            <%= team_9.name %>
+            <%= image_tag("logos/#{team_9.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+        <p class="pb-2">
+          <%= link_to team_path(team_10.id) do %>
+            <%= team_10.name %>
+            <%= image_tag("logos/#{team_10.logo}", class: "ms-2", width: 50) %>
+          <% end %>
+        </p>
+      </div>
     </div>
 
     <div class="pt-3">
-      <%= link_to "Back", root_path, class: "btn btn-warning" %>
+      <%= link_to "Home", root_path, class: "btn btn-info" %>
     </div>
   </div>
 </div>

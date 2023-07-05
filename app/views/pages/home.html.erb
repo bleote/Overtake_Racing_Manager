@@ -1,11 +1,16 @@
 <div class="home-page">
-  <div class="game-title py-2 text-center">
+  <div class="game-title d-flex row justify-content-center py-2">
     <h1>OVERTAKE</h1>
     <h2 class="pb-3">Racing Manager</h2>
-    <%= image_tag "home_car.png", height: 200 %>
+    <div>
+      <%= image_tag "home_car.png", height: 200 %>
+    </div>
     <% if user_signed_in? %>
-      <p class="pt-4">Hi <%= current_user.first_name %> <%= current_user.last_name %>!</p>
-      <p class="mx-5 px-2 py-3">Lead a team throughout races and become the best team manager in the paddock.</p>
+      <div class="col-10">
+        <p class="pt-4">Hi <%= current_user.first_name %> <%= current_user.last_name %>!</p>
+        <p class="py-3">Lead a team throughout races and become the best manager in the paddock.</p>
+      </div>
+
       <div class="d-flex btn-new-race justify-content-between pt-3 mx-4">
         <div class="home-empty"></div>
         <%= link_to "View teams", teams_path, class: "btn btn-info" %>
@@ -13,7 +18,10 @@
         <div class="home-empty"></div>
       </div>
     <% else %>
-      <p class="py-4 mx-4">Are you ready to experience the adrenaline of being the CEO of a racing team and lead its path to success?</p>
+      <div class="col-8">
+        <p class="py-4 mx-2">Are you ready to experience the adrenaline of leading a racing team in its path to success?</p>
+      </div>
+
       <div class="link-spaces pb-3">
         <%= link_to "Log in", new_user_session_path, class: "btn btn-primary" %>
       </div>
