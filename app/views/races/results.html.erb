@@ -10,12 +10,33 @@
       </div>
     </div>
 
-    <div class="current-session">
-      <p>Your team: <%= @team.name %> </p>
-    </div>
+    <div class="race-results d-flex row justify-content-center">
+      <h3>Podium</h3>
+      <div class="podium-pictures">
+      </div>
+      <h3>Race Results</h3>
 
-    <div class="current-session">
-      <p>Current session: <%= @race.status %> </p>
+      <table>
+        <thead>
+          <tr>
+            <th>Position</th>
+            <th>Driver</th>
+            <th>Points</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @sorted_race_results.each_with_index do |(driver, lap_times), index| %>
+            <% team_id = @race.team_id %>
+            <% row_class = (driver.team_id == team_id) ? 'user-team-row' : '' %>
+            <tr class="<%= row_class %>">
+              <td><%= index + 1 %></td>
+              <td><%= driver.name %></td>
+              <td><%= calculate_points(index + 1) %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+
     </div>
 
   </div>

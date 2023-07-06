@@ -2,9 +2,9 @@ require_relative '../models/lap_time'
 
 class RacesController < ApplicationController
   helper RaceHelper
-  before_action :set_race, only: %i[show destroy qualifying gp]
-  before_action :set_circuit, only: %i[show qualifying gp]
-  before_action :set_team, only: %i[show qualifying gp]
+  before_action :set_race, only: %i[show destroy qualifying gp results]
+  before_action :set_circuit, only: %i[show qualifying gp results]
+  before_action :set_team, only: %i[show qualifying gp results]
 
   def index
     @races = Race.all
@@ -76,10 +76,20 @@ class RacesController < ApplicationController
 
   # Results from race
   def results
-    @race.status = "Finished"
     gp
+    @race.status = "Finished"
 
-    sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } }
+    @sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } }
+    @team_a_id = 1
+    @team_b_id = 2
+    @team_c_id = 3
+    @team_d_id = 4
+    @team_e_id = 5
+    @team_f_id = 6
+    @team_g_id = 7
+    @team_h_id = 8
+    @team_i_id = 9
+    @team_j_id = 10
   end
 
   private
