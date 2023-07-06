@@ -12,7 +12,14 @@
 
     <div class="race-results d-flex row justify-content-center">
       <h3>Podium</h3>
-      <div class="podium-pictures">
+      <div class="podium-pictures d-flex rounded border border-white">
+        <% first_place_driver = @sorted_race_results.first[0] %>
+        <% second_place_driver = @sorted_race_results.second[0] %>
+        <% third_place_driver = @sorted_race_results.third[0] %>
+
+        <%= image_tag "drivers/#{second_place_driver.picture}", alt: second_place_driver.name, class: "second-place",width: "100px" %>
+        <%= image_tag "drivers/#{first_place_driver.picture}", alt: first_place_driver.name, class: "first-place", width: "100px" %>
+        <%= image_tag "drivers/#{third_place_driver.picture}", alt: third_place_driver.name, class: "third-place",width: "100px" %>
       </div>
       <h3>Race Results</h3>
 
