@@ -78,18 +78,8 @@ class RacesController < ApplicationController
   def results
     gp
     @race.status = "Finished"
-
+    @team_id = @race.team_id
     @sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } }
-    @team_a_id = 1
-    @team_b_id = 2
-    @team_c_id = 3
-    @team_d_id = 4
-    @team_e_id = 5
-    @team_f_id = 6
-    @team_g_id = 7
-    @team_h_id = 8
-    @team_i_id = 9
-    @team_j_id = 10
   end
 
   private
