@@ -14,7 +14,7 @@ module RaceHelper
       if team_driver_positions[0][1] == 1 && team_driver_positions[1][1] <= 3 || team_driver_positions[1][1] == 1 && team_driver_positions[0][1] <= 3
         "This is absolutely brilliant! We dominated the field and no one could be a real match for us today! I must say, I'm impressed!"
       elsif team_driver_positions[0][1] == 1 && team_driver_positions[1][1] > 3 || team_driver_positions[1][1] == 1 && team_driver_positions[0][1] > 3
-        "Fantastic! You lead our team to a victory! The top of the podium is where our team belongs!"
+        "Fantastic! You lead our team to a victory! The top of the podium is where our drivers belong!"
       elsif (team_driver_positions[0][1] && team_driver_positions[1][1] <= 3) && (team_driver_positions[0][1] && team_driver_positions[1][1] > 1)
         "Great job! A double podium for the team is a strong message to our rivals. Let's keep pushing and the victory will come for sure!"
       elsif team_driver_positions[0][1] <= 3 && team_driver_positions[0][1] > 1 && team_driver_positions[1][1] > 3 || team_driver_positions[1][1] <= 3 && team_driver_positions[1][1] > 1 && team_driver_positions[0][1] > 3
@@ -22,11 +22,7 @@ module RaceHelper
       else
         "Tough race today. Our competitors seem to be more efficient with their work. Maybe it was just a bad day, but this isn't where we want to be. We need more!"
       end
-    else
-      "Keep up the good work!"
-    end
-
-    if [4, 5, 6].include?(team_id)
+    elsif [4, 5, 6].include?(team_id)
       driver_positions = sorted_race_results.map.with_index { |result, index| [result.first, index + 1] }
       team_driver_positions = driver_positions.select { |driver| driver.first.team_id == team_id }
       if team_driver_positions[0][1] == 1 || team_driver_positions[1][1] == 1
@@ -45,7 +41,6 @@ module RaceHelper
     else
       "Keep up the good work!"
     end
-
   end
 
   def calculate_points(position)
