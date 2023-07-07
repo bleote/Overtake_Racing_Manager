@@ -11,7 +11,7 @@
     </div>
 
     <div class="race-results d-flex row justify-content-center">
-      <h3 class="pb-2" style="color: #e67e22;">Podium</h3>
+      <h3 class="results-header pb-2">Podium</h3>
       <div class="podium-container d-flex row justify-content-center">
         <div class="podium-pictures d-flex justify-content-center">
           <% winner = @sorted_race_results.first[0] %>
@@ -61,14 +61,30 @@
 </div>
 
 <div class="race-results py-2 m-2 rounded border border-white">
-  <div class="results-page d-flex row justify-content-between align-items-center mx-3">
-
+  <div class="results-page d-flex row align-items-center mx-3">
+    <% team = Team.find_by(id: @team_id) %>
+    <% team_chief = team.chief %>
+    <% full_name = team_chief.name %>
+    <% names = full_name.split(" ") %>
+    <% chief_last_name = names[1] if names.length > 1 %>
+    <div class="message-from-chief pb-2">
+      <h3 class="results-header"><%= chief_last_name %>'s message</h3>
+    </div>
+    <div class="chief-message d-flex text-start align-items-center">
+      <div class="chief-image d-flex team-principal me-2">
+        <%= image_tag "chiefs/#{team_chief.image}", alt: team_chief.name, height: 100, width: 100, crop: :fill, class: "chief-photo" %>
+      </div>
+      <div>
+        <p class="chief-greetings pe-2">Hey <strong><%= current_user.first_name %></strong>,</p>
+        <p><%= chief_message(@race.team_id, @sorted_race_results) %></p>
+      </div>
+    </div>
   </div>
 </div>
 
 <div class="race-results py-2 m-2 rounded border border-white">
   <div class="results-page d-flex row justify-content-between align-items-center mx-3">
-    <h3>Race Results</h3>
+    <h3 class="results-header">Race Results</h3>
     <table>
       <thead>
         <tr>
@@ -78,7 +94,7 @@
         </tr>
       </thead>
       <tbody>
-        <% @sorted_race_results.each_with_index do |(driver, lap_times), index| %>
+        <% @sorted_race_results.each_with_index do |(driver), index| %>
           <% team_id = @race.team_id %>
           <% row_class = (driver.team_id == team_id) ? 'user-team-row' : '' %>
           <tr class="<%= row_class %>">
