@@ -1,5 +1,5 @@
-<div class="race-qualy pt-2 m-2 rounded border border-white">
-  <div class="qualifying-result-page d-flex row justify-content-between align-items-center mx-3">
+<div class="race-gp pt-2 m-2 rounded border border-white">
+  <div class="gp-page d-flex row justify-content-between align-items-center mx-3">
 
     <div class="gp-name-and-flag d-flex justify-content-center align-items-center mb-1">
       <div class="gp-name d-flex pe-3 align-items-center">
@@ -65,6 +65,7 @@
 
     <!-- Dynamic view -->
     <div id="dynamic-results" class="race-results text-start mx-2" style="display: none;">
+      <h3 id="race-header" class="text-center"></h3>
       <div id="light-container" class="light-container d-flex">
         <img id="light1" class="light" src="<%= asset_path('light_off.png') %>" alt="Light Off" style="display: block;">
         <img id="light2" class="light" src="<%= asset_path('light_on.png') %>" alt="Light On" style="display: none;">
@@ -77,7 +78,6 @@
         <img id="light9" class="light" src="<%= asset_path('light_off.png') %>" alt="Light Off" style="display: block;">
         <img id="light10" class="light" src="<%= asset_path('light_on.png') %>" alt="Light On" style="display: none;">
       </div>
-      <h3 id="race-header" class="text-center"></h3>
       <div class="gp-empty"></div>
       <p id="lap-count"></p>
       <div class="gp-empty"></div>
@@ -113,6 +113,12 @@
             <% end %>
           </p>
         <% end %>
+
+        <div class="gp-empty"></div>
+
+        <div class="d-flex justify-content-center">
+          <%= link_to 'See Results', results_race_path(@race), class: 'btn btn-primary', id: 'see-results-btn' %>
+        </div>
 
         <div class="gp-empty"></div>
 
@@ -305,23 +311,6 @@
       } else {
         currentLap++;
       }
-
-      // Update the lap number on the server
-      fetch('/races/update_lap_number', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'X-CSRF-Token': document.querySelector('meta[name="csrf-token"]').content
-        },
-        body: JSON.stringify({ lap_number: currentLap, race_id: yourRaceId }),
-      })
-      .then(response => response.json())
-      .then(data => {
-        // Handle success
-      })
-      .catch((error) => {
-        // Handle error
-      });
     }
 
     // Call the updateRaceResults function immediately

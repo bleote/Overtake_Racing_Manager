@@ -1,0 +1,19 @@
+.user-team-row {
+  background-color: #c6c6c6;
+  color: #081f49;
+}
+
+.podium-pictures {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-gap: 10px;
+}
+
+.driver-picture {
+  width: 100%;
+  height: auto;
+}
+
+.results-header {
+  color: #e67e22;
+}

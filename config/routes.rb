@@ -18,6 +18,7 @@ Rails.application.routes.draw do
     member do
       get 'qualifying'
       get 'gp'
+      get 'results'
     end
   end
 

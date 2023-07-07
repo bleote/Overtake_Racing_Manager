@@ -1,0 +1,110 @@
+<div class="race-results py-2 m-2 rounded border border-white">
+  <div class="results-page d-flex row justify-content-between align-items-center mx-3">
+
+    <div class="gp-name-and-flag d-flex justify-content-center align-items-center mb-1">
+      <div class="gp-name d-flex pe-3 align-items-center">
+        <h2><%= @circuit.name %> GP </h2>
+      </div>
+       <div class="gp-flag d-flex align-items-center">
+        <%= image_tag "circuits/#{@circuit.flag}", width: 38 %>
+      </div>
+    </div>
+
+    <div class="race-results d-flex row justify-content-center">
+      <h3 class="results-header pb-2">Podium</h3>
+      <div class="podium-container d-flex row justify-content-center">
+        <div class="podium-pictures d-flex justify-content-center">
+          <% winner = @sorted_race_results.first[0] %>
+          <% second = @sorted_race_results.second[0] %>
+          <% third = @sorted_race_results.third[0] %>
+
+          <div class="second-place d-flex row justify-content-center">
+            <div class="results-empty pb-3"></div>
+            <div>
+              <h3>2nd</h3>
+            </div>
+            <div>
+              <%= image_tag "drivers/#{second.picture}", alt: second.name,width: "100px" %>
+            </div>
+            <div>
+              <%= image_tag "trophys/silver_trophy.png", alt: "Silver Trophy",width: "50px" %>
+            </div>
+          </div>
+          <div class="first-place d-flex row justify-content-center">
+            <div>
+              <h3>1st</h3>
+            </div>
+            <div>
+              <%= image_tag "drivers/#{winner.picture}", alt: winner.name, width: "100px" %>
+            </div>
+            <div class="results-empty pb-3"></div>
+            <div>
+              <%= image_tag "trophys/golden_trophy.png", alt: "Silver Trophy",width: "50px" %>
+            </div>
+          </div>
+          <div class="third-place d-flex row justify-content-center">
+            <div class="results-empty pb-3"></div>
+            <div>
+              <h3>3rd</h3>
+            </div>
+            <div>
+              <%= image_tag "drivers/#{third.picture}", alt: third.name,width: "100px" %>
+            </div>
+            <div>
+              <%= image_tag "trophys/bronze_trophy.png", alt: "Silver Trophy",width: "50px" %>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="race-results py-2 m-2 rounded border border-white">
+  <div class="results-page d-flex row align-items-center mx-3">
+    <% team = Team.find_by(id: @team_id) %>
+    <% team_chief = team.chief %>
+    <% full_name = team_chief.name %>
+    <% names = full_name.split(" ") %>
+    <% chief_last_name = names[1] if names.length > 1 %>
+    <div class="message-from-chief pb-2">
+      <h3 class="results-header"><%= chief_last_name %>'s message</h3>
+    </div>
+    <div class="chief-message d-flex text-start align-items-center">
+      <div class="chief-image d-flex team-principal me-3 pb-2">
+        <%= image_tag "chiefs/#{team_chief.image}", alt: team_chief.name, height: 100, width: 100, crop: :fill, class: "chief-photo" %>
+      </div>
+      <div>
+        <p class="chief-greetings pe-2">Hey <strong><%= current_user.first_name %></strong>,</p>
+        <p><%= chief_message(@race.team_id, @sorted_race_results) %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="race-results py-2 m-2 rounded border border-white">
+  <div class="results-page d-flex row justify-content-between align-items-center mx-3">
+    <h3 class="results-header">Race Results</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Position</th>
+          <th>Driver</th>
+          <th>Points</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% @sorted_race_results.each_with_index do |(driver), index| %>
+          <% team_id = @race.team_id %>
+          <% row_class = (driver.team_id == team_id) ? 'user-team-row' : '' %>
+          <tr class="<%= row_class %>">
+            <td><%= index + 1 %></td>
+            <td><%= driver.name %></td>
+            <td><%= calculate_points(index + 1) %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+  </div>
+</div>
