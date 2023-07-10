@@ -16,8 +16,8 @@ module RaceUpdatesService
 
       pole_position = starting_grid.first.driver
       winning_driver = sorted_race_results.first[0]
-      second_driver = sorted_race_results.first[1]
-      third_driver = sorted_race_results.first[2]
+      second_driver = sorted_race_results.second[0]
+      third_driver = sorted_race_results.third[0]
 
       if @race.team_id == pole_position.team_id
         @user.user_poles +=1
@@ -36,7 +36,7 @@ module RaceUpdatesService
         @user.user_podiums += 1
       end
 
-      calculate_user_points(sorted_race_results, @user_team_id)
+      @user.user_points += calculate_user_points(sorted_race_results, @user_team_id)
 
       @user.save
       @race.saved = true
