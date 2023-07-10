@@ -22,17 +22,6 @@ module ApplicationHelper
       @session = race_status
   end
 
-  def check_pole
-    @pole = nil
-  end
-
-  def check_race_result
-    @first = nil
-    @second = nil
-    @third = nil
-    @podium = [@first, @second, @third]
-  end
-
   def team_tier(team)
     if team.id >= 1 && team.id < 4
       "#{team.name} is a top-tier team and they'll expect you to lead them to victories!"

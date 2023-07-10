@@ -6,6 +6,7 @@ class CreateRaces < ActiveRecord::Migration[7.0]
       t.references :team, null: false, foreign_key: true
       t.string :weather
       t.string :status
+      t.boolean :saved, default: false
       t.integer :lap_number, default: 0
       t.references :team_a, null: false, foreign_key: { to_table: 'teams' }
       t.references :team_b, null: false, foreign_key: { to_table: 'teams' }
