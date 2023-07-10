@@ -62,16 +62,12 @@ class RacesController < ApplicationController
       @race.calculate_race_laps(@starting_grid)
     end
 
+    @sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } }
+
     # Convert @start_race to JSON
     @start_race_json = @start_race.map do |driver, lap_times|
       [driver.id, { name: driver.name, initials: driver.initials, car_image: driver.car.image, lap_times: lap_times.map { |lt| lt[:lap_time] } }]
     end.to_h.to_json
-  end
-
-  def update_lap_number
-    @race = Race.find(params[:race_id])
-    @race.update(lap_number: params[:lap_number])
-    render json: { status: 'success' }
   end
 
   # Results from race
@@ -79,14 +75,14 @@ class RacesController < ApplicationController
     gp
     @race.status = "Finished"
     @team_id = @race.team_id
-    @sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } }
+    RaceUpdatesService.update_user_stats(@race, @starting_grid, @sorted_race_results)
   end
 
   private
 
   def race_params
     params.require(:race).permit(
-      :user_id, :circuit_id, :team_id, :weather, :status, :lap_number, :team_a_id, :team_b_id, :team_c_id,
+      :user_id, :circuit_id, :team_id, :weather, :status, :saved, :lap_number, :team_a_id, :team_b_id, :team_c_id,
       :team_d_id, :team_e_id, :team_f_id, :team_g_id, :team_h_id, :team_i_id, :team_j_id
     )
   end

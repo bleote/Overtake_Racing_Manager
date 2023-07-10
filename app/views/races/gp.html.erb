@@ -96,9 +96,8 @@
         <p>Lap: <%= @circuit.total_laps %> of <%= @circuit.total_laps %></p>
         <div class="gp-empty"></div>
         <!-- Info to calculate race results -->
-        <% sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } } %>
-        <% winner_lap_time = sorted_race_results.first.last.sum { |lt| lt[:lap_time] } %>
-        <% sorted_race_results.each_with_index do |(driver, lap_times), index| %>
+        <% winner_lap_time = @sorted_race_results.first.last.sum { |lt| lt[:lap_time] } %>
+        <% @sorted_race_results.each_with_index do |(driver, lap_times), index| %>
           <!-- Display driver's race result -->
           <% driver_car = image_path("cars/#{driver.car.image}") %>
           <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>

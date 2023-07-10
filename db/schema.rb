@@ -123,6 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
     t.bigint "team_id", null: false
     t.string "weather"
     t.string "status"
+    t.boolean "saved", default: false
     t.integer "lap_number", default: 0
     t.bigint "team_a_id", null: false
     t.bigint "team_b_id", null: false
@@ -181,6 +182,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
     t.integer "experience", default: 0
     t.integer "prestige", default: 0
     t.integer "user_races", default: 0
+    t.integer "user_points", default: 0
     t.integer "user_poles", default: 0
     t.integer "user_podiums", default: 0
     t.integer "user_victories", default: 0
