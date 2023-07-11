@@ -7,7 +7,7 @@ module RaceHelper
     format('%02d:%02d.%03d', minutes, seconds, milliseconds_remainder)
   end
 
-  def chief_message(team_id, sorted_race_results)
+  def chief_race_message(team_id, sorted_race_results)
     if [1, 2, 3].include?(team_id)
       frontrunners(team_id, sorted_race_results)
     elsif [4, 5, 6].include?(team_id)

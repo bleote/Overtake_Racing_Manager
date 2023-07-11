@@ -123,7 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
     t.bigint "team_id", null: false
     t.string "weather"
     t.string "status"
-    t.boolean "saved", default: false
+    t.boolean "saved_race", default: false
     t.integer "lap_number", default: 0
     t.bigint "team_a_id", null: false
     t.bigint "team_b_id", null: false
