@@ -30,7 +30,7 @@ class RacesController < ApplicationController
 
   def destroy
     @race.destroy
-    redirect_to root_path, status: :see_other
+    redirect_to user_path(current_user), notice: 'Race record successfully updated.'
   end
 
   # Qualifying method for race

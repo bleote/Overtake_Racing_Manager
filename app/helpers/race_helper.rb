@@ -19,6 +19,8 @@ module RaceHelper
     end
   end
 
+  private
+
   def frontrunners(team_id, sorted_race_results)
     driver_positions = sorted_race_results.map.with_index { |result, index| [result.first, index + 1] }
     team_driver_positions = driver_positions.select { |driver| driver.first.team_id == team_id }

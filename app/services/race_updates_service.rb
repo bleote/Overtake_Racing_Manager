@@ -46,6 +46,8 @@ module RaceUpdatesService
     end
   end
 
+  private
+
   def self.calculate_experience(user_races)
     case user_races
     when 0, 1
