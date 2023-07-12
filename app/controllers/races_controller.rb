@@ -36,15 +36,15 @@ class RacesController < ApplicationController
   # Qualifying method for race
   def qualifying
     @race.status = "Qualifying"
-    @q1_lap_times = Rails.cache.fetch("q1_lap_times_#{params[:id]}", expires_in: 2.days) do
+    @q1_lap_times = Rails.cache.fetch("q1_lap_times_#{params[:id]}", expires_in: 3.days) do
       @race.calculate_lap_times_for_q1
     end
 
-    @q2_lap_times = Rails.cache.fetch("q2_lap_times_#{params[:id]}", expires_in: 2.days) do
+    @q2_lap_times = Rails.cache.fetch("q2_lap_times_#{params[:id]}", expires_in: 3.days) do
       @race.calculate_lap_times_for_q2
     end
 
-    @q3_lap_times = Rails.cache.fetch("q3_lap_times_#{params[:id]}", expires_in: 2.days) do
+    @q3_lap_times = Rails.cache.fetch("q3_lap_times_#{params[:id]}", expires_in: 3.days) do
       @race.calculate_lap_times_for_q3
     end
   end
@@ -58,7 +58,7 @@ class RacesController < ApplicationController
     @qualifying_valid_laps = @q1_lap_times.last(5) + @q2_lap_times.last(5) + @q3_lap_times
     @starting_grid = @qualifying_valid_laps.sort_by(&:time)
 
-    @start_race = Rails.cache.fetch("start_race_#{params[:id]}", expires_in: 2.days) do
+    @start_race = Rails.cache.fetch("start_race_#{params[:id]}", expires_in: 3.days) do
       @race.calculate_race_laps(@starting_grid)
     end
 
