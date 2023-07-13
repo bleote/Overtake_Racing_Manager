@@ -1,4 +1,18 @@
 module RaceHelper
+  def check_race_session(race_status)
+    @session = race_status
+  end
+
+  def check_track_temperature(race_weather)
+    if race_weather == 'Sunny'
+      rand(30..45)
+    elsif race_weather == 'Cloudy'
+      rand(20..30)
+    else
+      rand(10..20)
+    end
+  end
+
   def format_lap_time(milliseconds)
     minutes = (milliseconds / (1000 * 60)).to_i
     seconds = ((milliseconds / 1000) % 60).to_i
@@ -30,8 +44,10 @@ module RaceHelper
       "Fantastic! You lead our team to a victory! The top of the podium is where our drivers belong! Next race we can do it again!"
     elsif (team_driver_positions[0][1] && team_driver_positions[1][1] <= 3) && (team_driver_positions[0][1] && team_driver_positions[1][1] > 1)
       "Great job! A double podium for the team is a strong message to our rivals. Let's keep pushing and the victory will come for sure!"
-    elsif team_driver_positions[0][1] <= 3 && team_driver_positions[0][1] > 1 && team_driver_positions[1][1] > 3 || team_driver_positions[1][1] <= 3 && team_driver_positions[1][1] > 1 && team_driver_positions[0][1] > 3
+    elsif (team_driver_positions[0][1] <= 3 && team_driver_positions[0][1] > 1) && (team_driver_positions[1][1] > 3 && team_driver_positions[1][1] <= 10) || (team_driver_positions[1][1] <= 3 && team_driver_positions[1][1] > 1) && (team_driver_positions[0][1] > 3 && team_driver_positions[0][1] <= 10)
       "Well done! We got a podium and scored some good points! There were some opportunities left on the table, but we should be able to get it all next time. Let's discuss this during the week."
+    elsif team_driver_positions[0][1] <= 3 && team_driver_positions[0][1] > 1 && team_driver_positions[1][1] > 3 || team_driver_positions[1][1] <= 3 && team_driver_positions[1][1] > 1 && team_driver_positions[0][1] > 3
+      "We have some mixed feelings today. We can be happy for the podium for sure, but we need to understand why the other car wasn't competitive. We can't be a team that's only half competitive."
     else
       "Tough race today. Our competitors seem to be more efficient with their work. Maybe it was just a bad day, but this isn't where we want to be. We need more!"
     end

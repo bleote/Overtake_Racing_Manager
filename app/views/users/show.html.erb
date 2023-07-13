@@ -21,14 +21,7 @@
       </div>
     </div>
     <div class="profile-user text-start m-2 p-2 rounded border border-white">
-      <% if @user.experience <= 1 %>
-      <p>NEWS: "<%= @user.first_name %> <%= @user.last_name %>'s
-      presence caught some of the press's attention earlier this year.
-      Although not much can be said about the results, critics believe we'll see a good impact
-      on the team working with their new manager."</p>
-      <% else %>
-      <p><%= @user.first_name %> <%= @user.last_name %> is the boss!</p>
-      <% end %>
+      <%= check_user_experience(current_user) %>
     </div>
   </div>
 

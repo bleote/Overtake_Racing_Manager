@@ -12,14 +12,21 @@ module ApplicationHelper
 
   def show_user_photo(user)
     if user.photo.key
-      cl_image_tag @user.photo.key, height: 300, width: 300, crop: :fill, class:"profile-photo"
+      cl_image_tag user.photo.key, height: 300, width: 300, crop: :fill, class:"profile-photo"
     else
       image_tag "photo_base.png", class:"profile-photo"
     end
   end
 
-  def check_race_session(race_status)
-      @session = race_status
+  def check_user_experience(user)
+    if user.experience <= 1
+      "NEWS: #{user.first_name} #{user.last_name}'s
+      presence caught some of the press's attention earlier this year.
+      Although not much can be said about the results, critics believe we'll see a good impact
+      on the team working with their new manager."
+    else
+      "#{user.first_name} #{user.last_name} is the boss!"
+    end
   end
 
   def team_tier(team)

@@ -59,7 +59,7 @@ class RacesController < ApplicationController
     @starting_grid = @qualifying_valid_laps.sort_by(&:time)
 
     @start_race = Rails.cache.fetch("start_race_#{params[:id]}", expires_in: 3.days) do
-      @race.calculate_race_laps(@starting_grid)
+      @race.calculate_race_laps(@race, @starting_grid)
     end
 
     @sorted_race_results = @start_race.sort_by { |(_, lap_times)| lap_times.sum { |lt| lt[:lap_time] } }

@@ -11,12 +11,16 @@
         </div>
       </div>
 
+      <div class="current-session">
+        <p>Current session: <%= check_race_session(@race.status) %> </p>
+      </div>
+
       <div class="circuit-weather">
         <p>Current weather: <%= @race.weather %> </p>
       </div>
 
-      <div class="current-session">
-        <p>Current session: <%= check_race_session(@race.status) %> </p>
+      <div class="track-temperature">
+        <p>Track temperature: <%= check_track_temperature(@race.weather) %>°C </p>
       </div>
 
       <div class="circuit-layout my-2">

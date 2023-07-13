@@ -83,7 +83,7 @@ class Race < ApplicationRecord
     @q3 = q3_lap_times.sort_by(&:time)
   end
 
-  def calculate_race_laps(starting_grid)
+  def calculate_race_laps(race, starting_grid)
     driver_lap_times = {} # Store lap times for each driver
     total_laps = self.circuit.total_laps
 
@@ -107,6 +107,8 @@ class Race < ApplicationRecord
         # Add the current lap time to the driver's total race time
         driver_lap_times[driver] ||= []
         driver_lap_times[driver] << { lap_time: lap_time_race }
+
+        race.update(lap_number: lap_number + 1)
       end
     end
 
