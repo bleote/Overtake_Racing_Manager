@@ -808,6 +808,8 @@ Circuit.create(
   name: 'Brazil',
   flag: 'brazil_flag.png',
   layout: 'brazil_layout.png',
+  ideal_aero_setup: 'Balanced',
+  ideal_gear_ratio: 'Balanced',
   slow_corners: 3,
   medium_corners: 4,
   fast_corners: 8,

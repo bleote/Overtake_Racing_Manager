@@ -17,10 +17,10 @@ class Race < ApplicationRecord
   after_initialize :set_weather
   after_initialize :set_status
 
-  def lap_time(driver, car, circuit, ideal_lap_time)
+  def lap_time(team_id, driver, car, circuit, ideal_lap_time)
     # Calculate time adjustments based on driver skills and car performance
     driver_adjustment = driver_adjustment(driver)
-    car_adjustment = car_adjustment(car, circuit)
+    car_adjustment = car_adjustment(team_id, car, circuit)
 
     # Add adjustments to the ideal lap time to get the final lap time
     ideal_lap_time + driver_adjustment + car_adjustment
@@ -34,9 +34,10 @@ class Race < ApplicationRecord
       car = driver.car
       circuit = self.circuit
       ideal_lap_time = circuit.ideal_lap_time
+      team_id = driver.team_id
 
       # Calculate lap time using the lap_time method
-      lap_time_q1 = lap_time(driver, car, circuit, ideal_lap_time) + 1500
+      lap_time_q1 = lap_time(team_id, driver, car, circuit, ideal_lap_time) + 1500
 
       # Create a LapTime object to store the lap time information
       q1_lap_times << LapTime.new(driver: driver, time: lap_time_q1)
@@ -55,8 +56,9 @@ class Race < ApplicationRecord
       car = driver.car
       circuit = self.circuit
       ideal_lap_time = circuit.ideal_lap_time
+      team_id = driver.team_id
 
-      lap_time_q2 = lap_time(driver, car, circuit, ideal_lap_time) + 750
+      lap_time_q2 = lap_time(team_id, driver, car, circuit, ideal_lap_time) + 750
 
       q2_lap_times << LapTime.new(driver: driver, time: lap_time_q2)
     end
@@ -74,8 +76,9 @@ class Race < ApplicationRecord
       car = driver.car
       circuit = self.circuit
       ideal_lap_time = circuit.ideal_lap_time
+      team_id = driver.team_id
 
-      lap_time_q3 = lap_time(driver, car, circuit, ideal_lap_time)
+      lap_time_q3 = lap_time(team_id, driver, car, circuit, ideal_lap_time)
 
       q3_lap_times << LapTime.new(driver: driver, time: lap_time_q3)
     end
@@ -95,8 +98,9 @@ class Race < ApplicationRecord
         car = driver.car
         circuit = self.circuit
         ideal_lap_time = circuit.ideal_lap_time
+        team_id = driver.team_id
 
-        lap_time_race = lap_time(driver, car, circuit, ideal_lap_time)
+        lap_time_race = lap_time(team_id, driver, car, circuit, ideal_lap_time)
 
         # Add time penalty on the first lap based on the driver's position
         if lap_number.zero?
@@ -140,13 +144,101 @@ class Race < ApplicationRecord
     driving_skills_adjustment + fitness_level_adjustment + driver_errors + wet_race_adjustment
   end
 
-  def car_adjustment(car, circuit)
+  def car_adjustment(team_id, car, circuit)
     # Adjust the lap time based on the car's performance
     gearbox_adjustment = (9.9 - car.gearbox) * circuit_characteristics(circuit) * 1 / 30
     suspension_adjustment = (9.9 - car.suspension) * circuit_characteristics(circuit) * 1 / 30
     downforce_adjustment = (9.9 - car.downforce) * circuit_characteristics(circuit) * 2 / 30
+    aero_setup = aero_setup_performance(team_id, car, circuit)
 
-    gearbox_adjustment + suspension_adjustment + downforce_adjustment
+    gearbox_adjustment + suspension_adjustment + downforce_adjustment + aero_setup
+  end
+
+  def aero_setup_performance(team_id, car, circuit)
+    all_cars = Car.where.not(team_id: team_id)
+    all_cars.update_all(aero_setup: circuit.ideal_aero_setup)
+
+    if car.aero_setup == circuit.ideal_aero_setup
+      0
+    else
+      calculate_aero_setup_mistake(car, circuit)
+    end
+  end
+
+  def calculate_aero_setup_mistake(car, circuit)
+    if circuit.ideal_aero_setup == 'Maximum downforce'
+      if car.aero_setup == 'Maximum downforce'
+        0
+      elsif car.aero_setup == 'Cornering'
+        100
+      elsif car.aero_setup == 'Balanced'
+        200
+      elsif car.aero_setup == 'Straights'
+        300
+      elsif car.aero_setup == 'Minimum downforce'
+        400
+      else
+        0
+      end
+    elsif circuit.ideal_aero_setup == 'Cornering'
+      if car.aero_setup == 'Maximum downforce'
+        100
+      elsif car.aero_setup == 'Cornering'
+        0
+      elsif car.aero_setup == 'Balanced'
+        100
+      elsif car.aero_setup == 'Straights'
+        200
+      elsif car.aero_setup == 'Minimum downforce'
+        300
+      else
+        0
+      end
+    elsif circuit.ideal_aero_setup == 'Balanced'
+      if car.aero_setup == 'Maximum downforce'
+        200
+      elsif car.aero_setup == 'Cornering'
+        100
+      elsif car.aero_setup == 'Balanced'
+        0
+      elsif car.aero_setup == 'Straights'
+        100
+      elsif car.aero_setup == 'Minimum downforce'
+        200
+      else
+        0
+      end
+    elsif circuit.ideal_aero_setup == 'Straights'
+      if car.aero_setup == 'Maximum downforce'
+        300
+      elsif car.aero_setup == 'Cornering'
+        200
+      elsif car.aero_setup == 'Balanced'
+        100
+      elsif car.aero_setup == 'Straights'
+        0
+      elsif car.aero_setup == 'Minimum downforce'
+        100
+      else
+        0
+      end
+    elsif circuit.ideal_aero_setup == 'Minimum downforce'
+      if car.aero_setup == 'Maximum downforce'
+        400
+      elsif car.aero_setup == 'Cornering'
+        300
+      elsif car.aero_setup == 'Balanced'
+        200
+      elsif car.aero_setup == 'Straights'
+        100
+      elsif car.aero_setup == 'Minimum downforce'
+        0
+      else
+        0
+      end
+    else
+      0
+    end
   end
 
   def circuit_characteristics(circuit)
