@@ -45,23 +45,27 @@ class Race < ApplicationRecord
 
   def lap_times_iteration(session_lap_times, race)
     if session_lap_times == Driver.limit(20)
-      session_lap_times.map do |driver|
-        car = driver.car
-        circuit = self.circuit
-        ideal_lap_time = circuit.ideal_lap_time
-        team_id = driver.team_id
-        lap_time_session = lap_time(team_id, driver, car, circuit, ideal_lap_time, race)
-        LapTime.new(driver: driver, time: lap_time_session)
+      Rails.cache.fetch("lap_times_#{race.id}_#{session_lap_times.to_param}", expires_in: 3.days) do
+        session_lap_times.map do |driver|
+          car = driver.car
+          circuit = self.circuit
+          ideal_lap_time = circuit.ideal_lap_time
+          team_id = driver.team_id
+          lap_time_session = lap_time(team_id, driver, car, circuit, ideal_lap_time, race)
+          LapTime.new(driver: driver, time: lap_time_session)
+        end
       end
     else
-      session_lap_times.map do |lap_time|
-        driver = lap_time.driver
-        car = driver.car
-        circuit = self.circuit
-        ideal_lap_time = circuit.ideal_lap_time
-        team_id = driver.team_id
-        lap_time_session = lap_time(team_id, driver, car, circuit, ideal_lap_time, race)
-        LapTime.new(driver: driver, time: lap_time_session)
+      Rails.cache.fetch("lap_times_#{race.id}_#{session_lap_times.to_param}", expires_in: 3.days) do
+        session_lap_times.map do |lap_time|
+          driver = lap_time.driver
+          car = driver.car
+          circuit = self.circuit
+          ideal_lap_time = circuit.ideal_lap_time
+          team_id = driver.team_id
+          lap_time_session = lap_time(team_id, driver, car, circuit, ideal_lap_time, race)
+          LapTime.new(driver: driver, time: lap_time_session)
+        end
       end
     end
   end
