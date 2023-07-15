@@ -9,7 +9,7 @@ class Car < ApplicationRecord
   ]
 
   TYRES = [
-    'Soft', 'Medium', 'Hard', 'Rain'
+    'Softs', 'Mediums', 'Hards', 'Intermediates', 'Wets'
   ]
 
   belongs_to :team

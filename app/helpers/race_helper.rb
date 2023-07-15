@@ -4,12 +4,26 @@ module RaceHelper
   end
 
   def check_track_temperature(race_weather)
-    if race_weather == 'Sunny'
+    case race_weather
+    when 'Sunny'
       rand(30..45)
-    elsif race_weather == 'Cloudy'
+    when 'Cloudy'
       rand(20..30)
+    when 'Light Rain'
+      rand(15..20)
     else
-      rand(10..20)
+      rand(10..15)
+    end
+  end
+
+  def set_tyres(race_weather)
+    case race_weather
+    when 'Light Rain'
+      'Intermediates'
+    when 'Rainy'
+      'Wets'
+    else
+      'Softs'
     end
   end
 
@@ -40,8 +54,10 @@ module RaceHelper
     team_driver_positions = driver_positions.select { |driver| driver.first.team_id == team_id }
     if team_driver_positions[0][1] == 1 && team_driver_positions[1][1] <= 3 || team_driver_positions[1][1] == 1 && team_driver_positions[0][1] <= 3
       "This is absolutely brilliant! We dominated the field and no one could be a real match for us today! I must say, I'm impressed!"
-    elsif team_driver_positions[0][1] == 1 && team_driver_positions[1][1] > 3 || team_driver_positions[1][1] == 1 && team_driver_positions[0][1] > 3
+    elsif team_driver_positions[0][1] == 1 && (team_driver_positions[1][1] > 3 && team_driver_positions[1][1] <= 10) || team_driver_positions[1][1] == 1 && (team_driver_positions[0][1] > 3 && team_driver_positions[0][1] <= 10)
       "Fantastic! You lead our team to a victory! The top of the podium is where our drivers belong! Next race we can do it again!"
+    elsif team_driver_positions[0][1] == 1 && team_driver_positions[1][1] > 10 || team_driver_positions[1][1] == 1 && team_driver_positions[0][1] > 10
+      "Let's celebrate our victory today! Well deserved. At the same time, we can't afford having a car out of the points. We need both drivers fighting in the front."
     elsif (team_driver_positions[0][1] && team_driver_positions[1][1] <= 3) && (team_driver_positions[0][1] && team_driver_positions[1][1] > 1)
       "Great job! A double podium for the team is a strong message to our rivals. Let's keep pushing and the victory will come for sure!"
     elsif (team_driver_positions[0][1] <= 3 && team_driver_positions[0][1] > 1) && (team_driver_positions[1][1] > 3 && team_driver_positions[1][1] <= 10) || (team_driver_positions[1][1] <= 3 && team_driver_positions[1][1] > 1) && (team_driver_positions[0][1] > 3 && team_driver_positions[0][1] <= 10)

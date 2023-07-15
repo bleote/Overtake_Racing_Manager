@@ -36,18 +36,18 @@ class RacesController < ApplicationController
   # Qualifying method for race
   def qualifying
     @race.status = "Qualifying"
-    @q1_lap_times = cached_lap_times("q1_lap_times_#{@race.id}") || cache_lap_times("q1_lap_times_#{@race.id}", @race.calculate_lap_times_for_q1)
-    @q2_lap_times = cached_lap_times("q2_lap_times_#{@race.id}") || cache_lap_times("q2_lap_times_#{@race.id}", @race.calculate_lap_times_for_q2)
-    @q3_lap_times = cached_lap_times("q3_lap_times_#{@race.id}") || cache_lap_times("q3_lap_times_#{@race.id}", @race.calculate_lap_times_for_q3)
-  end
 
-  def cached_lap_times(cache_key)
-    Rails.cache.fetch(cache_key)
-  end
+    @q1_lap_times = Rails.cache.fetch("q1_lap_times_#{params[:id]}", expires_in: 2.days) do
+      @race.calculate_lap_times_for_q1(@race)
+    end
 
-  def cache_lap_times(cache_key, lap_times)
-    Rails.cache.write(cache_key, lap_times, expires_in: 3.days)
-    lap_times
+    @q2_lap_times = Rails.cache.fetch("q2_lap_times_#{params[:id]}", expires_in: 2.days) do
+      @race.calculate_lap_times_for_q2(@race)
+    end
+
+    @q3_lap_times = Rails.cache.fetch("q3_lap_times_#{params[:id]}", expires_in: 2.days) do
+      @race.calculate_lap_times_for_q3(@race)
+    end
   end
 
   # GP method with race updates
