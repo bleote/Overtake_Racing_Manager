@@ -135,8 +135,6 @@ class Race < ApplicationRecord
   def car_adjustment(team_id, car, circuit, race)
     self.car_adjustments ||= {}
 
-    puts "self.car_adjustments: #{self.car_adjustments}"
-
     if car_adjustments[car.id].nil?
       gearbox_adjustments ||= (9.9 - car.gearbox) * circuit_characteristics(circuit) * 1 / 30
       suspension_adjustments ||= (9.9 - car.suspension) * circuit_characteristics(circuit) * 1 / 30
