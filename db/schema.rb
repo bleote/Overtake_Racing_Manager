@@ -69,7 +69,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   end
 
   create_table "circuits", force: :cascade do |t|
+    t.string "country"
     t.string "name"
+    t.string "circuit"
     t.string "layout"
     t.string "flag"
     t.string "ideal_aero_setup"

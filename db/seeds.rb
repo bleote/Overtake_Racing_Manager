@@ -805,25 +805,9 @@ puts 'creating 11 circuits...'
 
 Circuit.create(
   id: 1,
-  name: 'Monaco',
-  flag: 'monaco_flag.png',
-  layout: 'monaco_layout.png',
-  ideal_aero_setup: 'Maximum downforce',
-  ideal_gear_ratio: 'Acceleration',
-  slow_corners: 11,
-  medium_corners: 6,
-  fast_corners: 3,
-  short_straights: 7,
-  medium_straights: 6,
-  long_straights: 1,
-  pitstop_time: 16_400,
-  ideal_lap_time: 71_365,
-  total_laps: 78
-)
-
-Circuit.create(
-  id: 2,
-  name: 'Spain',
+  country: 'Spain',
+  name: 'Spanish',
+  circuit: 'Circuit de Catalunya',
   flag: 'spain_flag.png',
   layout: 'spain_layout.png',
   ideal_aero_setup: 'Cornering',
@@ -840,8 +824,30 @@ Circuit.create(
 )
 
 Circuit.create(
+  id: 2,
+  country: 'Monaco',
+  name: 'Monaco',
+  circuit: 'Monte-Carlo',
+  flag: 'monaco_flag.png',
+  layout: 'monaco_layout.png',
+  ideal_aero_setup: 'Maximum downforce',
+  ideal_gear_ratio: 'Acceleration',
+  slow_corners: 11,
+  medium_corners: 6,
+  fast_corners: 3,
+  short_straights: 7,
+  medium_straights: 6,
+  long_straights: 1,
+  pitstop_time: 16_400,
+  ideal_lap_time: 71_365,
+  total_laps: 78
+)
+
+Circuit.create(
   id: 3,
-  name: 'Canada',
+  country: 'Canada',
+  name: 'Canadian',
+  circuit: 'Circuit Gilles Villeneuve',
   flag: 'canada_flag.png',
   layout: 'canada_layout.png',
   ideal_aero_setup: 'Balanced',
@@ -858,8 +864,10 @@ Circuit.create(
 )
 
 Circuit.create(
-  id: 5,
-  name: 'Austria',
+  id: 4,
+  country: 'Austria',
+  name: 'Austrian',
+  circuit: 'Red Bull Ring',
   flag: 'austria_flag.png',
   layout: 'austria_layout.png',
   ideal_aero_setup: 'Straights',
@@ -876,8 +884,10 @@ Circuit.create(
 )
 
 Circuit.create(
-  id: 6,
-  name: 'United Kingdom',
+  id: 5,
+  country: 'United Kingdom',
+  name: 'British',
+  circuit: 'Silverstone',
   flag: 'uk_flag.png',
   layout: 'uk_layout.png',
   ideal_aero_setup: 'Cornering',
@@ -894,8 +904,110 @@ Circuit.create(
 )
 
 Circuit.create(
+  id: 6,
+  country: 'Hungary',
+  name: 'Hungarian',
+  circuit: 'Hungaroring',
+  flag: 'hungary_flag.png',
+  layout: 'hungary_layout.png',
+  ideal_aero_setup: 'Cornering',
+  ideal_gear_ratio: 'Acceleration',
+  slow_corners: 3,
+  medium_corners: 8,
+  fast_corners: 3,
+  short_straights: 6,
+  medium_straights: 4,
+  long_straights: 1,
+  pitstop_time: 20_000,
+  ideal_lap_time: 76_877,
+  total_laps: 70
+)
+
+Circuit.create(
+  id: 7,
+  country: 'Belgium',
+  name: 'Belgian',
+  circuit: 'Spa-Francorchamps',
+  flag: 'belgium_flag.png',
+  layout: 'belgium_layout.png',
+  ideal_aero_setup: 'Cornering',
+  ideal_gear_ratio: 'Top Speed',
+  slow_corners: 3,
+  medium_corners: 10,
+  fast_corners: 6,
+  short_straights: 5,
+  medium_straights: 3,
+  long_straights: 4,
+  pitstop_time: 17_400,
+  ideal_lap_time: 104_297,
+  total_laps: 44
+)
+
+Circuit.create(
+  id: 8,
+  country: 'Italy',
+  name: 'Italian',
+  circuit: 'Monza',
+  flag: 'italy_flag.png',
+  layout: 'italy_layout.png',
+  ideal_aero_setup: 'Minimum downforce',
+  ideal_gear_ratio: 'Top Speed',
+  slow_corners: 4,
+  medium_corners: 5,
+  fast_corners: 2,
+  short_straights: 2,
+  medium_straights: 1,
+  long_straights: 4,
+  pitstop_time: 17_400,
+  ideal_lap_time: 104_297,
+  total_laps: 44
+)
+
+Circuit.create(
+  id: 9,
+  country: 'Japan',
+  name: 'Japanese',
+  circuit: 'Suzuka',
+  flag: 'japan_flag.png',
+  layout: 'japan_layout.png',
+  ideal_aero_setup: 'Cornering',
+  ideal_gear_ratio: 'Balanced',
+  slow_corners: 3,
+  medium_corners: 10,
+  fast_corners: 5,
+  short_straights: 4,
+  medium_straights: 4,
+  long_straights: 2,
+  pitstop_time: 17_650,
+  ideal_lap_time: 89_304,
+  total_laps: 53
+)
+
+Circuit.create(
+  id: 10,
+  country: 'USA',
+  name: 'U.S.',
+  circuit: 'Circuit of the Americas',
+  flag: 'usa_flag.png',
+  layout: 'usa_layout.png',
+  ideal_aero_setup: 'Balanced',
+  ideal_gear_ratio: 'Balanced',
+  slow_corners: 5,
+  medium_corners: 11,
+  fast_corners: 4,
+  short_straights: 5,
+  medium_straights: 3,
+  long_straights: 2,
+  pitstop_time: 18_600,
+  ideal_lap_time: 94_356,
+  total_laps: 56
+)
+
+Circuit.create(
   id: 11,
-  name: 'Brazil',
+  country: 'Brazil',
+  name: 'São Paulo',
+  circuit: 'Interlagos',
   flag: 'brazil_flag.png',
   layout: 'brazil_layout.png',
   ideal_aero_setup: 'Balanced',

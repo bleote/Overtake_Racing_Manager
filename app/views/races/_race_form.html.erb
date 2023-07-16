@@ -4,7 +4,7 @@
 
   <div class="newraceform">
     <%= f.input :team_id, as: :select, collection: Team.pluck(:name, :id), label: 'Select your team', include_blank: false, required: false, input_html: { required: false } %>
-    <%= f.input :circuit_id, as: :select, collection: Circuit.pluck(:name, :id), label: 'Circuit', include_blank: false, required: false, input_html: { required: false } %>
+    <%= f.input :circuit_id, as: :select, collection: Circuit.pluck(:country, :id), label: 'Circuit', include_blank: false, required: false, input_html: { required: false } %>
   </div>
 
   <div class="form-actions row justify-content-center py-2">

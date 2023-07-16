@@ -1,7 +1,9 @@
 class CreateCircuits < ActiveRecord::Migration[7.0]
   def change
     create_table :circuits do |t|
+      t.string :country
       t.string :name
+      t.string :circuit
       t.string :layout
       t.string :flag
       t.string :ideal_aero_setup

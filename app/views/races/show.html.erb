@@ -36,13 +36,16 @@
               </button>
             </p>
             <div id="collapseOne" class="accordion-collapse collapse" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+              <div class="track-name my-2">
+                <h4><%= @circuit.circuit %></h4>
+              </div>
               <div class="d-flex">
-                <div class="row text-start p-2 mt-0 me-1">
+                <div class="row text-end pt-0 p-2 mt-0 me-1">
                   <p>Slow corners: <%= @circuit.slow_corners %></p>
                   <p>Medium corners: <%= @circuit.medium_corners %></p>
                   <p>Fast corners: <%= @circuit.fast_corners %></p>
                 </div>
-                <div class="row text-start p-2 mt-0 ms-1">
+                <div class="row text-start pt-0 p-2 mt-0 ms-1">
                   <p>Short straights: <%= @circuit.short_straights %></p>
                   <p>Medium straights: <%= @circuit.medium_straights %></p>
                   <p>Long straights: <%= @circuit.long_straights %></p>
