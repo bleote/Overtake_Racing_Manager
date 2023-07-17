@@ -24,13 +24,15 @@
         <%= f.input :photo, as: :file,
                     hint: "Upload a profile image",
                     required: false %>
-        <%= f.input :password,
-                    hint: "leave it blank if you don't want to change it",
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
-        <%= f.input :password_confirmation,
-                    required: false,
-                    input_html: { autocomplete: "new-password" } %>
+        <div id="change-password-fields" class="form-change-password" style="display: none;">
+          <%= f.input :password,
+                      hint: "leave it blank if you don't want to change it",
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+          <%= f.input :password_confirmation,
+                      required: false,
+                      input_html: { autocomplete: "new-password" } %>
+        </div>
         <%= f.input :current_password,
                     hint: "we need your current password to confirm your changes",
                     required: true,
@@ -38,10 +40,14 @@
       </div>
 
       <div class="d-flex form-actions justify-content-between pb-4 mx-4">
-        <%= link_to "Back", :back, class: "btn btn-warning" %>
+        <%= link_to "Back", user_path(current_user), class: "btn btn-warning" %>
         <%= f.button :submit, "Update Profile", class: "btn-primary" %>
       </div>
     <% end %>
+
+    <div id="change-password-div-link" class="d-flex form-actions justify-content-center pb-4 mx-4" style="display: block;">
+      <%= link_to "change password", "#", onclick: "changePasswordLink();", id: "change-password-link" %>
+    </div>
 
     <h3 class="py-3">Unhappy?</h3>
 
@@ -49,3 +55,16 @@
 
   </div>
 </div>
+
+<script>
+function changePasswordLink() {
+  var x = document.getElementById("change-password-fields");
+  if (x.style.display === "none") {
+    x.style.display = "block";
+  } else {
+    x.style.display = "none";
+  }
+  document.getElementById("change-password-div-link").style.display = "none";
+  document.getElementById("change-password-link").style.display = "none";
+}
+</script>
