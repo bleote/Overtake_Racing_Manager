@@ -46,7 +46,7 @@ module ApplicationHelper
       talking with the back of the grid."
     when 4..6
       "More than half of the teams show interest in working with a rising star. The opportunities are getting bigger and bigger,
-      but also the pressure for stronger results is also higher."
+      but the pressure for stronger results is also higher."
     when 7..9
       "All the team principals agree that we're seeing a game changer. It's hard to find a more disputed name
       among the managers today."
