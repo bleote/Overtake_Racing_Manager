@@ -168,75 +168,75 @@ class Race < ApplicationRecord
       when 'Maximum downforce'
         case car.aero_setup
         when 'Maximum downforce'
-          -100
+          -50
         when 'Cornering'
-          100
+          50
         when 'Balanced'
-          200
+          100
         when 'Straights'
-          300
+          150
         when 'Minimum downforce'
-          400
+          200
         else
           0
         end
       when 'Cornering'
         case car.aero_setup
         when 'Maximum downforce'
-          100
+          50
         when 'Cornering'
-          -100
+          -50
         when 'Balanced'
-          100
+          50
         when 'Straights'
-          200
+          100
         when 'Minimum downforce'
-          300
+          150
         else
           0
         end
       when 'Balanced'
         case car.aero_setup
         when 'Maximum downforce'
-          200
+          100
         when 'Cornering'
-          100
+          50
         when 'Balanced'
-          -100
+          -50
         when 'Straights'
-          100
+          50
         when 'Minimum downforce'
-          200
+          100
         else
           0
         end
       when 'Straights'
         case car.aero_setup
         when 'Maximum downforce'
-          300
+          150
         when 'Cornering'
-          200
+          100
         when 'Balanced'
-          100
+          50
         when 'Straights'
-          -100
+          -50
         when 'Minimum downforce'
-          100
+          50
         else
           0
         end
       when 'Minimum downforce'
         case car.aero_setup
         when 'Maximum downforce'
-          400
-        when 'Cornering'
-          300
-        when 'Balanced'
           200
-        when 'Straights'
+        when 'Cornering'
+          150
+        when 'Balanced'
           100
+        when 'Straights'
+          50
         when 'Minimum downforce'
-          -100
+          -50
         else
           0
         end
@@ -266,33 +266,33 @@ class Race < ApplicationRecord
       when 'Acceleration'
         case car.gear_ratio
         when 'Acceleration'
-          -50
+          -25
         when 'Balanced'
-          50
+          25
         when 'Top Speed'
-          100
+          50
         else
           0
         end
       when 'Balanced'
         case car.gear_ratio
         when 'Acceleration'
-          50
+          25
         when 'Balanced'
-          -50
+          -25
         when 'Top Speed'
-          50
+          25
         else
           0
         end
       when 'Top Speed'
         case car.gear_ratio
         when 'Acceleration'
-          100
-        when 'Balanced'
           50
+        when 'Balanced'
+          25
         when 'Top Speed'
-          -50
+          -25
         else
           0
         end
