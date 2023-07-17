@@ -69,9 +69,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
   end
 
   create_table "circuits", force: :cascade do |t|
+    t.string "country"
     t.string "name"
+    t.string "circuit"
     t.string "layout"
     t.string "flag"
+    t.string "ideal_aero_setup"
+    t.string "ideal_gear_ratio"
     t.integer "slow_corners"
     t.integer "medium_corners"
     t.integer "fast_corners"
@@ -123,7 +127,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_06_13_161138) do
     t.bigint "team_id", null: false
     t.string "weather"
     t.string "status"
-    t.boolean "saved", default: false
+    t.boolean "saved_race", default: false
     t.integer "lap_number", default: 0
     t.bigint "team_a_id", null: false
     t.bigint "team_b_id", null: false

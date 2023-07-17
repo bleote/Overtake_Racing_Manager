@@ -187,7 +187,7 @@ Car.create(
   downforce: 10,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -202,7 +202,7 @@ Car.create(
   downforce: 10,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -217,7 +217,7 @@ Car.create(
   downforce: 9,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -232,7 +232,7 @@ Car.create(
   downforce: 9,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -247,7 +247,7 @@ Car.create(
   downforce: 10,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -262,7 +262,7 @@ Car.create(
   downforce: 10,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -277,7 +277,7 @@ Car.create(
   downforce: 9,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -292,7 +292,7 @@ Car.create(
   downforce: 9,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -307,7 +307,7 @@ Car.create(
   downforce: 10,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -322,7 +322,7 @@ Car.create(
   downforce: 10,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -337,7 +337,7 @@ Car.create(
   downforce: 9,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -352,7 +352,7 @@ Car.create(
   downforce: 9,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -367,7 +367,7 @@ Car.create(
   downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -382,7 +382,7 @@ Car.create(
   downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -397,7 +397,7 @@ Car.create(
   downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -412,7 +412,7 @@ Car.create(
   downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -423,11 +423,11 @@ Car.create(
   constructor: 'AlphaTauri',
   engine: 'Red Bull Power Trains',
   gearbox: 8,
-  suspension: 7,
+  suspension: 8,
   downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -438,11 +438,11 @@ Car.create(
   constructor: 'AlphaTauri',
   engine: 'Red Bull Power Trains',
   gearbox: 8,
-  suspension: 7,
+  suspension: 8,
   downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -453,11 +453,11 @@ Car.create(
   constructor: 'Williams',
   engine: 'Mercedes',
   gearbox: 8,
-  suspension: 7,
+  suspension: 8,
   downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 Car.create(
@@ -468,11 +468,11 @@ Car.create(
   constructor: 'Williams',
   engine: 'Mercedes',
   gearbox: 8,
-  suspension: 7,
+  suspension: 8,
   downforce: 8,
   aero_setup: 'Balanced',
   gear_ratio: 'Balanced',
-  tyres: 'Soft'
+  tyres: 'Softs'
 )
 
 puts 'All cars were built and tested!'
@@ -507,7 +507,7 @@ Driver.create(
   fitness_level: 10,
   overtaking: 8,
   defending: 10,
-  wet_race: 7,
+  wet_race: 8,
   driver_points: 0
 )
 
@@ -523,7 +523,7 @@ Driver.create(
   fitness_level: 10,
   overtaking: 9,
   defending: 9,
-  wet_race: 8,
+  wet_race: 9,
   driver_points: 0
 )
 
@@ -715,7 +715,7 @@ Driver.create(
   fitness_level: 9,
   overtaking: 8,
   defending: 8,
-  wet_race: 7,
+  wet_race: 8,
   driver_points: 0
 )
 
@@ -731,7 +731,7 @@ Driver.create(
   fitness_level: 9,
   overtaking: 8,
   defending: 8,
-  wet_race: 6,
+  wet_race: 7,
   driver_points: 0
 )
 
@@ -747,23 +747,23 @@ Driver.create(
   fitness_level: 9,
   overtaking: 8,
   defending: 7,
-  wet_race: 7,
+  wet_race: 8,
   driver_points: 0
 )
 
 Driver.create(
   id: 18,
-  name: 'Nyck de Vries',
-  initials: 'DEV',
-  picture: 'devries_picture.png',
-  helmet: 'devries_helmet.png',
+  name: 'Daniel Ricciardo',
+  initials: 'RIC',
+  picture: 'ricciardo_picture.png',
+  helmet: 'ricciardo_helmet.png',
   team_id: 9,
   car_id: 18,
-  driving_skills: 8,
-  fitness_level: 8,
-  overtaking: 7,
-  defending: 7,
-  wet_race: 6,
+  driving_skills: 9,
+  fitness_level: 9,
+  overtaking: 9,
+  defending: 8,
+  wet_race: 9,
   driver_points: 0
 )
 
@@ -778,7 +778,7 @@ Driver.create(
   driving_skills: 9,
   fitness_level: 9,
   overtaking: 8,
-  defending: 7,
+  defending: 8,
   wet_race: 10,
   driver_points: 0
 )
@@ -795,19 +795,223 @@ Driver.create(
   fitness_level: 10,
   overtaking: 7,
   defending: 6,
-  wet_race: 5,
+  wet_race: 7,
   driver_points: 0
 )
 
 puts 'All drivers are signed!'
 
-puts 'creating 1 circuit...'
+puts 'creating 11 circuits...'
 
 Circuit.create(
   id: 1,
-  name: 'Brazil',
+  country: 'Spain',
+  name: 'Spanish',
+  circuit: 'Circuit de Catalunya',
+  flag: 'spain_flag.png',
+  layout: 'spain_layout.png',
+  ideal_aero_setup: 'Cornering',
+  ideal_gear_ratio: 'Balanced',
+  slow_corners: 2,
+  medium_corners: 7,
+  fast_corners: 5,
+  short_straights: 2,
+  medium_straights: 6,
+  long_straights: 1,
+  pitstop_time: 19_600,
+  ideal_lap_time: 72_272,
+  total_laps: 66
+)
+
+Circuit.create(
+  id: 2,
+  country: 'Monaco',
+  name: 'Monaco',
+  circuit: 'Monte-Carlo',
+  flag: 'monaco_flag.png',
+  layout: 'monaco_layout.png',
+  ideal_aero_setup: 'Maximum downforce',
+  ideal_gear_ratio: 'Acceleration',
+  slow_corners: 11,
+  medium_corners: 6,
+  fast_corners: 3,
+  short_straights: 7,
+  medium_straights: 6,
+  long_straights: 1,
+  pitstop_time: 16_400,
+  ideal_lap_time: 71_365,
+  total_laps: 78
+)
+
+Circuit.create(
+  id: 3,
+  country: 'Canada',
+  name: 'Canadian',
+  circuit: 'Circuit Gilles Villeneuve',
+  flag: 'canada_flag.png',
+  layout: 'canada_layout.png',
+  ideal_aero_setup: 'Balanced',
+  ideal_gear_ratio: 'Top Speed',
+  slow_corners: 5,
+  medium_corners: 7,
+  fast_corners: 1,
+  short_straights: 1,
+  medium_straights: 4,
+  long_straights: 1,
+  pitstop_time: 18_200,
+  ideal_lap_time: 70_240,
+  total_laps: 70
+)
+
+Circuit.create(
+  id: 4,
+  country: 'Austria',
+  name: 'Austrian',
+  circuit: 'Red Bull Ring',
+  flag: 'austria_flag.png',
+  layout: 'austria_layout.png',
+  ideal_aero_setup: 'Straights',
+  ideal_gear_ratio: 'Top Speed',
+  slow_corners: 2,
+  medium_corners: 7,
+  fast_corners: 1,
+  short_straights: 2,
+  medium_straights: 2,
+  long_straights: 3,
+  pitstop_time: 16_100,
+  ideal_lap_time: 64_391,
+  total_laps: 71
+)
+
+Circuit.create(
+  id: 5,
+  country: 'United Kingdom',
+  name: 'British',
+  circuit: 'Silverstone',
+  flag: 'uk_flag.png',
+  layout: 'uk_layout.png',
+  ideal_aero_setup: 'Cornering',
+  ideal_gear_ratio: 'Top Speed',
+  slow_corners: 5,
+  medium_corners: 3,
+  fast_corners: 10,
+  short_straights: 6,
+  medium_straights: 4,
+  long_straights: 3,
+  pitstop_time: 21_000,
+  ideal_lap_time: 86_720,
+  total_laps: 52
+)
+
+Circuit.create(
+  id: 6,
+  country: 'Hungary',
+  name: 'Hungarian',
+  circuit: 'Hungaroring',
+  flag: 'hungary_flag.png',
+  layout: 'hungary_layout.png',
+  ideal_aero_setup: 'Cornering',
+  ideal_gear_ratio: 'Acceleration',
+  slow_corners: 3,
+  medium_corners: 8,
+  fast_corners: 3,
+  short_straights: 6,
+  medium_straights: 4,
+  long_straights: 1,
+  pitstop_time: 20_000,
+  ideal_lap_time: 76_877,
+  total_laps: 70
+)
+
+Circuit.create(
+  id: 7,
+  country: 'Belgium',
+  name: 'Belgian',
+  circuit: 'Spa-Francorchamps',
+  flag: 'belgium_flag.png',
+  layout: 'belgium_layout.png',
+  ideal_aero_setup: 'Cornering',
+  ideal_gear_ratio: 'Top Speed',
+  slow_corners: 3,
+  medium_corners: 10,
+  fast_corners: 6,
+  short_straights: 5,
+  medium_straights: 3,
+  long_straights: 4,
+  pitstop_time: 17_400,
+  ideal_lap_time: 104_297,
+  total_laps: 44
+)
+
+Circuit.create(
+  id: 8,
+  country: 'Italy',
+  name: 'Italian',
+  circuit: 'Monza',
+  flag: 'italy_flag.png',
+  layout: 'italy_layout.png',
+  ideal_aero_setup: 'Minimum downforce',
+  ideal_gear_ratio: 'Top Speed',
+  slow_corners: 4,
+  medium_corners: 5,
+  fast_corners: 2,
+  short_straights: 2,
+  medium_straights: 1,
+  long_straights: 4,
+  pitstop_time: 17_400,
+  ideal_lap_time: 104_297,
+  total_laps: 44
+)
+
+Circuit.create(
+  id: 9,
+  country: 'Japan',
+  name: 'Japanese',
+  circuit: 'Suzuka',
+  flag: 'japan_flag.png',
+  layout: 'japan_layout.png',
+  ideal_aero_setup: 'Cornering',
+  ideal_gear_ratio: 'Balanced',
+  slow_corners: 3,
+  medium_corners: 10,
+  fast_corners: 5,
+  short_straights: 4,
+  medium_straights: 4,
+  long_straights: 2,
+  pitstop_time: 17_650,
+  ideal_lap_time: 89_304,
+  total_laps: 53
+)
+
+Circuit.create(
+  id: 10,
+  country: 'USA',
+  name: 'U.S.',
+  circuit: 'Circuit of the Americas',
+  flag: 'usa_flag.png',
+  layout: 'usa_layout.png',
+  ideal_aero_setup: 'Balanced',
+  ideal_gear_ratio: 'Balanced',
+  slow_corners: 5,
+  medium_corners: 11,
+  fast_corners: 4,
+  short_straights: 5,
+  medium_straights: 3,
+  long_straights: 2,
+  pitstop_time: 18_600,
+  ideal_lap_time: 94_356,
+  total_laps: 56
+)
+
+Circuit.create(
+  id: 11,
+  country: 'Brazil',
+  name: 'São Paulo',
+  circuit: 'Interlagos',
   flag: 'brazil_flag.png',
   layout: 'brazil_layout.png',
+  ideal_aero_setup: 'Balanced',
+  ideal_gear_ratio: 'Balanced',
   slow_corners: 3,
   medium_corners: 4,
   fast_corners: 8,
@@ -819,4 +1023,4 @@ Circuit.create(
   total_laps: 71
 )
 
-puts '1 circuit created!'
+puts '11 circuits created!'

@@ -76,7 +76,7 @@
       </div>
       <div>
         <p class="chief-greetings pe-2">Hey <strong><%= current_user.first_name %></strong>,</p>
-        <p><%= chief_message(@race.team_id, @sorted_race_results) %></p>
+        <p><%= chief_race_message(@race.team_id, @sorted_race_results) %></p>
       </div>
     </div>
   </div>
@@ -90,7 +90,7 @@
         <tr>
           <th>Position</th>
           <th>Driver</th>
-          <th>Points</th>
+          <th class="px-2">Points</th>
         </tr>
       </thead>
       <tbody>
@@ -106,5 +106,8 @@
       </tbody>
     </table>
 
+  </div>
+  <div class="pt-3">
+    <%= button_to 'End event', race_path(@race), method: :delete, class: 'btn btn-primary' %>
   </div>
 </div>

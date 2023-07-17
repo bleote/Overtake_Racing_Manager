@@ -1,0 +1,16 @@
+.orm-footer {
+  padding: 1em;
+  margin-top: 2em;
+  background-color: #081f497a;
+  color: #fff;
+  text-align: center;
+  font-size: 10px;
+  justify-content: space-between;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: 100vh;
+}

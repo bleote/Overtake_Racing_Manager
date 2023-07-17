@@ -4,37 +4,31 @@
       <h3 class="my-2"><%= @user.first_name %> <%= @user.last_name %></h3>
     </div>
     <div class="profile-user m-2 rounded border border-white">
-      <div class="d-flex profile-info justify-content-between text-end m-2">
+      <div class="d-flex profile-info justify-content-between text-start m-2 mx-3">
         <div class="d-flex align-items-center">
           <%=  show_user_photo(current_user) %>
         </div>
 
         <div>
-          <h4>Experience: <%= @user.experience %>/10</h4>
-          <h4>Prestige: <%= @user.prestige %>/10</h4>
-          <h4>Races: <%= @user.user_races %></h4>
+          <h4 class="pb-1">Experience: <%= @user.experience %>/10</h4>
+          <h4 class="pb-1">Prestige: <%= @user.prestige %>/10</h4>
+          <h4 class="pb-1">Races: <%= @user.user_races %></h4>
+          <h4 class="pb-1">Poles: <%= @user.user_poles %></h4>
+          <h4 class="pb-1">Podiums: <%= @user.user_podiums %></h4>
+          <h4 class="pb-1">Victories: <%= @user.user_victories %></h4>
           <h4>Points: <%= @user.user_points %></h4>
-          <h4>Poles: <%= @user.user_poles %></h4>
-          <h4>Podiums: <%= @user.user_podiums %></h4>
-          <h4>Victories: <%= @user.user_victories %></h4>
         </div>
       </div>
     </div>
     <div class="profile-user text-start m-2 p-2 rounded border border-white">
-      <% if @user.experience <= 1 %>
-      <p>NEWS: "<%= @user.first_name %> <%= @user.last_name %>'s
-      presence caught some of the press's attention earlier this year.
-      Although not much can be said about the results, critics believe we'll see a good impact
-      on the team working with their new manager."</p>
-      <% else %>
-      <p><%= @user.first_name %> <%= @user.last_name %> is the boss!</p>
-      <% end %>
+      <p class="pb-3">BIO: <%= check_user_experience(current_user) %></p>
+      <p> <%= check_user_prestige(current_user) %></p>
     </div>
   </div>
 
   <div class="d-flex justify-content-between text-center pb-2 px-3">
-    <%= link_to "Home", root_path, class: "btn btn-info" %>
-    <%= link_to "Edit profile", edit_user_registration_path, class:"btn btn-primary" %>
+    <%= link_to 'Home', root_path, class: 'btn btn-info' %>
+    <%= link_to 'Edit profile', edit_user_registration_path, class:'btn btn-primary' %>
   </div>
 
 </div>

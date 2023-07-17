@@ -1,50 +1,46 @@
 module RaceUpdatesService
-  def self.update_lap_number(race, lap_number)
-    race.update(lap_number: lap_number)
-    render json: { status: 'success' }
-  end
-
-  # @user.prestige += calculate_prestige(sorted_race_results)
   def self.update_user_stats(race, starting_grid, sorted_race_results)
-    @race = race
-    @user = @race.user
-    @user_team_id = @race.team_id
+    user = race.user
+    user_team_id = race.team_id
 
-    if @race.saved == false
-      @user.experience = calculate_experience(@user.user_races)
-      @user.user_races += 1
+    if race.saved_race == false
+      user.user_races += 1
+      user.experience = calculate_experience(user.user_races)
+      user_race_points = calculate_user_points(sorted_race_results, user_team_id)
+      user.user_points += user_race_points
+      user.prestige += calculate_user_prestige(user.prestige, user_team_id, user_race_points)
 
       pole_position = starting_grid.first.driver
       winning_driver = sorted_race_results.first[0]
       second_driver = sorted_race_results.second[0]
       third_driver = sorted_race_results.third[0]
 
-      if @race.team_id == pole_position.team_id
-        @user.user_poles +=1
+      if race.team_id == pole_position.team_id
+        user.user_poles +=1
       end
 
-      if @race.team_id == winning_driver.team_id
-        @user.user_victories += 1
-        @user.user_podiums += 1
+      if race.team_id == winning_driver.team_id
+        user.user_victories += 1
+        user.user_podiums += 1
       end
 
-      if @race.team_id == second_driver.team_id
-        @user.user_podiums += 1
+      if race.team_id == second_driver.team_id
+        user.user_podiums += 1
       end
 
-      if @race.team_id == third_driver.team_id
-        @user.user_podiums += 1
+      if race.team_id == third_driver.team_id
+        user.user_podiums += 1
       end
 
-      @user.user_points += calculate_user_points(sorted_race_results, @user_team_id)
-
-      @user.save
-      @race.saved = true
-      @race.save
+      user.save
+      race.saved_race = true
+      race.save
     else
       puts "Race stats already saved!"
     end
   end
+
+  private
 
   def self.calculate_experience(user_races)
     case user_races
@@ -112,6 +108,84 @@ module RaceUpdatesService
       2
     when 10
       1
+    else
+      0
+    end
+  end
+
+  def self.calculate_user_prestige(user_prestige, user_team_id, user_race_points)
+    if user_prestige == 10
+      0
+    elsif user_prestige == 0
+      if [1, 2, 3].include?(user_team_id)
+        case user_race_points
+        when 33..43
+          1
+        when 25..32
+          0
+        else
+          0
+        end
+      elsif [4, 5, 6].include?(user_team_id)
+        case user_race_points
+        when 33..43
+          2
+        when 16..32
+          1
+        when 4..15
+          0
+        else
+          0
+        end
+      elsif [7, 8, 9, 10].include?(user_team_id)
+        case user_race_points
+        when 28..43
+          3
+        when 10..27
+          2
+        when 1..9
+          1
+        else
+          0
+        end
+      else
+        0
+      end
+    elsif user_prestige >= 1 || user_prestige <= 9
+      if [1, 2, 3].include?(user_team_id)
+        case user_race_points
+        when 33..43
+          1
+        when 25..32
+          0
+        else
+          -1
+        end
+      elsif [4, 5, 6].include?(user_team_id)
+        case user_race_points
+        when 33..43
+          2
+        when 16..32
+          1
+        when 4..15
+          0
+        else
+          -1
+        end
+      elsif [7, 8, 9, 10].include?(user_team_id)
+        case user_race_points
+        when 28..43
+          3
+        when 10..27
+          2
+        when 1..9
+          1
+        else
+          0
+        end
+      else
+        0
+      end
     else
       0
     end

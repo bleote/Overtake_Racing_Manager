@@ -22,6 +22,10 @@
       <p>Current weather: <%= @race.weather %> </p>
     </div>
 
+    <div class="track-temperature">
+      <p>Track temperature: <%= check_track_temperature(@race.weather) %>°C </p>
+    </div>
+
     <div class="circuit-layout my-2">
       <%= image_tag "circuits/#{@circuit.layout}", width: 300 %>
     </div>
@@ -326,7 +330,7 @@
           document.getElementById('dynamic-results').style.display = 'none';
           document.getElementById('static-results').style.display = 'block';
       }
-    }, 500);
+    }, 100);
   }
 
   // Call the startRace function when the "Start Race" button is clicked
