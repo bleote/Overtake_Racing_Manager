@@ -72,8 +72,8 @@ Rails.application.configure do
     address:              'smtp.gmail.com',
     port:                 587,
     domain:               'overtake.osc-fr1.scalingo.io',
-    user_name:            ENV['GMAIL_USERNAME'],
-    password:             ENV['GMAIL_PASSWORD'],
+    user_name:            GMAIL_USERNAME,
+    password:             GMAIL_PASSWORD,
     authentication:       'plain',
     enable_starttls_auto: true
   }
