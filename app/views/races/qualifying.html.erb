@@ -11,7 +11,7 @@
     </div>
 
     <div class="current-session">
-      <p>Your team: <%= @team.name %> </p>
+      <p>Your team: <%= @team.name %> <span style='color: #e67e22;'>*</span> </p>
     </div>
 
     <div class="current-session">
@@ -40,7 +40,11 @@
           <% driver_name = lap_time.driver.name %>
           <% lap_time_style = index >= @q1_lap_times.length - 5 ? 'color: #df0000;' : '' %>
           <p id="q1-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
-          <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <% if lap_time.driver.team_id == @race.team_id %>
+            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+          <% else %>
+            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <% end %>
           </p>
         <% end %>
         <div class="qualifying-empty"></div>
@@ -59,7 +63,11 @@
           <% driver_name = lap_time.driver.name %>
           <% lap_time_style = index >= @q2_lap_times.length - 5 ? 'color: #df0000;' : '' %>
           <p id="q2-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
-          <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <% if lap_time.driver.team_id == @race.team_id %>
+            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+          <% else %>
+            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <% end %>
           </p>
         <% end %>
         <div class="qualifying-empty"></div>
@@ -78,7 +86,11 @@
           <% driver_name = lap_time.driver.name %>
           <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
           <p id="q3-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
-          <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <% if lap_time.driver.team_id == @race.team_id %>
+            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+          <% else %>
+            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+          <% end %>
           </p>
         <% end %>
         <div class="qualifying-empty"></div>

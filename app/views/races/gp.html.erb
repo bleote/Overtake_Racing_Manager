@@ -11,7 +11,7 @@
     </div>
 
     <div class="current-session">
-      <p>Your team: <%= @team.name %> </p>
+      <p>Your team: <%= @team.name %> <span style='color: #e67e22;'>*</span> </p>
     </div>
 
     <div class="current-session">
@@ -53,7 +53,11 @@
                   </div>
                 </div>
                 <div class="driver-name">
-                  <%= "#{sprintf('%02d', index + 1)} - #{driver_name}" %>
+                  <% if lap_time.driver.team_id == @race.team_id %>
+                    <%= "#{sprintf('%02d', index + 1)} - #{driver_name}" %> <span style='color: #e67e22;'>*</span>
+                  <% else %>
+                    <%= "#{sprintf('%02d', index + 1)} - #{driver_name}" %>
+                  <% end %>
                 </div>
               </div>
             </div>
@@ -110,9 +114,17 @@
           <% formatted_time_difference = format_lap_time(time_difference) %>
           <p id="race-lap-time-<%= driver.id %>" style="<%= lap_time_style %>">
             <% if index == 0 %>
-              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}" %> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Winner
+              <% if driver.team_id == @race.team_id %>
+                <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}" %> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Winner <span style='color: #e67e22;'>*</span>
+              <% else %>
+                <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}" %> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Winner
+              <% end %>
             <% else %>
-              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> <%= " +#{formatted_time_difference}" %>
+              <% if driver.team_id == @race.team_id %>
+                <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> <%= " +#{formatted_time_difference}" %> <span style='color: #e67e22;'>*</span>
+              <% else %>
+                <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> <%= " +#{formatted_time_difference}" %>
+              <% end %>
             <% end %>
           </p>
         <% end %>
@@ -202,6 +214,7 @@
   // Wrap the race starting logic in a function
   function startRace() {
     var yourRaceId = <%= @race.id %>;
+    var yourTeamRaceId = <%= @race.team_id %>;
     var startRaceData = <%= @start_race_json.html_safe %>;
     var startingGrid = <%= @starting_grid.to_json.html_safe %>;
     var currentLap = 0; // Start from lap 0
@@ -226,6 +239,7 @@
             id: driverId,
             name: startRaceData[driverId].name,
             initials: startRaceData[driverId].initials,
+            driver_team_id: startRaceData[driverId].team_id,
             car_image: startRaceData[driverId].car_image,
             totalTime: totalTime});
         }
@@ -264,7 +278,7 @@
           // Calculate the gap to the leader
           var gapToLeader = (i === 0) ? 0 : totalTimeData[i].totalTime - totalTimeData[0].totalTime;
 
-          // Check if the driver is the pole/leader or not, and the current gap to the leader
+          // Check if the driver is the leader or not, and the current gap to the leader
           if (i === 0) {
             var gapText = (currentLap === 0) ? "" : "Leader";
           }
@@ -278,11 +292,12 @@
           // Get the driver's initials
           var initials = totalTimeData[i].initials;
 
+          // Create a span element for the initials
+          var initialsElement = document.createElement('span');
+          initialsElement.textContent = indexText + " - " + initials + " ";
+
           // Get the driver's car image URL
           var carImage = totalTimeData[i].car_image;
-
-          // Create the text node for index and initials
-          var indexInitialsText = document.createTextNode(indexText + " - " + initials + " ");
 
           // Create an image element for the car image
           var carImageElement = document.createElement('img');
@@ -294,9 +309,17 @@
           var gapTextElement = document.createTextNode(" " + gapText);
 
           // Append the child nodes in the desired order
-          driverElement.appendChild(indexInitialsText);
+          driverElement.appendChild(initialsElement);
           driverElement.appendChild(carImageElement);
           driverElement.appendChild(gapTextElement);
+
+          // If the driver's team_id is equal to the race's team_id, append the *
+          if (totalTimeData[i].driver_team_id === yourTeamRaceId) {
+            var starElement = document.createElement('span');
+            starElement.textContent = ' *';
+            starElement.style.color = '#e67e22';
+            driverElement.appendChild(starElement);
+          }
 
           // If the driver is the leader, change the font color
           if (i === 0) {

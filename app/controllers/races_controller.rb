@@ -67,7 +67,7 @@ class RacesController < ApplicationController
 
     # Convert @start_race to JSON
     @start_race_json = @start_race.map do |driver, lap_times|
-      [driver.id, { name: driver.name, initials: driver.initials, car_image: driver.car.image, lap_times: lap_times.map { |lt| lt[:lap_time] } }]
+      [driver.id, { name: driver.name, initials: driver.initials, team_id: driver.team_id, car_image: driver.car.image, lap_times: lap_times.map { |lt| lt[:lap_time] } }]
     end.to_h.to_json
   end
 
