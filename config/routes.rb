@@ -5,7 +5,11 @@ Rails.application.routes.draw do
   devise_for :users
   root to: 'pages#home'
 
-  resources :users, only: :show
+  resources :users, only: :show do
+    member do
+      get 'after_race'
+    end
+  end
 
   resources :teams, only: %i[index show edit update]
 

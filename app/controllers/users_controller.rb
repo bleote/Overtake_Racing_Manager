@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_action :set_user, only: %i[show edit update]
+  before_action :set_user, only: %i[show edit update after_race]
 
   # Show the user's profile
   def show; end
@@ -15,6 +15,9 @@ class UsersController < ApplicationController
       render "users/edit", status: :unprocessable_entity
     end
   end
+
+  # Show the user's profile after race
+  def after_race; end
 
   private
 
