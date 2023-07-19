@@ -20,3 +20,61 @@
   color: #081f49 !important;
   text-decoration: none !important;
 }
+
+@media (min-width: 100px) {
+  /* line 196, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm {
+    flex-wrap: nowrap;
+    justify-content: flex-start;
+  }
+  /* line 201, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .navbar-nav {
+    flex-direction: row;
+  }
+  /* line 204, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .navbar-nav .dropdown-menu {
+    position: absolute;
+  }
+  /* line 208, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .navbar-nav .nav-link {
+    padding-right: var(--bs-navbar-nav-link-padding-x);
+    padding-left: var(--bs-navbar-nav-link-padding-x);
+  }
+  /* line 214, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .navbar-nav-scroll {
+    overflow: visible;
+  }
+  /* line 218, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .navbar-collapse {
+    display: flex !important;
+    flex-basis: auto;
+  }
+  /* line 223, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .navbar-toggler {
+    display: none;
+  }
+  /* line 227, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .offcanvas {
+    position: static;
+    z-index: auto;
+    flex-grow: 1;
+    width: auto !important;
+    height: auto !important;
+    visibility: visible !important;
+    background-color: transparent !important;
+    border: 0 !important;
+    transform: none !important;
+    transition: none;
+  }
+  /* line 242, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .offcanvas .offcanvas-header {
+    display: none;
+  }
+  /* line 246, node_modules/bootstrap/scss/_navbar.scss */
+  .navbar-expand-sm .offcanvas .offcanvas-body {
+    display: flex;
+    flex-grow: 0;
+    padding: 0;
+    overflow-y: visible;
+  }
+}
