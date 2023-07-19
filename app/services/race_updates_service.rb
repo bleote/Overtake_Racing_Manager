@@ -115,7 +115,40 @@ module RaceUpdatesService
 
   def self.calculate_user_prestige(user_prestige, user_team_id, user_race_points)
     if user_prestige == 10
-      0
+      if [1, 2, 3].include?(user_team_id)
+        case user_race_points
+        when 33..43
+          0
+        when 25..32
+          0
+        else
+          -1
+        end
+      elsif [4, 5, 6].include?(user_team_id)
+        case user_race_points
+        when 33..43
+          0
+        when 16..32
+          0
+        when 4..15
+          0
+        else
+          -1
+        end
+      elsif [7, 8, 9, 10].include?(user_team_id)
+        case user_race_points
+        when 28..43
+          0
+        when 10..27
+          0
+        when 1..9
+          0
+        else
+          0
+        end
+      else
+        0
+      end
     elsif user_prestige == 0
       if [1, 2, 3].include?(user_team_id)
         case user_race_points
