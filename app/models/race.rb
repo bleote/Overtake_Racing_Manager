@@ -20,10 +20,20 @@ class Race < ApplicationRecord
   after_initialize :set_status
 
   def lap_time(team_id, driver, car, circuit, ideal_lap_time, race)
+    return 999_999 if car.dnf?
+
     driver_adjustment = driver_adjustment(driver)
     car_adjustment = car_adjustment(team_id, car, circuit, race)
-    ideal_lap_time + driver_adjustment + car_adjustment
+
+    lap_time = ideal_lap_time + driver_adjustment + dnf_check
+
+    if lap_time >= 999_999
+      car.update(dnf: true)
+    end
+
+    lap_time
   end
+
 
   def calculate_lap_times_for_q1(race)
     drivers = Driver.all.limit(20)
@@ -40,6 +50,8 @@ class Race < ApplicationRecord
       q1_lap_times << LapTime.new(driver: driver, time: lap_time_q1)
     end
 
+    Car.reset_dnf_status
+
     @q1 = q1_lap_times.sort_by(&:time)
   end
 
@@ -48,8 +60,8 @@ class Race < ApplicationRecord
 
     q2_lap_times = []
 
-    top_15_q1_lap_times.each do |lap_time|
-      driver = lap_time.driver
+    top_15_q1_lap_times.each do |driver_lap_time|
+      driver = driver_lap_time.driver
       car = driver.car
       circuit = self.circuit
       ideal_lap_time = circuit.ideal_lap_time
@@ -60,6 +72,8 @@ class Race < ApplicationRecord
       q2_lap_times << LapTime.new(driver: driver, time: lap_time_q2)
     end
 
+    Car.reset_dnf_status
+
     @q2 = q2_lap_times.sort_by(&:time)
   end
 
@@ -68,8 +82,8 @@ class Race < ApplicationRecord
 
     q3_lap_times = []
 
-    top_10_q2_lap_times.each do |lap_time|
-      driver = lap_time.driver
+    top_10_q2_lap_times.each do |driver_lap_time|
+      driver = driver_lap_time.driver
       car = driver.car
       circuit = self.circuit
       ideal_lap_time = circuit.ideal_lap_time
@@ -80,6 +94,8 @@ class Race < ApplicationRecord
       q3_lap_times << LapTime.new(driver: driver, time: lap_time_q3)
     end
 
+    Car.reset_dnf_status
+
     @q3 = q3_lap_times.sort_by(&:time)
   end
 
@@ -88,8 +104,8 @@ class Race < ApplicationRecord
     total_laps = self.circuit.total_laps
 
     total_laps.times do |lap_number|
-      starting_grid.each_with_index do |lap_time, index|
-        driver = lap_time.driver
+      starting_grid.each_with_index do |driver_lap_time, index|
+        driver = driver_lap_time.driver
         car = driver.car
         circuit = self.circuit
         ideal_lap_time = circuit.ideal_lap_time
@@ -111,6 +127,8 @@ class Race < ApplicationRecord
     end
 
     race.save
+
+    Car.reset_dnf_status
 
     driver_lap_times
   end
@@ -314,6 +332,10 @@ class Race < ApplicationRecord
 
   def circuit_straights(circuit)
     total_straight_time ||= (circuit.short_straights * 30) + (circuit.medium_straights * 40) + (circuit.long_straights * 60)
+  end
+
+  def dnf_check
+    rand(350) == 100 ? 999_999 : 0
   end
 
   def set_team_defaults

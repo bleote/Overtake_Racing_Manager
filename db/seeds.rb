@@ -958,9 +958,9 @@ Circuit.create(
   short_straights: 2,
   medium_straights: 1,
   long_straights: 4,
-  pitstop_time: 17_400,
-  ideal_lap_time: 104_297,
-  total_laps: 44
+  pitstop_time: 19_000,
+  ideal_lap_time: 80_161,
+  total_laps: 53
 )
 
 Circuit.create(

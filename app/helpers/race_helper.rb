@@ -47,6 +47,33 @@ module RaceHelper
     end
   end
 
+  def dnf_cause_qualifying
+    dnf_causes = rand(1..29)
+
+    case dnf_causes
+    when 1..14
+      '(Crashed)'
+    when 15
+      '(Electrics)'
+    when 16..18
+      '(Engine)'
+    when 19..20
+      '(Fuel system)'
+    when 21..22
+      '(Gearbox)'
+    when 23..24
+      '(Oil leak)'
+    when 25
+      '(Power loss)'
+    when 26..27
+      '(Turbo)'
+    when 28..29
+      '(Water pressure)'
+    else
+      '(Brake-by-wire)'
+    end
+  end
+
   private
 
   def frontrunners(team_id, sorted_race_results)

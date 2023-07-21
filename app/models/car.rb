@@ -19,4 +19,8 @@ class Car < ApplicationRecord
   validates :aero_setup, inclusion: { in: AEROSETUP }
   validates :gear_ratio, inclusion: { in: GEARS }
   validates :tyres, inclusion: { in: TYRES }
+
+  def self.reset_dnf_status
+    Car.update_all(dnf: false)
+  end
 end
