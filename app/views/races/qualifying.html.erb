@@ -41,9 +41,17 @@
           <% lap_time_style = index >= @q1_lap_times.length - 5 ? 'color: #df0000;' : '' %>
           <p id="q1-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
           <% if lap_time.driver.team_id == @race.team_id %>
-            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+            <% if lap_time.time < 999999 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+            <% else %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: No Time #{dnf_cause_qualifying}" %>
+            <% end %>
           <% else %>
-            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+            <% if lap_time.time < 999999 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+            <% else %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: No Time #{dnf_cause_qualifying}" %>
+            <% end %>
           <% end %>
           </p>
         <% end %>
@@ -64,9 +72,17 @@
           <% lap_time_style = index >= @q2_lap_times.length - 5 ? 'color: #df0000;' : '' %>
           <p id="q2-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
           <% if lap_time.driver.team_id == @race.team_id %>
-            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+            <% if lap_time.time < 999999 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+            <% else %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: No Time #{dnf_cause_qualifying}" %>
+            <% end %>
           <% else %>
-            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+            <% if lap_time.time < 999999 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+            <% else %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: No Time #{dnf_cause_qualifying}" %>
+            <% end %>
           <% end %>
           </p>
         <% end %>
@@ -87,9 +103,17 @@
           <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
           <p id="q3-lap-time-<%= index %>" style="display: none; <%= lap_time_style %>">
           <% if lap_time.driver.team_id == @race.team_id %>
-            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+            <% if lap_time.time < 999999 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %> <span style='color: #e67e22;'>*</span>
+            <% else %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: No Time #{dnf_cause_qualifying}" %>
+            <% end %>
           <% else %>
-            <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+            <% if lap_time.time < 999999 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: #{format_lap_time(lap_time.time)}" %>
+            <% else %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver_name}: No Time #{dnf_cause_qualifying}" %>
+            <% end %>
           <% end %>
           </p>
         <% end %>

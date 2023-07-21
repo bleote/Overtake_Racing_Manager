@@ -97,45 +97,49 @@
 
     <!-- Static view -->
     <div id="static-results" class="race-results text-start mx-2" style="display: none;">
-        <!-- Display race information -->
-        <h3 class="text-center">Race Results</h3>
-        <div class="gp-empty"></div>
-        <!-- Display lap information -->
-        <p>Lap: <%= @circuit.total_laps %> of <%= @circuit.total_laps %></p>
-        <div class="gp-empty"></div>
-        <!-- Info to calculate race results -->
-        <% winner_lap_time = @sorted_race_results.first.last.sum { |lt| lt[:lap_time] } %>
-        <% @sorted_race_results.each_with_index do |(driver, lap_times), index| %>
-          <!-- Display driver's race result -->
-          <% driver_car = image_path("cars/#{driver.car.image}") %>
-          <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
-          <% total_time = lap_times.sum { |lt| lt[:lap_time] } %>
-          <% time_difference = total_time - winner_lap_time %>
-          <% formatted_time_difference = format_lap_time(time_difference) %>
-          <p id="race-lap-time-<%= driver.id %>" style="<%= lap_time_style %>">
+      <!-- Display race information -->
+      <h3 class="text-center">Race Results</h3>
+      <div class="gp-empty"></div>
+      <!-- Display lap information -->
+      <p>Lap: <%= @circuit.total_laps %> of <%= @circuit.total_laps %></p>
+      <div class="gp-empty"></div>
+      <!-- Info to calculate race results -->
+      <% winner_lap_time = @sorted_race_results.first.last.sum { |lt| lt[:lap_time] } %>
+      <% @sorted_race_results.each_with_index do |(driver, lap_times), index| %>
+        <!-- Display driver's race result -->
+        <% driver_car = image_path("cars/#{driver.car.image}") %>
+        <% lap_time_style = index == 0 ? 'color: #1edd88;' : '' %>
+        <% total_time = lap_times.sum { |lt| lt[:lap_time] } %>
+        <% time_difference = total_time - winner_lap_time %>
+        <% formatted_time_difference = format_lap_time(time_difference) %>
+        <p id="race-lap-time-<%= driver.id %>" style="<%= lap_time_style %>">
+          <% if driver.team_id == @race.team_id %>
             <% if index == 0 %>
-              <% if driver.team_id == @race.team_id %>
-                <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}" %> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Winner <span style='color: #e67e22;'>*</span>
-              <% else %>
-                <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}" %> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Winner
-              <% end %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}" %> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Winner <span style='color: #e67e22;'>*</span>
+            <% elsif index > 0 && time_difference < 999999 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> <%= " +#{formatted_time_difference}" %> <span style='color: #e67e22;'>*</span>
             <% else %>
-              <% if driver.team_id == @race.team_id %>
-                <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> <%= " +#{formatted_time_difference}" %> <span style='color: #e67e22;'>*</span>
-              <% else %>
-                <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> <%= " +#{formatted_time_difference}" %>
-              <% end %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Did not finish <span style='color: #e67e22;'>*</span>
             <% end %>
-          </p>
-        <% end %>
+          <% else %>
+            <% if index == 0 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}" %> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Winner
+            <% elsif index > 0 && time_difference < 999999 %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> <%= " +#{formatted_time_difference}" %>
+            <% else %>
+              <%= "#{sprintf('%02d', index + 1)} - #{driver.initials}"%> <img src="<%= driver_car %>" alt="Car Image" style="width: 35px;"> Did not finish
+            <% end %>
+          <% end %>
+        </p>
+      <% end %>
 
-        <div class="gp-empty"></div>
+      <div class="gp-empty"></div>
 
-        <div class="d-flex justify-content-center">
-          <%= link_to 'See Results', results_race_path(@race), class: 'btn btn-primary', id: 'see-results-btn' %>
-        </div>
+      <div class="d-flex justify-content-center">
+        <%= link_to 'See Results', results_race_path(@race), class: 'btn btn-primary', id: 'see-results-btn' %>
+      </div>
 
-        <div class="gp-empty"></div>
+      <div class="gp-empty"></div>
 
     </div>
   </div>
@@ -226,6 +230,57 @@
       startingGridOrder[startingGrid[i].driver_id] = i;
     }
 
+    // Create an object to store the DNF causes for each driver
+    var dnfCausesForDrivers = {};
+
+    // Define the dnfCauses function
+    function dnfCauses(driverId) {
+      // If the DNF cause for this driver has already been generated, return that
+      if (dnfCausesForDrivers[driverId]) {
+        return dnfCausesForDrivers[driverId];
+      }
+
+      // Otherwise, generate a new DNF cause
+      var cause = Math.floor(Math.random() * 29) + 1;
+      var dnfCause;
+      switch(true) {
+        case (cause >= 1 && cause <= 14):
+          dnfCause = '(Crashed)';
+          break;
+        case (cause === 15):
+          dnfCause = '(Electrics)';
+          break;
+        case (cause >= 16 && cause <= 18):
+          dnfCause = '(Engine)';
+          break;
+        case (cause >= 19 && cause <= 20):
+          dnfCause = '(Fuel system)';
+          break;
+        case (cause >= 21 && cause <= 22):
+          dnfCause = '(Gearbox)';
+          break;
+        case (cause >= 23 && cause <= 24):
+          dnfCause = '(Oil leak)';
+          break;
+        case (cause === 25):
+          dnfCause = '(Power loss)';
+          break;
+        case (cause >= 26 && cause <= 27):
+          dnfCause = '(Turbo)';
+          break;
+        case (cause >= 28 && cause <= 29):
+          dnfCause = '(Water pressure)';
+          break;
+        default:
+          dnfCause = '(Brake-by-wire)';
+      }
+
+      // Store the generated DNF cause in the object
+      dnfCausesForDrivers[driverId] = dnfCause;
+
+      return dnfCause;
+    }
+
     function updateRaceResults() {
       // Calculate the total time for each driver
       var totalTimeData = [];
@@ -284,6 +339,15 @@
           }
           else {
             var gapText = (currentLap === 0) ? "": "+" + formatLapTime(gapToLeader);
+          }
+
+          // Check if the driver has a DNF or not
+          if (gapToLeader >= 999999) {
+            gapText = "Retired " + dnfCauses(totalTimeData[i].id);
+          } else if (currentLap > 0) {
+            gapText = "+" + formatLapTime(gapToLeader);
+          } else {
+            gapText = "";
           }
 
           // Add leading zero if index is less than or equal to 8
