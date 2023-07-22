@@ -20,20 +20,14 @@ class Race < ApplicationRecord
   after_initialize :set_status
 
   def lap_time(team_id, driver, car, circuit, ideal_lap_time, race)
-    return 999_999 if car.dnf?
-
     driver_adjustment = driver_adjustment(driver)
     car_adjustment = car_adjustment(team_id, car, circuit, race)
+    dnf_check = dnf_check(car)
 
     lap_time = ideal_lap_time + driver_adjustment + dnf_check
 
-    if lap_time >= 999_999
-      car.update(dnf: true)
-    end
-
     lap_time
   end
-
 
   def calculate_lap_times_for_q1(race)
     drivers = Driver.all.limit(20)
@@ -103,6 +97,8 @@ class Race < ApplicationRecord
     driver_lap_times = {}
     total_laps = self.circuit.total_laps
 
+    Car.reset_dnf_status
+
     total_laps.times do |lap_number|
       starting_grid.each_with_index do |driver_lap_time, index|
         driver = driver_lap_time.driver
@@ -126,9 +122,9 @@ class Race < ApplicationRecord
       end
     end
 
-    race.save
-
     Car.reset_dnf_status
+
+    race.save
 
     driver_lap_times
   end
@@ -334,8 +330,18 @@ class Race < ApplicationRecord
     total_straight_time ||= (circuit.short_straights * 30) + (circuit.medium_straights * 40) + (circuit.long_straights * 60)
   end
 
-  def dnf_check
-    rand(350) == 100 ? 999_999 : 0
+  def dnf_check(car)
+    if car.dnf?
+      999_999
+    else
+      dnf_chance = rand(1..500)
+        if dnf_chance == 357
+          car.update(dnf: true)
+          999_999
+        else
+          0
+        end
+    end
   end
 
   def set_team_defaults

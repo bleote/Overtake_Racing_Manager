@@ -344,10 +344,6 @@
           // Check if the driver has a DNF or not
           if (gapToLeader >= 999999) {
             gapText = "Retired " + dnfCauses(totalTimeData[i].id);
-          } else if (currentLap > 0) {
-            gapText = "+" + formatLapTime(gapToLeader);
-          } else {
-            gapText = "";
           }
 
           // Add leading zero if index is less than or equal to 8
